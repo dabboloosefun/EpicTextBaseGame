@@ -8,26 +8,24 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Gebruiker\\.nuget\\packages\\": {}
+    "/Users/JulianKreugel/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\VSCodeProjects\\EpicTextBaseGame\\EpicTextBasedGame\\EpicTextBasedGame.csproj",
+      "projectUniqueName": "/Users/JulianKreugel/Documents/GitHub/EpicTextBaseGame/EpicTextBasedGame/EpicTextBasedGame.csproj",
       "projectName": "EpicTextBasedGame",
-      "projectPath": "C:\\VSCodeProjects\\EpicTextBaseGame\\EpicTextBasedGame\\EpicTextBasedGame.csproj",
-      "packagesPath": "C:\\Users\\Gebruiker\\.nuget\\packages\\",
-      "outputPath": "C:\\VSCodeProjects\\EpicTextBaseGame\\EpicTextBasedGame\\obj\\",
+      "projectPath": "/Users/JulianKreugel/Documents/GitHub/EpicTextBaseGame/EpicTextBasedGame/EpicTextBasedGame.csproj",
+      "packagesPath": "/Users/JulianKreugel/.nuget/packages/",
+      "outputPath": "/Users/JulianKreugel/Documents/GitHub/EpicTextBaseGame/EpicTextBasedGame/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Gebruiker\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/JulianKreugel/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -61,7 +59,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
