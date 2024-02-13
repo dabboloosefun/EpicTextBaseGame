@@ -1,0 +1,15 @@
+c:\VSCodeProjects\EpicTextBaseGame\EpicTextBasedGame\obj\Debug\net8.0\EpicTextBasedGame.GeneratedMSBuildEditorConfig.editorconfig
+c:\VSCodeProjects\EpicTextBaseGame\EpicTextBasedGame\obj\Debug\net8.0\EpicTextBasedGame.AssemblyInfoInputs.cache
+c:\VSCodeProjects\EpicTextBaseGame\EpicTextBasedGame\obj\Debug\net8.0\EpicTextBasedGame.AssemblyInfo.cs
+c:\VSCodeProjects\EpicTextBaseGame\EpicTextBasedGame\obj\Debug\net8.0\EpicTextBasedGame.csproj.CoreCompileInputs.cache
+c:\VSCodeProjects\EpicTextBaseGame\EpicTextBasedGame\obj\Debug\net8.0\EpicTextBasedGame.sourcelink.json
+c:\VSCodeProjects\EpicTextBaseGame\EpicTextBasedGame\bin\Debug\net8.0\EpicTextBasedGame.exe
+c:\VSCodeProjects\EpicTextBaseGame\EpicTextBasedGame\bin\Debug\net8.0\EpicTextBasedGame.deps.json
+c:\VSCodeProjects\EpicTextBaseGame\EpicTextBasedGame\bin\Debug\net8.0\EpicTextBasedGame.runtimeconfig.json
+c:\VSCodeProjects\EpicTextBaseGame\EpicTextBasedGame\bin\Debug\net8.0\EpicTextBasedGame.dll
+c:\VSCodeProjects\EpicTextBaseGame\EpicTextBasedGame\bin\Debug\net8.0\EpicTextBasedGame.pdb
+c:\VSCodeProjects\EpicTextBaseGame\EpicTextBasedGame\obj\Debug\net8.0\EpicTextBasedGame.dll
+c:\VSCodeProjects\EpicTextBaseGame\EpicTextBasedGame\obj\Debug\net8.0\refint\EpicTextBasedGame.dll
+c:\VSCodeProjects\EpicTextBaseGame\EpicTextBasedGame\obj\Debug\net8.0\EpicTextBasedGame.pdb
+c:\VSCodeProjects\EpicTextBaseGame\EpicTextBasedGame\obj\Debug\net8.0\EpicTextBasedGame.genruntimeconfig.cache
+c:\VSCodeProjects\EpicTextBaseGame\EpicTextBasedGame\obj\Debug\net8.0\ref\EpicTextBasedGame.dll
