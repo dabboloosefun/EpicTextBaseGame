@@ -1,14 +1,20 @@
 public class Monster
 {
-    public int monsterHP;
-    public int monsterDMG;
-    public Monster(string healthPoints, string damagePoints)
+    public int MaximumHitpoints;
+    public int CurrentHitpoints;
+    public string Name;
+    public int ID;
+    public int MaximumDamage;
+    public Monster(int id, string name, int maximumDamage, int maximumHitpoints, int currentHitpoints)
     {
-        monsterHP = Convert.ToInt32(healthPoints);
-        monsterDMG = Convert.ToInt32(damagePoints);
+        this.ID = id;
+        this.Name = name;
+        this.MaximumDamage = maximumDamage;
+        this.MaximumHitpoints = maximumHitpoints;
+        this.CurrentHitpoints = currentHitpoints;
     } 
     public void DisplayStats()
     {
-        Console.WriteLine(monsterHP + monsterDMG);
+        Console.WriteLine(this.ID + this.Name + this.MaximumDamage + this.MaximumHitpoints + this.CurrentHitpoints);
     }
 }
