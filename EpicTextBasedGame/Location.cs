@@ -4,6 +4,7 @@ public class Location{
     public string Description;
     public Quest QuestAvailableHere;
     public Monster MonsterLivingHere;
+    //these are filled in World.cs
     public Location LocationToNorth;
     public Location LocationToEast;
     public Location LocationToSouth;

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EpicTextBasedGame")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c8efe8cd898e6fe5aa18d7e7aa7ba246b82494bb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+40dd298a675951ed0d06af372974f434138dcd59")]
 [assembly: System.Reflection.AssemblyProductAttribute("EpicTextBasedGame")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EpicTextBasedGame")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

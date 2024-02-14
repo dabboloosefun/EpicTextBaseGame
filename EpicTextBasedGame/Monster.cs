@@ -4,8 +4,8 @@ public class Monster
     public int monsterDMG;
     public Monster(string healthPoints, string damagePoints)
     {
-        monsterHP = healthPoints;
-        monsterDMG = damagePoints;
+        monsterHP = Convert.ToInt32(healthPoints);
+        monsterDMG = Convert.ToInt32(damagePoints);
     } 
     public void DisplayStats()
     {
