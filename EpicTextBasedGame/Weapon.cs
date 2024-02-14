@@ -2,16 +2,48 @@ public class Weapon
 {
     public int ID;
     public string Name;
-    public int MaximumDamage; //? Weapon() call in World.cs gives 3 arguments
-    public Weapon(int id, string name, int maximumDamage){
-        ID = id;
-        Name = name;
-        MaximumDamage = maximumDamage;
+    public int MaxDamage;
+    public int CritChance; //Unused for now, but might be useful later
+    public Weapon(int id, string name, int maxDamage)
+    {
+        this.ID = id;
+        this.Name = name;
+        this.MaxDamage = maxDamage;
     }
 
-    public int RollDamage(int minOffset = 0, int maxOffset = 0){
-        Random rand = new();
-        return rand.Next(MaximumDamage-minOffset, MaximumDamage+maxOffset);
+
+    // Ter gebruik in monster.TakeDamage(player.currentWeapon.RollDamage()) method
+    public int RollDamage(int minimumDamage = 0)
+    {
+        Random rand = new Random();
+        minimumDamage = minimumDamage = 0 ? (this.MaxDamage - 3) : minimumDamage;
+        return rand.Next(minimumDamage, this.MaxDamage + 1);
     }
 
+
+    // Ter gebruik voor als player damage wordt gebuffed 
+    public void RaiseMaxDamage(int raisedDamage)
+    {
+        this.MaxDamage += raisedDamage;
+        Console.WriteLine($"{Name}'s damage has been raised!"); 
+    }
+
+
+    // Ter gebruik voor als player damage wordt gedebuffed
+    public void LowerMaxDamage(int loweredDamage)
+    {
+        this.MaxDamage -= loweredDamage;
+        if (this.MaxDamage < 0)
+        {
+            this.MaxDamage = 0;
+        }
+        Console.WriteLine($"{Name}'s damage has been lowered!");
+    }
+
+
+    // Might be useful if you ever would want to upgrade a weapon (or maybe a new weapon would be easier but eh.)
+    public void ChangeName(string newName)
+    {
+        this.Name = newName;
+    }
 }
