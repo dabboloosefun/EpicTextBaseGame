@@ -9,4 +9,9 @@ public class Weapon
         MaximumDamage = maximumDamage;
     }
 
+    public int RollDamage(int minOffset = 0, int maxOffset = 0){
+        Random rand = new();
+        return rand.Next(MaximumDamage-minOffset, MaximumDamage+maxOffset);
+    }
+
 }
