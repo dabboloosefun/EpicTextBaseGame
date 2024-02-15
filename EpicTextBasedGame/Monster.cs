@@ -5,7 +5,7 @@ public class Monster
     public string Name;
     public int ID;
     public int MaxDamage;
-    public Monster(int id, string name, int maxDamage, int maxHealth, int currentHealth)
+    public Monster(int id, string name, int maxDamage, int currentHealth , int maxHealth)
     {
         this.ID = id;
         this.Name = name;
