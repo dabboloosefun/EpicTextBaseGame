@@ -16,7 +16,7 @@ public class Weapon
     public int RollDamage(int minimumDamage = 0)
     {
         Random rand = new Random();
-        minimumDamage = minimumDamage = 0 ? (this.MaxDamage - 3) : minimumDamage;
+        minimumDamage = minimumDamage == 0 ? (this.MaxDamage - 3) : minimumDamage;
         return rand.Next(minimumDamage, this.MaxDamage + 1);
     }
 

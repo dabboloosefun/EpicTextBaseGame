@@ -20,18 +20,18 @@ public class Quest
 
         if(clearModifier == "Within3Hits")
         {
-            Player.Inventory.Add("Jar Of Llightning");
+            //Player.Inventory.Add("Jar Of Llightning");
         }
 
         if(clearModifier == "SparedGoblin")
         {
-            Player.Inventory.Add("Goblin's Blessing");
+            //Player.Inventory.Add("Goblin's Blessing");
         }
 
         if(clearModifier == "SlayedGoblin")
         {
-            Player.CurrentHealth -= 1;
-            Player.Inventory.Add("Goblin's Curse");
+            //Player.CurrentHealth -= 1;
+            //Player.Inventory.Add("Goblin's Curse");
         }
     }
 
