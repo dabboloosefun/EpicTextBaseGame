@@ -17,6 +17,12 @@ public class Location{
         QuestAvailableHere = quest;
         MonsterLivingHere = monster;
     }
+
+    public void Visit(Player player){
+        //if player.Inventory contains certain item
+        QuestAvailableHere.StartQuest();
+
+    }
 }
 
 /*helloo*/
