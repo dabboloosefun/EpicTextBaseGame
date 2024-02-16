@@ -3,12 +3,8 @@ public class Player
     public List<Weapon> Weapons;
     public List<string> Items;
     public Weapon CurrentWeapon;
-    public static void hello()
+    public Player()
     {
-        Console.WriteLine("Hello World!");
-    }
-
-    public Player(){
         Weapons = new List<Weapon>();
         Items = new List<string>();
     }
@@ -19,17 +15,23 @@ public class Player
         for(int i = 0; i<Weapons.Count(); i++) //we can just use the index in the list to select a new weapon with
         {
             Weapon currentWeapon = Weapons[i];
-            output += $"{i}. {currentWeapon.Name}: Max damage: {currentWeapon.MaxDamage}, Crit chance: {currentWeapon.CritChance} \n"; 
-            //do we need to print the ID too? I think we should leave that behind the scenes
+            output += $"{i}. {currentWeapon.Name}: Max damage: {currentWeapon.MaxDamage}, Crit chance: {currentWeapon.CritChance}\n"; 
+            //do we need to print the ID too? I think we should leave that behind the scenes > No need, ID is just for us to identify
+            //Couldn't you just Console.WriteLine() in the for loop? feels like unnesecary extra steps
         }
         Console.WriteLine(output);
     }
-    public void PromptSelectWeapon(){
-        string userInput ="";
+
+    // Readability people>>>
+    public void PromptSelectWeapon()
+    {
+        string userInput = "";
+ 
         do{
             Console.WriteLine("Would you like to swap your weapon? yes/no");
-            userInput = Console.ReadLine();
-        } while ( !(userInput== "yes" || userInput == "no"));
+            userInput = Console.ReadLine().ToLower;
+        } while ( !(userInput== "yes" || userInput == "no")); //???? Why not just: while (userInput != "yes" && userInput != "no")
+
         if(userInput == "no") return;
         else if(userInput == "yes")
         {
@@ -44,7 +46,7 @@ public class Player
             } while (!succesfulParse || !(0 <= selectedNumber && selectedNumber < Weapons.Count())); //if Weapons.Count() = 3, valid inputs are 0, 1, 2. < is exclusive
             Weapons.Add(CurrentWeapon);
             CurrentWeapon = Weapons[selectedNumber];
-            Weapons.Remove(Weapons[selectedNumber]); //even if weapons have the same name, they still have different ID so this hould work
+            Weapons.Remove(Weapons[selectedNumber]); //even if weapons have the same name, they still have different ID so this hould work > Why remove the weapon from the list? You still have it in your inv
             Console.WriteLine($"You've now equiped this new weapon! {CurrentWeapon.Name}: Max damage: {CurrentWeapon.MaxDamage}, Crit chance: {CurrentWeapon.CritChance}");
         }
     }
