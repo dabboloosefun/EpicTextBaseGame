@@ -3,12 +3,13 @@ public class Weapon
     public int ID;
     public string Name;
     public int MaxDamage;
-    public int CritChance; //Unused for now, but might be useful later
-    public Weapon(int id, string name, int maxDamage)
+    public double CritChance;
+    public Weapon(int id, string name, int maxDamage, double critChance)
     {
         this.ID = id;
         this.Name = name;
         this.MaxDamage = maxDamage;
+        this.CritChance = critChance;
     }
 
 
@@ -16,8 +17,11 @@ public class Weapon
     public int RollDamage(int minimumDamage = 0)
     {
         Random rand = new Random();
-        minimumDamage = minimumDamage == 0 ? (this.MaxDamage - 3) : minimumDamage;
-        return rand.Next(minimumDamage, this.MaxDamage + 1);
+        minimumDamage = minimumDamage == 0 ? (Convert.ToInt32(this.MaxDamage * 0.8)) : minimumDamage;
+        int rolledDamage = rand.Next(minimumDamage, Convert.ToInt32(this.MaxDamage * 1.2));
+
+        if (rand.NextDouble() <= this.CritChance) return (rolledDamage * 2);
+        return rolledDamage;
     }
 
 
@@ -25,7 +29,7 @@ public class Weapon
     public void RaiseMaxDamage(int raisedDamage)
     {
         this.MaxDamage += raisedDamage;
-        Console.WriteLine($"{Name}'s damage has been raised!"); 
+        Console.WriteLine($"{Name}'s damage has been raised!");
     }
 
 
