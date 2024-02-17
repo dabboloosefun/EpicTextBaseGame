@@ -210,7 +210,7 @@ public class SuperAdventure
                 Console.ForegroundColor = ConsoleColor.White;
                 thread.Interrupt();
                 Console.Clear();
-                break;
+                Program.Main();
             }
         }
     }
@@ -230,6 +230,7 @@ public class SuperAdventure
         Console.WriteLine(CenterStr(@"  ▀█████▀   ▀██████▀  ████████▀       ████████▀  █▀     ██████████ ████████▀"));
         Thread.Sleep(3000);
         Console.Clear();
+        Program.Main();
     }
     public static void WinScreen()
     {

@@ -21,6 +21,6 @@
             player.CommenceAction(playerAction);
         }
 
-        // SuperAdventure.VictoryScreen();
+        SuperAdventure.OutroScreen();
     }
 }
