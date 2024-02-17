@@ -98,7 +98,7 @@ public class Player
 
     public bool TryMoveTo()
     {
-        CurrentLocation.Compass();
+        Console.WriteLine(CurrentLocation.Compass());
         Console.WriteLine("In what direction would you like to go? n/e/s/w");
                 string direction;
                 do
@@ -139,7 +139,11 @@ public class Player
         switch (playerAction)
         {
             case 1:
-                if(TryMoveTo()) break;
+                if(TryMoveTo())
+                {
+                    Console.WriteLine(CurrentLocation.Name);
+                    break;
+                } 
                 Console.WriteLine("That direction is invalid");
                 break;
 
