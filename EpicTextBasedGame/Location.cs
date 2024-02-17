@@ -5,10 +5,10 @@ public class Location{
     public Quest QuestAvailableHere;
     public Monster MonsterLivingHere;
     //these are filled in World.cs
-    public Location LocationToNorth;
-    public Location LocationToEast;
-    public Location LocationToSouth;
-    public Location LocationToWest;
+    public Location? LocationToNorth;
+    public Location? LocationToEast;
+    public Location? LocationToSouth;
+    public Location? LocationToWest;
 
     public Location(int id, string name, string description, Quest quest, Monster monster)
     {
@@ -21,7 +21,7 @@ public class Location{
 
     public void AdjustDescription(string newDescription) //Flexibiliteit is altijd fijn.
     {
-        Description = newDescription
+        Description = newDescription;
     }
 
     public Monster GetMonster() => MonsterLivingHere; // Miss nuttig als je combat wilt starten
@@ -52,7 +52,7 @@ public class Location{
         {
             compass += "---E";
         }
-        s += "\n";
+        compass += "\n";
         if (LocationToSouth != null)
         {
             compass += "    |\n    S\n";
@@ -60,7 +60,7 @@ public class Location{
         return compass;
     }
 
-    public Location GetLocationAt(string location)
+    public Location? GetLocationAt(string location)
     {
         if (location == "N") return LocationToNorth;
         if (location == "E") return LocationToEast;
