@@ -118,4 +118,67 @@ public class SuperAdventure
             playerturn = !playerturn; // Draait player turn om
         } // While loop voor fight
     }
+        public static void TitleScreen()
+    {
+        Console.CursorVisible = false;
+        Console.Clear();
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine(CenterStr("██████╗ ███████╗██████╗ ███████╗███████╗██████╗ ██╗  ██╗███████╗██████╗"));
+        Console.WriteLine(CenterStr("██╔══██╗██╔════╝██╔══██╗██╔════╝██╔════╝██╔══██╗██║ ██╔╝██╔════╝██╔══██╗"));
+        Console.WriteLine(CenterStr("██████╔╝█████╗  ██████╔╝███████╗█████╗  ██████╔╝█████╔╝ █████╗  ██████╔╝"));
+        Console.WriteLine(CenterStr("██╔══██╗██╔══╝  ██╔══██╗╚════██║██╔══╝  ██╔══██╗██╔═██╗ ██╔══╝  ██╔══██╗"));
+        Console.WriteLine(CenterStr("██████╔╝███████╗██║  ██║███████║███████╗██║  ██║██║  ██╗███████╗██║  ██║"));
+        Console.WriteLine(CenterStr("╚═════╝ ╚══════╝╚═╝  ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝"));
+        Console.WriteLine("\n\n\n\n\n\n\n\n\n");
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Thread thread = null;
+        Task.Run(() =>
+        {
+            thread = Thread.CurrentThread;
+            WriteBlinkingTextOptions();
+        });
+        var key = Console.ReadKey(true);
+        if (key.Key == ConsoleKey.Escape)
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Clear();
+            Environment.Exit(0);
+        }
+        else if (key.Key == ConsoleKey.Enter)
+        {
+            thread.Interrupt();
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Clear();
+            Console.CursorVisible = true;
+        }
+    }
+
+    public static string CenterStr(string textToEnter)
+    {
+        return (String.Format("{0," + ((Console.WindowWidth / 2) + (textToEnter.Length / 2)) + "}", textToEnter));
+    }
+    public static void WriteBlinkingTextOptions()
+    {
+        bool visible = true;
+        while (true)
+        {
+            Console.Write("\r" + (visible ? CenterStr("Press ENTER to start newgame (ESC to quit)") : new String(' ', CenterStr("Press ENTER to start newgame (ESC to quit)").Length)));
+            Thread.Sleep(500);
+            visible = !visible;
+        }
+    }
+
+    public static void BlinkText(string text, bool center=false)
+    {
+        if (center is true) text = CenterStr(text);
+        int count = 0;
+        bool visible = true;
+        while (count < 10)
+        {
+            Console.Write("\r" + (visible ? text : new String(' ', text.Length)));
+            Thread.Sleep(500);
+            visible = !visible;
+            count++;
+        }
+    }
 }
