@@ -2,26 +2,25 @@
 {
     public static void Main()
     {
-        
         // Our main code code here, preferably everything is dynamic (so lots of methods).
+        Player player = new Player();
+        bool victory = false;
         SuperAdventure.TitleScreen();
-        // titlescreen starts
-        
-        // Monster Bob = new Monster(1, "Sick Goblin", 5, 5, 10);
-        // Bob.DisplayStats();
 
-        // Player player = new Player();
-        // player.Weapons.Add(new Weapon(World.Weapons.Count+1, "rusty sword", 2, 0.33)); //World is static so we don't need to instantiate it
-        // //World.cs defines weapon ID's by type but I think it would be better to define ID's by incrementing the amount of existing weapons
-        // player.Weapons.Add(new Weapon(World.Weapons.Count+1, "Gun", 20, 0.33));
-        // player.Weapons.Add(new Weapon(World.Weapons.Count+1, "Magic stick", 0, 0.33));
+        // Little intro can go here.
 
-        // //you wakt up, given choices, and one of them is
-        // Console.WriteLine("3. View Weapons");
-        // //if (userInput == 3)
-        // player.ListWeapons();
-        // player.PromptSelectWeapon();
-        
+        while (!victory)
+        {
+            // Main Gameplay loop hierin > bij elke stap checken of er op escape wordt gedrukt dan of menu openen of game afsluiten.
+            double succesfulEncounter = 0.2;
+            Random encounterChance = new Random();  // Dit kan allemaal afgestaan worden aan de monster class, dan kunnen we elk monster een persoonlijk encounter chance geven.
+            double encounterRoll = encounterChance.NextDouble();
+            // if (player.currentLocation.Monster != null && encounterRoll <= succesfulEncounter) SuperAdventure.Fight(player.currentLocation.Monster);
 
+            int playerAction = player.AskPlayerAction();
+            player.CommenceAction(playerAction);
+        }
+
+        // SuperAdventure.VictoryScreen();
     }
 }
