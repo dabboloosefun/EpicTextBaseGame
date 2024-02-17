@@ -26,7 +26,7 @@ public class Location{
 
     public Monster GetMonster() => MonsterLivingHere; // Miss nuttig als je combat wilt starten
 
-    public void StartQuest()
+    public void StartLocationQuest()
     {
         //if player.Inventory contains certain item > I'd rather have you be prompted to start a quest regardless (MMO style: speak to NPC: y/n)
         QuestAvailableHere.StartQuest();
