@@ -2,7 +2,7 @@ public class Player
 {
     public List<Weapon> Weapons;
     public List<string> Items;
-    public Weapon CurrentWeapon;
+    public Weapon? CurrentWeapon;
     public int CurrentHealth;
     public int MaxHealth;
 

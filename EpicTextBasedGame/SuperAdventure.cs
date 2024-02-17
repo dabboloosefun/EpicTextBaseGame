@@ -131,7 +131,7 @@ public class SuperAdventure
         Console.WriteLine(CenterStr("╚═════╝ ╚══════╝╚═╝  ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝"));
         Console.WriteLine("\n\n\n\n\n\n\n\n\n");
         Console.ForegroundColor = ConsoleColor.Yellow;
-        Thread thread = null;
+        Thread? thread = null;
         Task.Run(() =>
         {
             thread = Thread.CurrentThread;
