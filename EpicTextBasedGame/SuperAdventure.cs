@@ -118,7 +118,7 @@ public class SuperAdventure
             playerturn = !playerturn; // Draait player turn om
         } // While loop voor fight
     }
-        public static void TitleScreen()
+    public static void TitleScreen()
     {
         Console.CursorVisible = false;
         Console.Clear();
@@ -137,19 +137,23 @@ public class SuperAdventure
             thread = Thread.CurrentThread;
             WriteBlinkingTextOptions();
         });
-        var key = Console.ReadKey(true);
-        if (key.Key == ConsoleKey.Escape)
+        while (true)
         {
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.Clear();
-            Environment.Exit(0);
-        }
-        else if (key.Key == ConsoleKey.Enter)
-        {
-            thread.Interrupt();
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.Clear();
-            Console.CursorVisible = true;
+            var key = Console.ReadKey(true);
+            if (key.Key == ConsoleKey.Escape)
+            {
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Clear();
+                Environment.Exit(0);
+            }
+            else if (key.Key == ConsoleKey.Enter)
+            {
+                thread.Interrupt();
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Clear();
+                Console.CursorVisible = false;
+                break;
+            }
         }
     }
 
