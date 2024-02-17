@@ -141,10 +141,12 @@ public class Player
             case 1:
                 if(TryMoveTo())
                 {
-                    Console.WriteLine(CurrentLocation.Name);
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine(SuperAdventure.CenterStr($"Now entering: {CurrentLocation.Name}"));
+                    Console.ForegroundColor = ConsoleColor.White;
                     break;
                 } 
-                Console.WriteLine("That direction is invalid");
+                Console.WriteLine(SuperAdventure.CenterStr("That direction is invalid"));
                 break;
 
             case 2:
