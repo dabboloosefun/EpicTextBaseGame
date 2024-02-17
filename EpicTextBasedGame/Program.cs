@@ -15,7 +15,7 @@
             double succesfulEncounter = 0.2;
             Random encounterChance = new Random();  // Dit kan allemaal afgestaan worden aan de monster class, dan kunnen we elk monster een persoonlijk encounter chance geven.
             double encounterRoll = encounterChance.NextDouble();
-            // if (player.currentLocation.Monster != null && encounterRoll <= succesfulEncounter) SuperAdventure.Fight(player.currentLocation.Monster);
+            if (player.CurrentLocation.MonsterLivingHere != null && encounterRoll <= succesfulEncounter) SuperAdventure.Fight(player, player.CurrentLocation.MonsterLivingHere);
 
             int playerAction = player.AskPlayerAction();
             player.CommenceAction(playerAction);
