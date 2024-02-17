@@ -98,6 +98,7 @@ public class Player
 
     public bool TryMoveTo()
     {
+        CurrentLocation.Compass();
         Console.WriteLine("In what direction would you like to go? n/e/s/w");
                 string direction;
                 do
