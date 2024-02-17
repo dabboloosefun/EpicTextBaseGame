@@ -156,6 +156,98 @@ public class SuperAdventure
             }
         }
     }
+    public static void OutroScreen()
+    {
+        WinScreen();
+        Thread thread = null;
+        int count = 0;
+        while (true)
+        {
+            Console.CursorVisible = false;
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            thread = Thread.CurrentThread;
+            Console.WriteLine(CenterStr(" ██████╗██████╗ ███████╗██████╗ ██╗████████╗███████╗"));
+            Console.WriteLine(CenterStr("██╔════╝██╔══██╗██╔════╝██╔══██╗██║╚══██╔══╝██╔════╝"));
+            Console.WriteLine(CenterStr("██║     ██████╔╝█████╗  ██║  ██║██║   ██║   ███████╗"));
+            Console.WriteLine(CenterStr("██║     ██╔══██╗██╔══╝  ██║  ██║██║   ██║   ╚════██║"));
+            Console.WriteLine(CenterStr("╚██████╗██║  ██║███████╗██████╔╝██║   ██║   ███████║"));
+            Console.WriteLine(CenterStr(" ╚═════╝╚═╝  ╚═╝╚══════╝╚═════╝ ╚═╝   ╚═╝   ╚══════╝"));
+            Console.WriteLine(CenterStr(@"     _                "));
+            Console.WriteLine(CenterStr(@"    | |               "));
+            Console.WriteLine(CenterStr(@"  __| | _____   _____ "));
+            Console.WriteLine(CenterStr(@" / _` |/ _ \ \ / / __|"));
+            Console.WriteLine(CenterStr(@"| (_| |  __/\ V /\__ \"));
+            Console.WriteLine(CenterStr(@" \__,_|\___| \_/ |___/"));
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.WriteLine("\n");
+            Console.WriteLine(CenterStr(@"Mathijs Hoek"));
+            Console.WriteLine(CenterStr(@"Yannick Lankhorst"));
+            Console.WriteLine(CenterStr(@"Julian Kreugel"));
+            Console.WriteLine(CenterStr(@"Utku Özyurt"));
+            Console.WriteLine(CenterStr(@"Vincent van Oosten"));
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine(CenterStr(@" _____                 _       _   _____ _                 _        "));
+            Console.WriteLine(CenterStr(@"/  ___|               (_)     | | |_   _| |               | |       "));
+            Console.WriteLine(CenterStr(@"\ `--. _ __   ___  ___ _  __ _| |   | | | |__   __ _ _ __ | | _____ "));
+            Console.WriteLine(CenterStr(@" `--. \ '_ \ / _ \/ __| |/ _` | |   | | | '_ \ / _` | '_ \| |/ / __|"));
+            Console.WriteLine(CenterStr(@"/\__/ / |_) |  __/ (__| | (_| | |   | | | | | | (_| | | | |   <\__ \"));
+            Console.WriteLine(CenterStr(@"\____/| .__/ \___|\___|_|\__,_|_|   \_/ |_| |_|\__,_|_| |_|_|\_\___/"));
+            Console.WriteLine(CenterStr(@"      | |                                                           "));
+            Console.WriteLine(CenterStr(@"      |_|                                                           "));
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.WriteLine(CenterStr("Cigdem Okuyucu"));
+            Console.WriteLine(CenterStr("Karlijn van den Hoff"));
+            Task.Run(() =>
+            {
+                Thread.Sleep(3000);
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                BlinkText("Press ESC to return to titlescreen", true);
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+            });
+            var key = Console.ReadKey(true);
+            if (key.Key == ConsoleKey.Escape)
+            {
+                Console.ForegroundColor = ConsoleColor.White;
+                thread.Interrupt();
+                Console.Clear();
+                break;
+            }
+        }
+    }
+    public static void Deathscreen()
+    {
+        Console.CursorVisible = false;
+        Console.Clear();
+        Thread.Sleep(1000);
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.WriteLine(CenterStr(@"▄██   ▄    ▄██████▄  ███    █▄       ████████▄   ▄█     ▄████████ ████████▄  "));
+        Console.WriteLine(CenterStr(@"███   ██▄ ███    ███ ███    ███      ███   ▀███ ███    ███    ███ ███   ▀███"));
+        Console.WriteLine(CenterStr(@"███▄▄▄███ ███    ███ ███    ███      ███    ███ ███▌   ███    █▀  ███    ███"));
+        Console.WriteLine(CenterStr(@"▀▀▀▀▀▀███ ███    ███ ███    ███      ███    ███ ███▌  ▄███▄▄▄     ███    ███"));
+        Console.WriteLine(CenterStr(@"▄██   ███ ███    ███ ███    ███      ███    ███ ███▌ ▀▀███▀▀▀     ███    ███"));
+        Console.WriteLine(CenterStr(@"███   ███ ███    ███ ███    ███      ███    ███ ███    ███    █▄  ███    ███"));
+        Console.WriteLine(CenterStr(@"███   ███ ███    ███ ███    ███      ███   ▄███ ███    ███    ███ ███   ▄███"));
+        Console.WriteLine(CenterStr(@"  ▀█████▀   ▀██████▀  ████████▀       ████████▀  █▀     ██████████ ████████▀"));
+        Thread.Sleep(3000);
+        Console.Clear();
+    }
+    public static void WinScreen()
+    {
+        Console.CursorVisible = false;
+        Console.Clear();
+        Thread.Sleep(1000);
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.WriteLine(CenterStr(@"▄██   ▄    ▄██████▄  ███    █▄        ▄█     █▄   ▄██████▄  ███▄▄▄▄  "));
+        Console.WriteLine(CenterStr(@"███   ██▄ ███    ███ ███    ███      ███     ███ ███    ███ ███▀▀▀██▄"));
+        Console.WriteLine(CenterStr(@"███▄▄▄███ ███    ███ ███    ███      ███     ███ ███    ███ ███   ███"));
+        Console.WriteLine(CenterStr(@"▀▀▀▀▀▀███ ███    ███ ███    ███      ███     ███ ███    ███ ███   ███"));
+        Console.WriteLine(CenterStr(@"▄██   ███ ███    ███ ███    ███      ███     ███ ███    ███ ███   ███"));
+        Console.WriteLine(CenterStr(@"███   ███ ███    ███ ███    ███      ███     ███ ███    ███ ███   ███"));
+        Console.WriteLine(CenterStr(@"███   ███ ███    ███ ███    ███      ███ ▄█▄ ███ ███    ███ ███   ███"));
+        Console.WriteLine(CenterStr(@" ▀█████▀   ▀██████▀  ████████▀        ▀███▀███▀   ▀██████▀   ▀█   █▀"));
+        Thread.Sleep(3000);
+        Console.Clear();
+    }
 
     public static string CenterStr(string textToEnter)
     {
@@ -175,14 +267,12 @@ public class SuperAdventure
     public static void BlinkText(string text, bool center=false)
     {
         if (center is true) text = CenterStr(text);
-        int count = 0;
         bool visible = true;
-        while (count < 10)
+        while (true)
         {
             Console.Write("\r" + (visible ? text : new String(' ', text.Length)));
             Thread.Sleep(500);
             visible = !visible;
-            count++;
         }
     }
 }
