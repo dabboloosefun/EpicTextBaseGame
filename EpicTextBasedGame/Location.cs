@@ -62,10 +62,10 @@ public class Location{
 
     public Location? GetLocationAt(string location)
     {
-        if (location == "N") return LocationToNorth;
-        if (location == "E") return LocationToEast;
-        if (location == "S") return LocationToSouth;
-        if (location == "W") return LocationToWest;
+        if (location == "n") return LocationToNorth;
+        if (location == "e") return LocationToEast;
+        if (location == "s") return LocationToSouth;
+        if (location == "w") return LocationToWest;
         return null;
     }
 }

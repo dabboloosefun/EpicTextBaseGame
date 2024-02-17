@@ -96,8 +96,14 @@ public class Player
         }
     }
 
-    public bool TryMoveTo(string direction)
+    public bool TryMoveTo()
     {
+        Console.WriteLine("In what direction would you like to go? n/e/s/w");
+                string direction;
+                do
+                {
+                direction = Console.ReadLine().ToLower();
+                }while (direction != "n" && direction != "s" && direction != "w" && direction != "e");
         Location? newLocation = CurrentLocation.GetLocationAt(direction);
         if (newLocation != null)
         {
@@ -132,15 +138,7 @@ public class Player
         switch (playerAction)
         {
             case 1:
-                Console.WriteLine("In what direction would you like to go? n/e/s/w");
-                string direction;
-                do
-                {
-                direction = Console.ReadLine().ToLower();
-                }while (direction != "n" && direction != "s" && direction != "w" && direction != "e");
-
-                if(TryMoveTo(direction)) break;
-
+                if(TryMoveTo()) break;
                 Console.WriteLine("That direction is invalid");
                 break;
 
@@ -159,3 +157,4 @@ public class Player
         }
     }
 }
+
