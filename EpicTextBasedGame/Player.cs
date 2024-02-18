@@ -24,10 +24,13 @@ public class Player
 
     public void DisplayStats()
     {
+        string alignment = "";
+        if ((CurrentHealth < 100) && (CurrentHealth > 9)) alignment = " ";
+        else if (CurrentHealth < 10) alignment = "  ";
         Console.WriteLine("╔══════════════════════════════════╗");
         Console.WriteLine("║           Current Stats          ║");
         Console.WriteLine("╠══════════════════════════════════╣");
-        Console.WriteLine($"║ Health:      {CurrentHealth}/{MaxHealth,-16}║");
+        Console.WriteLine($"║ Health:      {CurrentHealth}/{MaxHealth,-16}{alignment}║");
         Console.WriteLine($"║ Weapon:      {CurrentWeapon.Name,-20}║");
         Console.WriteLine($"║ Weapon Damage: {(int)CurrentWeapon.MaxDamage * 0.8}-{CurrentWeapon.MaxDamage, -16}║");
         Console.WriteLine("╚══════════════════════════════════╝");
