@@ -163,6 +163,50 @@ public class SuperAdventure
                 break;
             }
         }
+        Intro();
+    }
+    public static void Intro()
+    {
+        Thread thread = null;
+        Task.Run(() =>
+        {
+            thread = Thread.CurrentThread;
+            Console.ForegroundColor = ConsoleColor.White;
+            RollStr(CenterStr("You're falling..........\n"));
+            RollStr(CenterStr("The void envelops you...\n"));
+            RollStr(CenterStr("Then.....a voice........\n"));
+            RollStr(CenterStr("Coming from deep within.\n"));
+            RollStr(CenterStr("2 to cross the bridge...\n"));
+            RollStr(CenterStr("1 to gain redemption....\n"));
+            RollStr(CenterStr("The choice is yours.....\n"));
+            RollStr(CenterStr("You wake up in your home\n"));
+            RollStr(CenterStr("Clutching your chest....\n"));
+            RollStr(CenterStr("Welcome to..............\n"));
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("\n\n\n");
+            Console.WriteLine(CenterStr(@"    )     (    (     "));
+            Console.WriteLine(CenterStr(@" ( /(     )\ ) )\ )  "));
+            Console.WriteLine(CenterStr(@" )\())(  (()/((()/(  "));
+            Console.WriteLine(CenterStr(@"((_)\ )\  /(_))/(_)) "));
+            Console.WriteLine(CenterStr(@" _((_|(_)(_)) (_))   "));
+            Console.WriteLine(CenterStr(@"| || | __| |  | |    "));
+            Console.WriteLine(CenterStr(@"| __ | _|| |__| |__  "));
+            Console.WriteLine(CenterStr(@"|_||_|___|____|____| "));
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n\n\n");
+            BlinkText("Press ENTER to continue", true);
+        });
+        while (true)
+        {
+            var key = Console.ReadKey(true);
+            if (key.Key == ConsoleKey.Enter)
+            {
+                thread.Interrupt();
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.White;
+                break;
+            }
+        }
     }
     public static void OutroScreen()
     {
@@ -257,7 +301,15 @@ public class SuperAdventure
         Thread.Sleep(3000);
         Console.Clear();
     }
-
+    public static void RollStr(string text)
+    {
+        for (int i = 0; i < text.Length; i++)
+        {
+            Console.Write(text[i]);
+            Thread.Sleep(30);
+        }
+            
+    }
     public static string CenterStr(string textToEnter)
     {
         return (String.Format("{0," + ((Console.WindowWidth / 2) + (textToEnter.Length / 2)) + "}", textToEnter));
