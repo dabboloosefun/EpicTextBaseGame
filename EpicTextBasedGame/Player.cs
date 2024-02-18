@@ -116,7 +116,7 @@ public class Player
 
     public int AskPlayerAction()
     {
-        Console.WriteLine("What would you like to do? 1/2/3/4");
+        Console.WriteLine("What would you like to do? 1/2/3/4/5");
         Console.WriteLine("╔═════════════════════════╗");
         Console.WriteLine("║ 1. Move                 ║");
         Console.WriteLine("║ 2. Check inventory      ║");
