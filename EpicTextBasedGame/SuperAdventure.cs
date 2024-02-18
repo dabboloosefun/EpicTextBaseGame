@@ -1,3 +1,5 @@
+//Heal and spell for Fight still needs to be implemented. It is now commented.
+
 public class SuperAdventure
 {
     public static void Fight(Player player, Monster monster)
@@ -10,6 +12,7 @@ public class SuperAdventure
             bool Actiondone = false;
             while(!Actiondone){
                 monster.DisplayStats();
+                player.DisplayStats();
                 Console.WriteLine("1. Attack");
                 Console.WriteLine("2. Heal");
                 Console.WriteLine("3. Spell");
@@ -39,7 +42,7 @@ public class SuperAdventure
 */
 /*
                     case "3":
-                    case "Spell":
+                    case "spell":
                         Console.WriteLine("What spell do you wish to cast?");
                         Console.WriteLine("1. Buff (Increases your attacking power).");
                         Console.WriteLine("2. Debuff the attack of the enemy");
@@ -50,7 +53,7 @@ public class SuperAdventure
                         else if (spell_input == "2" || spell_input == "debuff"){
 
                         }
-*/        
+*/
                     }
                 }
             } // While loop voor player turn
@@ -95,8 +98,7 @@ public class SuperAdventure
                 switch (Monster_action)
                 {
                     case "Attack":
-                        // Hier moet een roll damage van monster komen
-                        monster.TakeDamage(10);
+                        player.TakeDamage(monster.RollDamageMonster());
                         Mactiondone = true;
                         break;
                     case "Heal":
@@ -105,11 +107,11 @@ public class SuperAdventure
                         Mactiondone = true;
                         break;
                     case "Debuff":
-
+                        // implement needed
                         Mactiondone = true;
                         break;
                     case "Buff":
-
+                        // implement needed
                         Mactiondone = true;
                         break;
                 }
@@ -118,6 +120,12 @@ public class SuperAdventure
             playerturn = !playerturn; // Draait player turn om
         } // While loop voor fight
     }
+
+
+
+
+
+
     public static void TitleScreen()
     {
         Console.CursorVisible = false;
