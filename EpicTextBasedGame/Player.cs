@@ -122,6 +122,7 @@ public class Player
         Console.WriteLine("║ 2. Check inventory      ║");
         Console.WriteLine("║ 3. Change equipment     ║");
         Console.WriteLine("║ 4. Check stats          ║");
+        Console.WriteLine("║ 5. Quit to titlescreen  ║");
         Console.WriteLine("╚═════════════════════════╝");
 
         int playerAction;
@@ -160,6 +161,12 @@ public class Player
 
             case 4:
                 DisplayStats();
+                break;
+            case 5:
+                Program.Main();
+                break;
+            default:
+                Console.WriteLine("Input error");
                 break;
         }
     }
