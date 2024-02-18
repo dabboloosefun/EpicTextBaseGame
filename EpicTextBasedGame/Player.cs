@@ -98,6 +98,28 @@ public class Player
 
     public bool TryMoveTo()
     {
+        Console.WriteLine($@"
+*********┌─────────────┐***  ≈≈≈≈≈      LEGEND
+***      │ .....P..... │*  ≈≈≈≈≈        H: Home
+         │     ...     │  ≈≈≈≈≈         T: Town Square
+         └──┐   ▄   ┌──┘ ≈≈≈≈≈          F: Farmer
+ <=>        │ ▄███▄ │    ≈≈≈≈≈          V: Farmer's Field
+    ██      │  ▀A▀  │    ≈≈≈≈≈          A: Alchemist's Hut
+     ▐      └───|───┘    ≈≈≈≈≈          P: Alchemist's Garden
+               /        ≈≈≈≈≈           G: Guard
+_____ F   ▐▀  /         ≈≈≈≈    *       B: Bridge
+=====▐▀   ▀█ | █▀█     ≈≈≈≈   ***       S: Spider Forest
+==v== ___   ┌───┐      ≈≈≈   ****       
+=====    \__│   │▄  ▄▄≈≈≈≈  *****
+_____     ▀▀│ T │---G╠═B═╣--*****
+=====       │   │█  ▀▀≈≈≈  ******
+=====     ▀█└───┘     ≈≈≈  **S***
+=====       |▐█▀     ≈≈≈  *******       Current Location: {CurrentLocation.Name}
+       *     \     ≈≈≈≈ *********
+   ▄▌ ***    |     ≈≈≈≈ *********
+**********   ▀   ≈≈≈≈≈ **********
+***********  H   ≈≈≈≈≈ **********
+");
         Console.WriteLine(CurrentLocation.Compass());
         Console.WriteLine("In what direction would you like to go? n/e/s/w");
                 string direction;
