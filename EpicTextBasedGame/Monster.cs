@@ -19,7 +19,16 @@ public class Monster
     {
         Console.WriteLine($"Name: {this.Name}\nHealth: {this.CurrentHealth}/{this.MaxHealth}");
     }
+    
+    public int RollDamageMonster(int minimumDamage = 0)
+    {
+        Random rand = new Random();
+        minimumDamage = minimumDamage == 0 ? (Convert.ToInt32(this.MaxDamage * 0.8)) : minimumDamage;
+        int rolledDamage = rand.Next(minimumDamage, Convert.ToInt32(this.MaxDamage * 1.2));
 
+        if (rand.NextDouble() <= 0.9) return (rolledDamage * 2); // For now 0.9, can be changed to needing to be declared
+        else {return rolledDamage;}
+    }
 
     // Te gebruiken voor Monster healing in gevecht-scenario
     public void RegenarateHealth(int recoveredHealth)
