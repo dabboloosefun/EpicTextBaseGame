@@ -9,6 +9,7 @@ public class Player
     public int CurrentHealth;
     public int MaxHealth;
     public Location CurrentLocation;
+    public List<Quest> QuestList;
 
     public Player()
     {
@@ -18,6 +19,7 @@ public class Player
         CurrentHealth = MaxHealth; // Start with full health
         CurrentLocation = World.Locations[0]; // Home
         CurrentWeapon = World.Weapons[0]; // starter weapon
+        QuestList = new List<Quest>{};
     }
 
     public void DisplayStats()

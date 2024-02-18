@@ -1,39 +1,40 @@
+using System.IO.Compression;
+
 public class Quest
 {
     public int ID;
     public string Name;
     public string Description;
     public bool Cleared = false;
-    public Quest(int id, string name, string description)
+    public Monster Target;
+    public int TargetKills;
+    public int CurrentKills;
+    public Quest(int id, string name, string description, Monster target, int targetKills)
     {
         ID = id;
         Name = name;
         Description = description;
+        Target = target;
+        TargetKills = targetKills;
+        CurrentKills = 0;
     }
 
-    public void StartQuest(){
-
+    public void StartQuest(Player player)
+    {
+        player.QuestList.Add(this);
     }
-    public void ClearQuest(Player player, string clearModifier = "")
+    
+    public void UpdateQuest()
+    {
+        CurrentKills++;
+        if (CurrentKills == TargetKills) EndQuest();;   
+    }
+
+    public void EndQuest()
     {
         Cleared = true;
-
-        if(clearModifier == "Within3Hits")
-        {
-            //Player.Inventory.Add("Jar Of Llightning");
-        }
-
-        if(clearModifier == "SparedGoblin")
-        {
-            //Player.Inventory.Add("Goblin's Blessing");
-        }
-
-        if(clearModifier == "SlayedGoblin")
-        {
-            //Player.CurrentHealth -= 1;
-            //Player.Inventory.Add("Goblin's Curse");
-        }
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine(SuperAdventure.CenterStr($"You've cleared {Name}!"));
+        Console.ForegroundColor = ConsoleColor.White;
     }
-
-    
 }
