@@ -37,7 +37,7 @@ public class Player
         if (CurrentHealth <= 0)
         {
             CurrentHealth = 0; // HP wont go into negative when printing
-            Console.WriteLine("game over. L"); 
+            SuperAdventure.Deathscreen(); 
         }
         else
         {
@@ -102,16 +102,16 @@ public class Player
 *********┌─────────────┐***  ≈≈≈≈≈      LEGEND
 ***      │ .....P..... │*  ≈≈≈≈≈        H: Home
          │     ...     │  ≈≈≈≈≈         T: Town Square
-         └──┐   ▄   ┌──┘ ≈≈≈≈≈          F: Farmer
+         └──┐   ▄   ┌──┘ ≈≈≈≈≈          F: Farmhouse
  <=>        │ ▄███▄ │    ≈≈≈≈≈          V: Farmer's Field
     ██      │  ▀A▀  │    ≈≈≈≈≈          A: Alchemist's Hut
      ▐      └───|───┘    ≈≈≈≈≈          P: Alchemist's Garden
-               /        ≈≈≈≈≈           G: Guard
-_____ F   ▐▀  /         ≈≈≈≈    *       B: Bridge
-=====▐▀   ▀█ | █▀█     ≈≈≈≈   ***       S: Spider Forest
-==v== ___   ┌───┐      ≈≈≈   ****       
+               /        ≈≈≈≈≈           G: Guard Post
+_____     ▐▀  /         ≈≈≈≈    *       B: Bridge
+=====▐▀   ▀█ | █▀█     ≈≈≈≈   ***       S: Forest
+=====F___   ┌───┐      ≈≈≈   ****       
 =====    \__│   │▄  ▄▄≈≈≈≈  *****
-_____     ▀▀│ T │---G╠═B═╣--*****
+__V__     ▀▀│ T │---G╠═B═╣--*****
 =====       │   │█  ▀▀≈≈≈  ******
 =====     ▀█└───┘     ≈≈≈  **S***
 =====       |▐█▀     ≈≈≈  *******       Current Location: {CurrentLocation.Name}
