@@ -80,6 +80,11 @@ public class Player
         if (userInput == "no") return;
         else if (userInput == "yes")
         {
+            if (Weapons.Count <= 0)
+            {
+                Console.WriteLine("No other weapon to equip");
+                return;
+            }
             string userSelectInput;
             int selectedNumber;
             bool successfulParse;
@@ -169,6 +174,7 @@ __V__     ▀▀│ T │---G╠═B═╣--*****
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine(SuperAdventure.CenterStr($"Now entering: {CurrentLocation.Name}"));
                     Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine(SuperAdventure.CenterStr(CurrentLocation.Description));
                     break;
                 } 
                 Console.WriteLine(SuperAdventure.CenterStr("That direction is invalid"));
