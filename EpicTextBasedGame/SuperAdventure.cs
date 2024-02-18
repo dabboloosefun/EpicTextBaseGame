@@ -142,8 +142,14 @@ public class SuperAdventure
         Thread? thread = null;
         Task.Run(() =>
         {
-            thread = Thread.CurrentThread;
-            WriteBlinkingTextOptions();
+            try{
+                thread = Thread.CurrentThread;
+                WriteBlinkingTextOptions();
+            }
+            catch (ThreadInterruptedException)
+            {
+                return;
+            }
         });
         while (true)
         {
@@ -170,31 +176,37 @@ public class SuperAdventure
         Thread thread = null;
         Task.Run(() =>
         {
-            thread = Thread.CurrentThread;
-            Console.ForegroundColor = ConsoleColor.White;
-            RollStr(CenterStr("You're falling..........\n"));
-            RollStr(CenterStr("The void envelops you...\n"));
-            RollStr(CenterStr("Then.....a voice........\n"));
-            RollStr(CenterStr("Coming from deep within.\n"));
-            RollStr(CenterStr("2 to cross the bridge...\n"));
-            RollStr(CenterStr("1 to gain redemption....\n"));
-            RollStr(CenterStr("The choice is yours.....\n"));
-            RollStr(CenterStr("You wake up in your home\n"));
-            RollStr(CenterStr("Clutching your chest....\n"));
-            RollStr(CenterStr("Welcome to..............\n"));
-            Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.WriteLine("\n\n\n");
-            Console.WriteLine(CenterStr(@"    )     (    (     "));
-            Console.WriteLine(CenterStr(@" ( /(     )\ ) )\ )  "));
-            Console.WriteLine(CenterStr(@" )\())(  (()/((()/(  "));
-            Console.WriteLine(CenterStr(@"((_)\ )\  /(_))/(_)) "));
-            Console.WriteLine(CenterStr(@" _((_|(_)(_)) (_))   "));
-            Console.WriteLine(CenterStr(@"| || | __| |  | |    "));
-            Console.WriteLine(CenterStr(@"| __ | _|| |__| |__  "));
-            Console.WriteLine(CenterStr(@"|_||_|___|____|____| "));
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\n\n\n");
-            BlinkText("Press ENTER to continue", true);
+            try{
+                thread = Thread.CurrentThread;
+                Console.ForegroundColor = ConsoleColor.White;
+                RollStr(CenterStr("You're falling..........\n"));
+                RollStr(CenterStr("The void envelops you...\n"));
+                RollStr(CenterStr("Then.....a voice........\n"));
+                RollStr(CenterStr("Coming from deep within.\n"));
+                RollStr(CenterStr("2 to cross the bridge...\n"));
+                RollStr(CenterStr("1 to gain redemption....\n"));
+                RollStr(CenterStr("The choice is yours.....\n"));
+                RollStr(CenterStr("You wake up in your home\n"));
+                RollStr(CenterStr("Clutching your chest....\n"));
+                RollStr(CenterStr("Welcome to..............\n"));
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("\n\n\n");
+                Console.WriteLine(CenterStr(@"    )     (    (     "));
+                Console.WriteLine(CenterStr(@" ( /(     )\ ) )\ )  "));
+                Console.WriteLine(CenterStr(@" )\())(  (()/((()/(  "));
+                Console.WriteLine(CenterStr(@"((_)\ )\  /(_))/(_)) "));
+                Console.WriteLine(CenterStr(@" _((_|(_)(_)) (_))   "));
+                Console.WriteLine(CenterStr(@"| || | __| |  | |    "));
+                Console.WriteLine(CenterStr(@"| __ | _|| |__| |__  "));
+                Console.WriteLine(CenterStr(@"|_||_|___|____|____| "));
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("\n\n\n");
+                BlinkText("Press ENTER to continue", true);
+            }
+            catch(ThreadInterruptedException)
+            {
+                return;
+            }
         });
         while (true)
         {
@@ -251,10 +263,16 @@ public class SuperAdventure
             Console.WriteLine(CenterStr("Karlijn van den Hoff"));
             Task.Run(() =>
             {
-                Thread.Sleep(3000);
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                BlinkText("Press ESC to return to titlescreen", true);
-                Console.ForegroundColor = ConsoleColor.DarkRed;
+                try{
+                    Thread.Sleep(3000);
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    BlinkText("Press ESC to return to titlescreen", true);
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                }
+                catch(ThreadInterruptedException)
+                {
+                    return;
+                }
             });
             var key = Console.ReadKey(true);
             if (key.Key == ConsoleKey.Escape)
