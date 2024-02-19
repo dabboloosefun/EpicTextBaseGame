@@ -5,6 +5,7 @@ public class Monster
     public string Name;
     public int ID;
     public int MaxDamage;
+    public List<(Item item, int turns, bool applied)> ActiveEffects;
     public Monster(int id, string name, int maxDamage, int currentHealth , int maxHealth)
     {
         this.ID = id;
@@ -12,6 +13,7 @@ public class Monster
         this.MaxDamage = maxDamage;
         this.MaxHealth = maxHealth;
         this.CurrentHealth = currentHealth;
+        this.ActiveEffects = new List<(Item item, int turns, bool applied)>(); 
     }
 
 

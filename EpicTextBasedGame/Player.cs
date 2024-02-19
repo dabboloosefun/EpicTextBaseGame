@@ -4,22 +4,24 @@ using System.ComponentModel.DataAnnotations;
 public class Player
 {
     public List<Weapon> Weapons;
-    public List<string> Items;
+    public List<Item> Items;
     public Weapon? CurrentWeapon;
     public int CurrentHealth;
     public int MaxHealth;
     public Location CurrentLocation;
     public List<Quest> QuestList;
+    public List<(Item item, int turns, bool applied)> ActiveEffects;
 
     public Player()
     {
         Weapons = new List<Weapon>();
-        Items = new List<string>();
+        Items = new List<Item>();
         MaxHealth = 100; // Max health is 100, we can change this later but 100 seems like good number for now
         CurrentHealth = MaxHealth; // Start with full health
         CurrentLocation = World.Locations[0]; // Home
         CurrentWeapon = World.Weapons[0]; // starter weapon
         QuestList = new List<Quest>{};
+        ActiveEffects = new List<(Item item, int turns, bool applied)>(); 
     }
 
     public void DisplayStats()
@@ -36,6 +38,36 @@ public class Player
         Console.WriteLine("╚══════════════════════════════════╝");
     }
 
+    public void AddEffect(Item item, int turns, bool applied=false){
+        ActiveEffects.Add((item, turns, applied));
+    }
+    public void UpdateEffects() //lots of repetition
+    {
+        for(int i = ActiveEffects.Count; i > 0; i--) //reverse order to manage deletion during loop
+        {
+            if(!ActiveEffects[i].applied) 
+            {
+                //ActiveEffects[i].applied = true doesn't work. Idk how to make this pretty yet.
+                //ActiveEffects[i] = (ActiveEffects[i].item, ActiveEffects[i].turns, true);
+                if(ActiveEffects[i].item.ItemType == ItemTypes.BUFFCRITCHANCESPELL){
+                    CurrentWeapon.CritChance += ActiveEffects[i].item.Power;
+                    ActiveEffects[i] = (ActiveEffects[i].item, ActiveEffects[i].turns, true);
+                }
+            }
+            else if(ActiveEffects[i].applied && ActiveEffects[i].turns > 0){
+                ActiveEffects[i] = (ActiveEffects[i].item, ActiveEffects[i].turns-1, true);
+            }
+            else if(ActiveEffects[i].applied && ActiveEffects[i].turns <= 0)
+            {
+                if(ActiveEffects[i].item.ItemType == ItemTypes.BUFFCRITCHANCESPELL){
+                    CurrentWeapon.CritChance -= ActiveEffects[i].item.Power;
+                    ActiveEffects.RemoveAt(i);
+                }
+            }
+        }
+   
+    }
+
     public void TakeDamage(int damage)
     {
         CurrentHealth -= damage;
@@ -50,6 +82,16 @@ public class Player
         }
     }
 
+    public void RegenarateHealth(int health)
+    {
+        CurrentHealth += health;
+        if (CurrentHealth > MaxHealth)
+        {
+            CurrentHealth = MaxHealth;
+        }
+        Console.WriteLine($"You Restored {health} health. Current health: {CurrentHealth}");
+    }
+
     public void AddWeapon(Weapon weapon)
     {
         Weapons.Add(weapon);
@@ -59,18 +101,50 @@ public class Player
     {
         Weapons.Remove(weapon);
     }
+
     public void RemoveWeapon(int id)
     { 
         foreach(Weapon weapon in Weapons) {
             if (weapon.ID == id) Weapons.Remove(weapon);
         }
     }
+
+    public void AddItem(Item item){ //note: change for stacking
+        bool itemAlreadyInList = false;
+        foreach(Item itemInList in Items){
+            if(itemInList.ID == item.ID) //using Name should also be fine unless items could have same name but different stats
+            {   //considering items in List will now stack, using Items.Count+1 for ID should still work, multiples will have same ID
+                itemInList.Increment();
+                itemAlreadyInList = true;
+            }
+        }
+        if (!itemAlreadyInList) Items.Add(item);
+    }
+    
+    public void RemoveItem(Item item){  //call like RemoveItem(Player.Items.Find(searchItem => searchItem.ID ==  ID you want to remove ))
+                                        //or better RemoveItem(Player.Items[index]) using userInput in new UseItem() method
+        bool itemFoundInList = false;
+        foreach(Item itemInList in Items){
+            if(itemInList.ID == item.ID) //using Name should also be fine unless items could have same name but different stats
+            {   //considering items in List will now stack, using Items.Count+1 for ID should still work, multiples will have same ID
+                itemFoundInList = true;
+                item.Decrement();
+                if(item.Count <= 0){
+                    Items.Remove(item);
+                }
+            }
+        }
+        if(!itemFoundInList){
+            Console.WriteLine($"Attempted to remove {item.Name} from Player inventory but it couldn't be found.");
+        }
+        
+    }
     public void ListItems()
     {
         Console.WriteLine("You are carrying these items in your inventory:");
         for (int i = 0; i < Items.Count; i++)
         {
-            Console.WriteLine($"{i}. {Items[i]}:\n");
+            Console.WriteLine($"{i}: {Items[i].Info()}\n");
         }
     }
 
