@@ -157,8 +157,9 @@ public class SuperAdventure
             if (key.Key == ConsoleKey.Escape)
             {
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.Clear();
-                Environment.Exit(0);
+                Console.ForegroundColor = ConsoleColor.White;
+                thread.Interrupt();
+                QuitGame(); 
             }
             else if (key.Key == ConsoleKey.Enter)
             {
@@ -353,5 +354,18 @@ public class SuperAdventure
             Thread.Sleep(500);
             visible = !visible;
         }
+    }
+    [DllImport("User32.dll", CharSet = CharSet.Unicode)]
+    static extern int MessageBox(IntPtr h, string m, string c, int type);
+
+    public static void QuitGame()
+    {
+        int answer = MessageBox((IntPtr)0, "Are you sure you want to quit?", "Quit game", 49);
+        if (answer == 1)
+        {
+            Console.Clear();
+            Environment.Exit(0);
+        }
+        else Program.Main();
     }
 }
