@@ -65,7 +65,6 @@ public class Player
             if (weapon.ID == id) Weapons.Remove(weapon);
         }
     }
-    public
     public void ListItems()
     {
         Console.WriteLine("You are carrying these items in your inventory:");
