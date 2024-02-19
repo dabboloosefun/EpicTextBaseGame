@@ -26,16 +26,13 @@ public class Player
 
     public void DisplayStats()
     {
-        string alignment = "";
-        if ((CurrentHealth < 100) && (CurrentHealth > 9)) alignment = " ";
-        else if (CurrentHealth < 10) alignment = "  ";
-        Console.WriteLine("╔══════════════════════════════════╗");
-        Console.WriteLine("║           Current Stats          ║");
-        Console.WriteLine("╠══════════════════════════════════╣");
-        Console.WriteLine($"║ Health:      {CurrentHealth}/{MaxHealth,-16}{alignment}║");
-        Console.WriteLine($"║ Weapon:      {CurrentWeapon.Name,-20}║");
-        Console.WriteLine($"║ Weapon Damage: {(int)CurrentWeapon.MaxDamage * 0.8}-{CurrentWeapon.MaxDamage, -16}║");
-        Console.WriteLine("╚══════════════════════════════════╝");
+        Console.WriteLine("╔═══════════════════════════════════╗");
+        Console.WriteLine("║               Stats               ║");
+        Console.WriteLine("╠═══════════════════════════════════╣");
+        Console.WriteLine("║ Health:      {0, -8}             ║", $"{CurrentHealth}/{MaxHealth}");
+        Console.WriteLine("║ Weapon:      {0, -21}║", $"{CurrentWeaponname}");
+        Console.WriteLine("║ Damage:      {0, -10}           ║", $"{CurrentWeaponMinDamage}-{CurrentWeaponMaxDamage}");
+        Console.WriteLine("╚═══════════════════════════════════╝");
     }
 
     public void AddEffect(Item item, int turns, bool applied=false){
