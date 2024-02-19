@@ -131,12 +131,16 @@ __V__     ▀▀│ T │---G╠═B═╣--*****
 ***********  H   ≈≈≈≈≈ **********
 ");
         Console.WriteLine(CurrentLocation.Compass());
-        Console.WriteLine("In what direction would you like to go? n/e/s/w");
-                string direction;
-                do
-                {
-                direction = Console.ReadLine().ToLower();
-                }while (direction != "n" && direction != "s" && direction != "w" && direction != "e");
+        Console.WriteLine(SuperAdventure.CenterStr("In what direction would you like to go?"));
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine(SuperAdventure.CenterStr("[N][E][S][W]"));
+        Console.ForegroundColor = ConsoleColor.White;
+        string direction;
+        do
+        {
+            direction = Console.ReadLine().ToLower();
+        }while (direction != "n" && direction != "s" && direction != "w" && direction != "e");
+
         Location? newLocation = CurrentLocation.GetLocationAt(direction);
         if (newLocation != null)
         {
@@ -148,13 +152,16 @@ __V__     ▀▀│ T │---G╠═B═╣--*****
 
     public int AskPlayerAction()
     {
-        Console.WriteLine("What would you like to do? 1/2/3/4/5");
+        Console.WriteLine(SuperAdventure.CenterStr("What would you like to do?"));
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine(SuperAdventure.CenterStr("[1][2][3][4][5]"));
+        Console.ForegroundColor = ConsoleColor.White;
         Console.WriteLine("╔═════════════════════════╗");
-        Console.WriteLine("║ 1. Move                 ║");
-        Console.WriteLine("║ 2. Check inventory      ║");
-        Console.WriteLine("║ 3. Change equipment     ║");
-        Console.WriteLine("║ 4. Check stats          ║");
-        Console.WriteLine("║ 5. Quit to titlescreen  ║");
+        Console.WriteLine("║ [1] Move                ║");
+        Console.WriteLine("║ [2] Check inventory     ║");
+        Console.WriteLine("║ [3] Change equipment    ║");
+        Console.WriteLine("║ [4] Check stats         ║");
+        Console.WriteLine("║ [5] Quit to titlescreen ║");
         Console.WriteLine("╚═════════════════════════╝");
 
         int playerAction;
