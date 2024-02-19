@@ -50,6 +50,22 @@ public class Player
         }
     }
 
+    public void AddWeapon(Weapon weapon)
+    {
+        Weapons.Add(weapon);
+    }
+
+    public void RemoveWeapon(Weapon weapon)
+    {
+        Weapons.Remove(weapon);
+    }
+    public void RemoveWeapon(int id)
+    { 
+        foreach(Weapon weapon in Weapons) {
+            if (weapon.ID == id) Weapons.Remove(weapon);
+        }
+    }
+    public
     public void ListItems()
     {
         Console.WriteLine("You are carrying these items in your inventory:");
