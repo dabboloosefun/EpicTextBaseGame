@@ -30,8 +30,8 @@ public class Player
         Console.WriteLine("║               Stats               ║");
         Console.WriteLine("╠═══════════════════════════════════╣");
         Console.WriteLine("║ Health:      {0, -8}             ║", $"{CurrentHealth}/{MaxHealth}");
-        Console.WriteLine("║ Weapon:      {0, -21}║", $"{CurrentWeaponname}");
-        Console.WriteLine("║ Damage:      {0, -10}           ║", $"{CurrentWeaponMinDamage}-{CurrentWeaponMaxDamage}");
+        Console.WriteLine("║ Weapon:      {0, -21}║", $"{CurrentWeapon.Name}");
+        Console.WriteLine("║ Damage:      {0, -10}           ║", $"{(int)CurrentWeapon.MaxDamage * 0.8}-{CurrentWeapon.MaxDamage}");
         Console.WriteLine("╚═══════════════════════════════════╝");
     }
 
