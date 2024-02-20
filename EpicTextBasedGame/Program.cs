@@ -5,7 +5,7 @@
         // Our main code code here, preferably everything is dynamic (so lots of methods).
         Player player = new Player();
         bool victory = false;
-        SuperAdventure.TitleScreen();
+        Helper.TitleScreen();
 
         // Little intro can go here.
 
@@ -21,6 +21,6 @@
             player.CommenceAction(playerAction);
         }
 
-        SuperAdventure.OutroScreen();
+        Helper.OutroScreen();
     }
 }

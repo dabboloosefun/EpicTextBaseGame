@@ -71,7 +71,7 @@ public class Player
         if (CurrentHealth <= 0)
         {
             CurrentHealth = 0; // HP wont go into negative when printing
-            SuperAdventure.Deathscreen(); 
+            Helper.Deathscreen(); 
         }
         else
         {
@@ -217,9 +217,9 @@ __V__     ▀▀│ T │---G╠═B═╣--*****
 ***********  H   ≈≈≈≈≈ **********
 ");
         Console.WriteLine(CurrentLocation.Compass());
-        Console.WriteLine(SuperAdventure.CenterStr("In what direction would you like to go?"));
+        Console.WriteLine(Helper.CenterStr("In what direction would you like to go?"));
         Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine(SuperAdventure.CenterStr("[N][E][S][W]"));
+        Console.WriteLine(Helper.CenterStr("[N][E][S][W]"));
         Console.ForegroundColor = ConsoleColor.White;
         string direction;
         do
@@ -238,9 +238,9 @@ __V__     ▀▀│ T │---G╠═B═╣--*****
 
     public int AskPlayerAction()
     {
-        Console.WriteLine(SuperAdventure.CenterStr("What would you like to do?"));
+        Console.WriteLine(Helper.CenterStr("What would you like to do?"));
         Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine(SuperAdventure.CenterStr("[1][2][3][4][5]"));
+        Console.WriteLine(Helper.CenterStr("[1][2][3][4][5]"));
         Console.ForegroundColor = ConsoleColor.White;
         Console.WriteLine("╔═════════════════════════╗");
         Console.WriteLine("║ [1] Move                ║");
@@ -268,12 +268,12 @@ __V__     ▀▀│ T │---G╠═B═╣--*****
                 if(TryMoveTo())
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine(SuperAdventure.CenterStr($"Now entering: {CurrentLocation.Name}"));
+                    Console.WriteLine(Helper.CenterStr($"Now entering: {CurrentLocation.Name}"));
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine(SuperAdventure.CenterStr(CurrentLocation.Description));
+                    Console.WriteLine(Helper.CenterStr(CurrentLocation.Description));
                     break;
                 } 
-                Console.WriteLine(SuperAdventure.CenterStr("That direction is invalid"));
+                Console.WriteLine(Helper.CenterStr("That direction is invalid"));
                 break;
 
             case 2:

@@ -34,7 +34,7 @@ public class Quest
     {
         Cleared = true;
         Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine(SuperAdventure.CenterStr($"You've cleared {Name}!"));
+        Console.WriteLine(Helper.CenterStr($"You've cleared {Name}!"));
         Console.ForegroundColor = ConsoleColor.White;
     }
 }
