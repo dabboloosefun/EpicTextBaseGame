@@ -20,7 +20,7 @@ public class Helper
         {
             try
             {
-                thread = Thread.CurrentThread;
+                if (thread == null) thread = Thread.CurrentThread;
                 WriteBlinkingTextOptions();
             }
             catch (ThreadInterruptedException)
@@ -40,7 +40,7 @@ public class Helper
             }
             else if (key.Key == ConsoleKey.Enter)
             {
-                thread.Interrupt();
+                if (thread != null) thread.Interrupt();
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.Clear();
                 Console.CursorVisible = false;
@@ -51,7 +51,7 @@ public class Helper
     }
     public static void Intro()
     {
-        Thread thread = null;
+        Thread? thread = null;
         Task.Run(() =>
         {
             try
@@ -92,7 +92,7 @@ public class Helper
             var key = Console.ReadKey(true);
             if (key.Key == ConsoleKey.Enter)
             {
-                thread.Interrupt();
+                if (thread != null) thread.Interrupt();
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.White;
                 break;
@@ -107,7 +107,7 @@ public class Helper
         {
             Console.CursorVisible = false;
             Console.ForegroundColor = ConsoleColor.DarkRed;
-            thread = Thread.CurrentThread;
+            if (thread == null) thread = Thread.CurrentThread;
             Console.WriteLine(CenterStr(" ██████╗██████╗ ███████╗██████╗ ██╗████████╗███████╗"));
             Console.WriteLine(CenterStr("██╔════╝██╔══██╗██╔════╝██╔══██╗██║╚══██╔══╝██╔════╝"));
             Console.WriteLine(CenterStr("██║     ██████╔╝█████╗  ██║  ██║██║   ██║   ███████╗"));
