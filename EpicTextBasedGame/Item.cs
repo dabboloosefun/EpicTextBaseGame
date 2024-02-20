@@ -42,6 +42,7 @@ public class Item{
     public void UseItem(Character character){ //in fight, prompt a target
         Console.WriteLine("using Item: {Name}");
         character.AddEffect(ItemEffect);
+
         
         //player.RemoveItem(player.Items[itemIndex]);
 
