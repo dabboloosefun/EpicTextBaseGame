@@ -1,19 +1,19 @@
 using System.Collections;
 using System.ComponentModel.DataAnnotations;
 
-public class Player
+public class Player : Character
 {
     public List<Weapon> Weapons;
     public List<Item> Items;
     public Weapon? CurrentWeapon;
-    public int CurrentHealth;
-    public int MaxHealth;
     public Location CurrentLocation;
     public List<Quest> QuestList;
-    public List<(Item item, int turns, bool applied)> ActiveEffects;
+    //public List<(Item item, int turns, bool applied)> ActiveEffects;
+    
 
     public Player()
     {
+        Name = "Player";
         Weapons = new List<Weapon>();
         Items = new List<Item>();
         MaxHealth = 100; // Max health is 100, we can change this later but 100 seems like good number for now
@@ -21,7 +21,6 @@ public class Player
         CurrentLocation = World.Locations[0]; // Home
         CurrentWeapon = World.Weapons[0]; // starter weapon
         QuestList = new List<Quest>{};
-        ActiveEffects = new List<(Item item, int turns, bool applied)>(); 
     }
 
     public void DisplayStats()
@@ -32,61 +31,8 @@ public class Player
         Console.WriteLine("║ Health:      {0, -8}             ║", $"{CurrentHealth}/{MaxHealth}");
         Console.WriteLine("║ Weapon:      {0, -21}║", $"{CurrentWeapon.Name}");
         Console.WriteLine("║ Damage:      {0, -10}           ║", $"{(int)CurrentWeapon.MaxDamage * 0.8}-{CurrentWeapon.MaxDamage}");
+        Console.WriteLine("║ Crit Chance:      {0}               ║", $"{(double)CurrentWeapon.CritChance}");
         Console.WriteLine("╚═══════════════════════════════════╝");
-    }
-
-    public void AddEffect(Item item, int turns, bool applied=false){
-        ActiveEffects.Add((item, turns, applied));
-    }
-    public void UpdateEffects() //lots of repetition
-    {
-        for(int i = ActiveEffects.Count; i > 0; i--) //reverse order to manage deletion during loop
-        {
-            if(!ActiveEffects[i].applied) 
-            {
-                //ActiveEffects[i].applied = true doesn't work. Idk how to make this pretty yet.
-                //ActiveEffects[i] = (ActiveEffects[i].item, ActiveEffects[i].turns, true);
-                if(ActiveEffects[i].item.ItemType == ItemTypes.BUFFCRITCHANCESPELL){
-                    CurrentWeapon.CritChance += ActiveEffects[i].item.Power;
-                    ActiveEffects[i] = (ActiveEffects[i].item, ActiveEffects[i].turns, true);
-                }
-            }
-            else if(ActiveEffects[i].applied && ActiveEffects[i].turns > 0){
-                ActiveEffects[i] = (ActiveEffects[i].item, ActiveEffects[i].turns-1, true);
-            }
-            else if(ActiveEffects[i].applied && ActiveEffects[i].turns <= 0)
-            {
-                if(ActiveEffects[i].item.ItemType == ItemTypes.BUFFCRITCHANCESPELL){
-                    CurrentWeapon.CritChance -= ActiveEffects[i].item.Power;
-                    ActiveEffects.RemoveAt(i);
-                }
-            }
-        }
-   
-    }
-
-    public void TakeDamage(int damage)
-    {
-        CurrentHealth -= damage;
-        if (CurrentHealth <= 0)
-        {
-            CurrentHealth = 0; // HP wont go into negative when printing
-            SuperAdventure.Deathscreen(); 
-        }
-        else
-        {
-            Console.WriteLine($"You took {damage} damage. Current health: {CurrentHealth}");
-        }
-    }
-
-    public void RegenarateHealth(int health)
-    {
-        CurrentHealth += health;
-        if (CurrentHealth > MaxHealth)
-        {
-            CurrentHealth = MaxHealth;
-        }
-        Console.WriteLine($"You Restored {health} health. Current health: {CurrentHealth}");
     }
 
     public void AddWeapon(Weapon weapon)
@@ -145,6 +91,62 @@ public class Player
         }
     }
 
+    public void PromptUseItem(ref bool actionDoneRef, Monster? monsterTarget = null){
+        string? userInput = "";
+        do
+        { //move elsewhere for potential out of combat uses. it's a useless prompt in combat
+            Console.WriteLine("Would you like to use an item? yes/no"); 
+            userInput = Console.ReadLine();
+        } while (userInput != "yes" && userInput != "no");
+        if (userInput == "no") return;
+        else if (userInput == "yes")
+        {
+            if (Items.Count <= 0)
+            {
+                Console.WriteLine("You have no items");
+                return;
+            }
+            ListItems();
+            int selectedItemNumber;
+            int selectedTargetNumber;
+            bool successfulParse;
+            do
+            {
+                Console.WriteLine($"Enter the number of the item you wish to use. 0-{Items.Count - 1}");
+                successfulParse = int.TryParse(Console.ReadLine(), out selectedItemNumber);
+            } while (!successfulParse || !(0 <= selectedItemNumber && selectedItemNumber < Items.Count));
+            do
+            {
+                Console.WriteLine($"Who do you want to use the item on?");
+                Console.WriteLine($"1. Yourself");
+                Console.WriteLine($"2. Enemy");
+                Console.WriteLine($"3. Cancel");
+                successfulParse = int.TryParse(Console.ReadLine(), out selectedTargetNumber);
+            } while (!successfulParse || !(1 <= selectedTargetNumber && selectedTargetNumber <= 2));
+            if(selectedTargetNumber == 1)
+            {
+                Items[selectedItemNumber].UseItem(this);
+                Items.RemoveAt(selectedItemNumber);
+                actionDoneRef = true;
+                return;
+            }
+            else if(selectedTargetNumber == 2)
+            {
+                Items[selectedItemNumber].UseItem(monsterTarget);
+                Console.WriteLine("");
+                Items.RemoveAt(selectedItemNumber);
+                actionDoneRef = true;
+                return;
+            }
+            else if(selectedTargetNumber == 3)
+            {
+                Console.WriteLine("You put the item back in your backpack");
+                return;
+            }
+            
+        }
+
+    }
     public void ListWeapons()
     {
         Console.WriteLine($"Equipped weapon: {CurrentWeapon.Name}: Max damage: {CurrentWeapon.MaxDamage}, Crit chance: {CurrentWeapon.CritChance}\n");
@@ -174,15 +176,13 @@ public class Player
                 Console.WriteLine("No other weapon to equip");
                 return;
             }
-            string userSelectInput;
             int selectedNumber;
             bool successfulParse;
             do
             {
 
                 Console.WriteLine($"Enter the number of the weapon you wish to equip. 0-{Weapons.Count - 1}");
-                userSelectInput = Console.ReadLine();
-                successfulParse = int.TryParse(userSelectInput, out selectedNumber);
+                successfulParse = int.TryParse(Console.ReadLine(), out selectedNumber);
             } while (!successfulParse || !(0 <= selectedNumber && selectedNumber < Weapons.Count));
 
             Weapons.Add(CurrentWeapon);

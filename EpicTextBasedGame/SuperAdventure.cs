@@ -11,11 +11,14 @@ public class SuperAdventure
             if (playerturn){
             bool Actiondone = false;
             while(!Actiondone){
+                player.UpdateEffects();
+                monster.UpdateEffects();
                 monster.DisplayStats();
                 player.DisplayStats();
                 Console.WriteLine("1. Attack");
-                Console.WriteLine("2. Heal");
-                Console.WriteLine("3. Spell");
+                Console.WriteLine("2. Use item");
+                //Console.WriteLine("2. Heal");
+                //Console.WriteLine("3. Spell");
                 Console.WriteLine("What do you want to do?");
                     string attack_input = Console.ReadLine().ToLower();
                     switch (attack_input){
@@ -26,6 +29,10 @@ public class SuperAdventure
                         Actiondone = true;
                         break;
 
+                    case "2":
+                    case "use item":
+                        player.PromptUseItem(ref Actiondone, monster);
+                        break;
 /*
                     case "2":
                     case "heal":
@@ -355,7 +362,7 @@ public class SuperAdventure
             visible = !visible;
         }
     }
-    [DllImport("User32.dll", CharSet = CharSet.Unicode)]
+    //[DllImport("User32.dll", CharSet = CharSet.Unicode)]
     static extern int MessageBox(IntPtr h, string m, string c, int type);
 
     public static void QuitGame()

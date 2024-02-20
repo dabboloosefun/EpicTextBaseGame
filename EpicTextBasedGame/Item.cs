@@ -1,31 +1,31 @@
 
-public enum ItemTypes //I tried this in a namespace but like that we would have to put everything in the same namespace or 
-//prefix every mention of ItemType by "namespacename." e.g. EpicTextBasedGame.ItemType.Potion.
-{
-    HEALINGPOTION,
-    DAMAGEPOTION,
-    BUFFCRITCHANCESPELL,
-    BUFFMAXDAMAGESPELL,
-    BUFFMAXHEALTHSPELL,
-    DEBUFFMAXDAMAGESPELL,
+// public enum ItemTypes //I tried this in a namespace but like that we would have to put everything in the same namespace or 
+// //prefix every mention of ItemType by "namespacename." e.g. EpicTextBasedGame.ItemType.Potion.
+// {
+//     HEALINGPOTION,
+//     DAMAGEPOTION,
+//     BUFFCRITCHANCESPELL,
+//     BUFFMAXDAMAGESPELL,
+//     BUFFMAXHEALTHSPELL,
+//     DEBUFFMAXDAMAGESPELL,
 
-}
+// }
 
 public class Item{
     
     public int ID;
     public string Name;
-    public int Power;
-    public int AmountOfTurnsActice;
-    public ItemTypes ItemType;
+    //public ItemTypes ItemType;
+    public Effect ItemEffect;
     public string Description;
     public int Count;
+    
 
-    public Item(int id, string name, ItemTypes itemtypeint, int power, int amountOfTurnsActice=0, string description="", int count=1){
+    public Item(int id, string name, Effect itemEffect, string description="", int count=1){ //, ItemTypes itemType
         ID = id;
         Name = name;
-        Power = power;
-        AmountOfTurnsActice = amountOfTurnsActice;
+        //ItemType = itemType;
+        ItemEffect = itemEffect;
         Count = count;
         Description = description;
     }
@@ -36,29 +36,14 @@ public class Item{
         Count -= 1;
     }
     public string Info(){
-        return $"{Count} {Name}: Power{Power}. {Description}";
+        return $"{Count} {Name}: {Description}";
     }
 
-    public void UseItem(int itemIndex, Player player, Monster? monster = null){ //in fight, prompt a target
-        if(ItemType == ItemTypes.HEALINGPOTION)
-        {
-            if(monster == null) player.RegenarateHealth(Power);
-            else monster.RegenarateHealth(Power);
-            
-        }
-        if(ItemType == ItemTypes.DAMAGEPOTION)
-        {
-            if(monster == null) player.TakeDamage(Power);
-            else monster.TakeDamage(Power);
-            
-        }
-        else if(ItemType == ItemTypes.BUFFCRITCHANCESPELL)
-        {
-            if(monster == null) player.AddEffect(this, AmountOfTurnsActice);
-            else monster.AddEffect(this, AmountOfTurnsActice);
-        }
+    public void UseItem(Character character){ //in fight, prompt a target
+        Console.WriteLine("using Item: {Name}");
+        character.AddEffect(ItemEffect);
         
-        player.RemoveItem(player.Items[itemIndex]);
+        //player.RemoveItem(player.Items[itemIndex]);
 
     }
 }
