@@ -102,8 +102,7 @@ public class Helper
     public static void OutroScreen()
     {
         WinScreen();
-        Thread thread = null;
-        int count = 0;
+        Thread? thread = null;
         while (true)
         {
             Console.CursorVisible = false;

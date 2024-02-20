@@ -40,7 +40,7 @@ public class Character{
         if (CurrentHealth <= 0)
         {
             CurrentHealth = 0; // HP wont go into negative when printing
-            SuperAdventure.Deathscreen(); 
+            Helper.Deathscreen(); 
         }
         else
         {
