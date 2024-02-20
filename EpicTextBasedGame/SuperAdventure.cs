@@ -1,4 +1,5 @@
 //Heal and spell for Fight still needs to be implemented. It is now commented.
+using System.Runtime.InteropServices;
 
 public class SuperAdventure
 {

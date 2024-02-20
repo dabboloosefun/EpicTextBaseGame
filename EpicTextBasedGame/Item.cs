@@ -54,8 +54,8 @@ public class Item{
         }
         else if(ItemType == ItemTypes.BUFFCRITCHANCESPELL)
         {
-            if(monster == null) player.AddEffect(this, AmountOfTurnsActice);
-            else monster.AddEffect(this, AmountOfTurnsActice);
+            //if(monster == null) player.AddEffect(this, AmountOfTurnsActice);
+            //else monster.AddEffect(this, AmountOfTurnsActice);
         }
         
         player.RemoveItem(player.Items[itemIndex]);
