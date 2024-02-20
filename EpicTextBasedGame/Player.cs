@@ -28,10 +28,10 @@ public class Player : Character
         Console.WriteLine("╔═══════════════════════════════════╗");
         Console.WriteLine("║               Stats               ║");
         Console.WriteLine("╠═══════════════════════════════════╣");
-        Console.WriteLine("║ Health:      {0, -8}             ║", $"{CurrentHealth}/{MaxHealth}");
-        Console.WriteLine("║ Weapon:      {0, -21}║", $"{CurrentWeapon.Name}");
-        Console.WriteLine("║ Damage:      {0, -10}           ║", $"{(int)CurrentWeapon.MaxDamage * 0.8}-{CurrentWeapon.MaxDamage}");
-        Console.WriteLine("║ Crit Chance:      {0}               ║", $"{(double)CurrentWeapon.CritChance}");
+        Console.WriteLine("║ HEALTH:      {0, -8}             ║", $"{CurrentHealth}/{MaxHealth}");
+        Console.WriteLine("║ WEAPON:      {0, -21}║", $"{CurrentWeapon.Name}");
+        Console.WriteLine("║ DAMAGE:      {0, -10}           ║", $"{(int)CurrentWeapon.MaxDamage * 0.8}-{CurrentWeapon.MaxDamage}");
+        Console.WriteLine("║ CRITCHANCE:  {0}                 ║", $"{(double)CurrentWeapon.CritChance}");
         Console.WriteLine("╚═══════════════════════════════════╝");
     }
 
@@ -195,26 +195,26 @@ public class Player : Character
     public bool TryMoveTo()
     {
         Console.WriteLine($@"
-*********┌─────────────┐***  ≈≈≈≈≈      LEGEND
-***      │ .....P..... │*  ≈≈≈≈≈        H: Home
-         │     ...     │  ≈≈≈≈≈         T: Town Square
-         └──┐   ▄   ┌──┘ ≈≈≈≈≈          F: Farmhouse
- <=>        │ ▄███▄ │    ≈≈≈≈≈          V: Farmer's Field
-    ██      │  ▀A▀  │    ≈≈≈≈≈          A: Alchemist's Hut
-     ▐      └───|───┘    ≈≈≈≈≈          P: Alchemist's Garden
-               /        ≈≈≈≈≈           G: Guard Post
-_____     ▐▀  /         ≈≈≈≈    *       B: Bridge
-=====▐▀   ▀█ | █▀█     ≈≈≈≈   ***       S: Forest
-=====F___   ┌───┐      ≈≈≈   ****       
-=====    \__│   │▄  ▄▄≈≈≈≈  *****
-__V__     ▀▀│ T │---G╠═B═╣--*****
-=====       │   │█  ▀▀≈≈≈  ******
-=====     ▀█└───┘     ≈≈≈  **S***
-=====       |▐█▀     ≈≈≈  *******       Current Location: {CurrentLocation.Name}
-       *     \     ≈≈≈≈ *********
-   ▄▌ ***    |     ≈≈≈≈ *********
-**********   ▀   ≈≈≈≈≈ **********
-***********  H   ≈≈≈≈≈ **********
+            *********┌─────────────┐***  ≈≈≈≈≈      LEGEND
+            ***      │ .....P..... │*  ≈≈≈≈≈        H: Home
+                     │     ...     │  ≈≈≈≈≈         T: Town Square
+                     └──┐   ▄   ┌──┘ ≈≈≈≈≈          F: Farmhouse
+             <=>        │ ▄███▄ │    ≈≈≈≈≈          V: Farmer's Field
+                ██      │  ▀A▀  │    ≈≈≈≈≈          A: Alchemist's Hut
+                 ▐      └───|───┘    ≈≈≈≈≈          P: Alchemist's Garden
+                           /        ≈≈≈≈≈           G: Guard Post
+            _____     ▐▀  /         ≈≈≈≈    *       B: Bridge
+            =====▐▀   ▀█ | █▀█     ≈≈≈≈   ***       S: Forest
+            =====F___   ┌───┐      ≈≈≈   ****       
+            =====    \__│   │▄  ▄▄≈≈≈≈  *****
+            __V__     ▀▀│ T │---G╠═B═╣--*****
+            =====       │   │█  ▀▀≈≈≈  ******
+            =====     ▀█└───┘     ≈≈≈  **S***
+            =====       |▐█▀     ≈≈≈  *******       Current Location: {CurrentLocation.Name}
+                   *     \     ≈≈≈≈ *********
+               ▄▌ ***    |     ≈≈≈≈ *********
+            **********   ▀   ≈≈≈≈≈ **********
+            ***********  H   ≈≈≈≈≈ **********
 ");
         Console.WriteLine(CurrentLocation.Compass());
         Console.WriteLine(Helper.CenterStr("In what direction would you like to go?"));
@@ -243,11 +243,11 @@ __V__     ▀▀│ T │---G╠═B═╣--*****
         Console.WriteLine(Helper.CenterStr("[1][2][3][4][5]"));
         Console.ForegroundColor = ConsoleColor.White;
         Console.WriteLine("╔═════════════════════════╗");
-        Console.WriteLine("║ [1] Move                ║");
-        Console.WriteLine("║ [2] Check inventory     ║");
-        Console.WriteLine("║ [3] Change equipment    ║");
-        Console.WriteLine("║ [4] Check stats         ║");
-        Console.WriteLine("║ [5] Quit to titlescreen ║");
+        Console.WriteLine("║ [1] MOVE                ║");
+        Console.WriteLine("║ [2] INVENTORY           ║");
+        Console.WriteLine("║ [3] CHANGE EQUIPMENT    ║");
+        Console.WriteLine("║ [4] STATS               ║");
+        Console.WriteLine("║ [5] QUIT TO TITLESCREEN ║");
         Console.WriteLine("╚═════════════════════════╝");
 
         int playerAction;
