@@ -8,7 +8,7 @@
         Player player = new Player();
         player.AddItem(CritPotion3T);
         bool victory = false;
-        SuperAdventure.TitleScreen();
+        Helper.TitleScreen();
 
         // Little intro can go here.
 
@@ -27,6 +27,6 @@
             player.CommenceAction(playerAction);
         }
 
-        SuperAdventure.OutroScreen();
+        Helper.OutroScreen();
     }
 }
