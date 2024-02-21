@@ -18,8 +18,15 @@ public class Helper
         Thread? thread = null;
         Task.Run(() =>
         {
-            if (thread == null) thread = Thread.CurrentThread;
-            WriteBlinkingTextOptions();
+            try
+            {
+                if (thread == null) thread = Thread.CurrentThread;
+                WriteBlinkingTextOptions();
+            }
+            catch (ThreadInterruptedException)
+            {
+                return;
+            }
         });
         while (true)
         {
@@ -32,6 +39,7 @@ public class Helper
             }
             else if (key.Key == ConsoleKey.Enter)
             {
+                Console.Clear();
                 if (thread != null) thread.Interrupt();
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.Clear();
@@ -46,38 +54,44 @@ public class Helper
         Thread? thread = null;
         Task.Run(() =>
         {
-            thread = Thread.CurrentThread;
-            Console.ForegroundColor = ConsoleColor.White;
-            RollStr(CenterStr("You're falling..........\n"));
-            RollStr(CenterStr("The void envelops you...\n"));
-            RollStr(CenterStr("Then.....a voice........\n"));
-            RollStr(CenterStr("Coming from deep within.\n"));
-            RollStr(CenterStr("2 to cross the bridge...\n"));
-            RollStr(CenterStr("1 to gain redemption....\n"));
-            RollStr(CenterStr("The choice is yours.....\n"));
-            RollStr(CenterStr("You wake up in your home\n"));
-            RollStr(CenterStr("Clutching your chest....\n"));
-            RollStr(CenterStr("Welcome to..............\n"));
-            Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.WriteLine("\n\n\n");
-            Console.WriteLine(CenterStr(@"    )     (    (     "));
-            Console.WriteLine(CenterStr(@" ( /(     )\ ) )\ )  "));
-            Console.WriteLine(CenterStr(@" )\())(  (()/((()/(  "));
-            Console.WriteLine(CenterStr(@"((_)\ )\  /(_))/(_)) "));
-            Console.WriteLine(CenterStr(@" _((_|(_)(_)) (_))   "));
-            Console.WriteLine(CenterStr(@"| || | __| |  | |    "));
-            Console.WriteLine(CenterStr(@"| __ | _|| |__| |__  "));
-            Console.WriteLine(CenterStr(@"|_||_|___|____|____| "));
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\n\n\n");
-            BlinkText("Press ENTER to continue", true);
+            try
+            {
+                thread = Thread.CurrentThread;
+                Console.ForegroundColor = ConsoleColor.White;
+                RollStr(CenterStr("You're falling..........\n"));
+                RollStr(CenterStr("The void envelops you...\n"));
+                RollStr(CenterStr("Then.....a voice........\n"));
+                RollStr(CenterStr("Coming from deep within.\n"));
+                RollStr(CenterStr("2 to cross the bridge...\n"));
+                RollStr(CenterStr("1 to gain redemption....\n"));
+                RollStr(CenterStr("The choice is yours.....\n"));
+                RollStr(CenterStr("You wake up in your home\n"));
+                RollStr(CenterStr("Clutching your chest....\n"));
+                RollStr(CenterStr("Welcome to..............\n"));
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("\n\n\n");
+                Console.WriteLine(CenterStr(@"    )     (    (     "));
+                Console.WriteLine(CenterStr(@" ( /(     )\ ) )\ )  "));
+                Console.WriteLine(CenterStr(@" )\())(  (()/((()/(  "));
+                Console.WriteLine(CenterStr(@"((_)\ )\  /(_))/(_)) "));
+                Console.WriteLine(CenterStr(@" _((_|(_)(_)) (_))   "));
+                Console.WriteLine(CenterStr(@"| || | __| |  | |    "));
+                Console.WriteLine(CenterStr(@"| __ | _|| |__| |__  "));
+                Console.WriteLine(CenterStr(@"|_||_|___|____|____| "));
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("\n\n\n");
+                BlinkText("Press ENTER to continue", true);
+            }
+            catch (ThreadInterruptedException)
+            {
+                return;
+            }
         });
         while (true)
         {
             var key = Console.ReadKey(true);
             if (key.Key == ConsoleKey.Enter)
             {
-                Console.Clear();
                 if (thread != null) thread.Interrupt();
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.White;
@@ -126,11 +140,18 @@ public class Helper
             Console.WriteLine(CenterStr("Karlijn van den Hoff"));
             Task.Run(() =>
             {
-                if (thread == null) thread = Thread.CurrentThread;
-                Task.Delay(3000).Wait();
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                BlinkText("Press ENTER to return to titlescreen", true);
-                Console.ForegroundColor = ConsoleColor.DarkRed;
+                try
+                {
+                    if (thread == null) thread = Thread.CurrentThread;
+                    Thread.Sleep(3000);
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    BlinkText("Press ENTER to return to titlescreen", true);
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                }
+                catch (ThreadInterruptedException)
+                {
+                    return;
+                }
             });
             var key = Console.ReadKey(true);
             if (key.Key == ConsoleKey.Enter)
@@ -146,7 +167,7 @@ public class Helper
     {
         Console.CursorVisible = false;
         Console.Clear();
-        Task.Delay(1000).Wait();
+        Thread.Sleep(1000);
         Console.ForegroundColor = ConsoleColor.DarkRed;
         Console.WriteLine(CenterStr(@"▄██   ▄    ▄██████▄  ███    █▄       ████████▄   ▄█     ▄████████ ████████▄  "));
         Console.WriteLine(CenterStr(@"███   ██▄ ███    ███ ███    ███      ███   ▀███ ███    ███    ███ ███   ▀███"));
@@ -156,7 +177,7 @@ public class Helper
         Console.WriteLine(CenterStr(@"███   ███ ███    ███ ███    ███      ███    ███ ███    ███    █▄  ███    ███"));
         Console.WriteLine(CenterStr(@"███   ███ ███    ███ ███    ███      ███   ▄███ ███    ███    ███ ███   ▄███"));
         Console.WriteLine(CenterStr(@"  ▀█████▀   ▀██████▀  ████████▀       ████████▀  █▀     ██████████ ████████▀"));
-        Task.Delay(3000).Wait();
+        Thread.Sleep(3000);
         Console.Clear();
         Program.Main();
     }
@@ -164,7 +185,7 @@ public class Helper
     {
         Console.CursorVisible = false;
         Console.Clear();
-        Task.Delay(1000).Wait();
+        Thread.Sleep(1000);
         Console.ForegroundColor = ConsoleColor.DarkRed;
         Console.WriteLine(CenterStr(@"▄██   ▄    ▄██████▄  ███    █▄        ▄█     █▄   ▄██████▄  ███▄▄▄▄  "));
         Console.WriteLine(CenterStr(@"███   ██▄ ███    ███ ███    ███      ███     ███ ███    ███ ███▀▀▀██▄"));
@@ -174,7 +195,7 @@ public class Helper
         Console.WriteLine(CenterStr(@"███   ███ ███    ███ ███    ███      ███     ███ ███    ███ ███   ███"));
         Console.WriteLine(CenterStr(@"███   ███ ███    ███ ███    ███      ███ ▄█▄ ███ ███    ███ ███   ███"));
         Console.WriteLine(CenterStr(@" ▀█████▀   ▀██████▀  ████████▀        ▀███▀███▀   ▀██████▀   ▀█   █▀"));
-        Task.Delay(3000).Wait();
+        Thread.Sleep(3000);
         Console.Clear();
     }
     public static void RollStr(string text)
@@ -182,7 +203,7 @@ public class Helper
         for (int i = 0; i < text.Length; i++)
         {
             Console.Write(text[i]);
-            Task.Delay(30).Wait();
+            Thread.Sleep(30);
         }
 
     }
@@ -196,7 +217,7 @@ public class Helper
         while (true)
         {
             Console.Write("\r" + (visible ? CenterStr("Press ENTER to start newgame (ESC to quit)") : new String(' ', CenterStr("Press ENTER to start newgame (ESC to quit)").Length)));
-            Task.Delay(500).Wait();
+            Thread.Sleep(500);
             visible = !visible;
         }
     }
@@ -208,7 +229,7 @@ public class Helper
         while (true)
         {
             Console.Write("\r" + (visible ? text : new String(' ', text.Length)));
-            Task.Delay(500).Wait();
+            Thread.Sleep(500);
             visible = !visible;
         }
     }
