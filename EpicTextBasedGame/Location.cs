@@ -1,3 +1,5 @@
+﻿using System.Runtime.CompilerServices;
+
 public class Location{
     public int ID;
     public string Name;
@@ -33,9 +35,36 @@ public class Location{
 
     }
 
+    public string Map()
+    {
+        string map = $@"
+                                *********┌─────────────┐***  ≈≈≈≈≈      LEGEND
+                                ***      │ .....P..... │*  ≈≈≈≈≈        H: Home
+                                         │     ...     │  ≈≈≈≈≈         T: Town Square
+                                         └──┐   ▄   ┌──┘ ≈≈≈≈≈          F: Farmhouse
+                                 <=>        │ ▄███▄ │    ≈≈≈≈≈          V: Farmer's Field
+                                    ██      │  ▀A▀  │    ≈≈≈≈≈          A: Alchemist's Hut
+                                     ▐      └───|───┘    ≈≈≈≈≈          P: Alchemist's Garden
+                                               /        ≈≈≈≈≈           G: Guard Post
+                                _____     ▐▀  /         ≈≈≈≈    *       B: Bridge
+                                =====▐▀   ▀█ | █▀█     ≈≈≈≈   ***       S: Forest
+                                =====F___   ┌───┐      ≈≈≈   ****       
+                                =====    \__│   │▄  ▄▄≈≈≈≈  *****
+                                __V__     ▀▀│ T │---G╠═B═╣--*****
+                                =====       │   │█  ▀▀≈≈≈  ******
+                                =====     ▀█└───┘     ≈≈≈  **S***
+                                =====       |▐█▀     ≈≈≈  *******       Current Location: {Name}
+                                       *     \     ≈≈≈≈ *********
+                                   ▄▌ ***    |     ≈≈≈≈ *********
+                                **********   ▀   ≈≈≈≈≈ **********
+                                ***********  H   ≈≈≈≈≈ **********
+        ";
+        return map;
+    }
+
     public string Compass()
     {
-        string compass = "From here you can go:\n";
+        string compass = Helper.CenterStr("From here you can go:\n");
         if (LocationToNorth != null)
         {
             compass += "    N\n    |\n";

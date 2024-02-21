@@ -13,6 +13,7 @@ public static class World
     public const int MONSTER_ID_RAT = 1;
     public const int MONSTER_ID_SNAKE = 2;
     public const int MONSTER_ID_GIANT_SPIDER = 3;
+    public const int MONSTER_ID_FACELESS = 4;
 
     public const int QUEST_ID_CLEAR_ALCHEMIST_GARDEN = 1;
     public const int QUEST_ID_CLEAR_FARMERS_FIELD = 2;
@@ -27,6 +28,7 @@ public static class World
     public const int LOCATION_ID_FARM_FIELD = 7;
     public const int LOCATION_ID_BRIDGE = 8;
     public const int LOCATION_ID_SPIDER_FIELD = 9;
+    public const int LOCATION_ID_FIELD_SOUTH = 10;
 
     static World()
     {
@@ -54,9 +56,13 @@ public static class World
         Monster giantSpider = new Monster(MONSTER_ID_GIANT_SPIDER, "giant spider", 3, 10, 10);
 
 
+        Monster faceless = new Monster(MONSTER_ID_FACELESS, "faceless reaper", 20, 30, 30);
+
+
         Monsters.Add(rat);
         Monsters.Add(snake);
         Monsters.Add(giantSpider);
+        Monsters.Add(faceless);
     }
 
     public static void PopulateQuests()
@@ -81,12 +87,12 @@ public static class World
 
 
         Quest clearSpidersForest =
-                    new Quest(
-                        QUEST_ID_COLLECT_SPIDER_SILK,
-                        "Collect spider silk",
-                        "Kill spiders in the spider forest",
-                        MonsterByID(3),
-                        3);
+            new Quest(
+                QUEST_ID_COLLECT_SPIDER_SILK,
+                "Collect spider silk",
+                "Kill spiders in the spider forest",
+                MonsterByID(3),
+                3);
 
 
         Quests.Add(clearAlchemistGarden);
@@ -113,6 +119,9 @@ public static class World
         Location farmersField = new Location(LOCATION_ID_FARM_FIELD, "Farmer's field", "You see rows of vegetables growing here.", null, null);
         farmersField.MonsterLivingHere = MonsterByID(MONSTER_ID_SNAKE);
 
+        Location fieldsouth = new Location(LOCATION_ID_FIELD_SOUTH, "Cornfield", "The corn rustles in the wind.", null, null);
+        fieldsouth.MonsterLivingHere = MonsterByID(MONSTER_ID_FACELESS);
+
         Location guardPost = new Location(LOCATION_ID_GUARD_POST, "Guard post", "There is a large, tough-looking guard here.", null, null);
 
         Location bridge = new Location(LOCATION_ID_BRIDGE, "Bridge", "A stone bridge crosses a wide river.", null, null);
@@ -132,7 +141,10 @@ public static class World
         farmhouse.LocationToEast = townSquare;
         farmhouse.LocationToWest = farmersField;
 
+        fieldsouth.LocationToNorth = farmersField;
+
         farmersField.LocationToEast = farmhouse;
+        farmersField.LocationToSouth = fieldsouth;
 
         alchemistHut.LocationToSouth = townSquare;
         alchemistHut.LocationToNorth = alchemistsGarden;
@@ -157,6 +169,7 @@ public static class World
         Locations.Add(farmersField);
         Locations.Add(bridge);
         Locations.Add(spiderField);
+        Locations.Add(fieldsouth);
     }
 
     public static Location LocationByID(int id)

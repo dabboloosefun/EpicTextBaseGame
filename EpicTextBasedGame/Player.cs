@@ -194,28 +194,7 @@ public class Player : Character
 
     public bool TryMoveTo()
     {
-        Console.WriteLine($@"
-            *********┌─────────────┐***  ≈≈≈≈≈      LEGEND
-            ***      │ .....P..... │*  ≈≈≈≈≈        H: Home
-                     │     ...     │  ≈≈≈≈≈         T: Town Square
-                     └──┐   ▄   ┌──┘ ≈≈≈≈≈          F: Farmhouse
-             <=>        │ ▄███▄ │    ≈≈≈≈≈          V: Farmer's Field
-                ██      │  ▀A▀  │    ≈≈≈≈≈          A: Alchemist's Hut
-                 ▐      └───|───┘    ≈≈≈≈≈          P: Alchemist's Garden
-                           /        ≈≈≈≈≈           G: Guard Post
-            _____     ▐▀  /         ≈≈≈≈    *       B: Bridge
-            =====▐▀   ▀█ | █▀█     ≈≈≈≈   ***       S: Forest
-            =====F___   ┌───┐      ≈≈≈   ****       
-            =====    \__│   │▄  ▄▄≈≈≈≈  *****
-            __V__     ▀▀│ T │---G╠═B═╣--*****
-            =====       │   │█  ▀▀≈≈≈  ******
-            =====     ▀█└───┘     ≈≈≈  **S***
-            =====       |▐█▀     ≈≈≈  *******       Current Location: {CurrentLocation.Name}
-                   *     \     ≈≈≈≈ *********
-               ▄▌ ***    |     ≈≈≈≈ *********
-            **********   ▀   ≈≈≈≈≈ **********
-            ***********  H   ≈≈≈≈≈ **********
-");
+        Console.WriteLine(CurrentLocation.Map());
         Console.WriteLine(CurrentLocation.Compass());
         Console.WriteLine(Helper.CenterStr("In what direction would you like to go?"));
         Console.ForegroundColor = ConsoleColor.Yellow;
