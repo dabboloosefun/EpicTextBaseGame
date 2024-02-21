@@ -97,6 +97,58 @@ public class Helper
                 Console.ForegroundColor = ConsoleColor.White;
                 break;
             }
+            else if (key.Key == ConsoleKey.Spacebar)
+            {
+                if (thread != null) thread.Interrupt();
+                Console.Clear();
+                Task.Run(() =>
+                {
+                    try
+                    {
+                        thread = Thread.CurrentThread;
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine(CenterStr("You're falling.........."));
+                        Console.WriteLine(CenterStr("The void envelops you..."));
+                        Console.WriteLine(CenterStr("Then.....a voice........"));
+                        Console.WriteLine(CenterStr("Coming from deep within."));
+                        Console.WriteLine(CenterStr("2 to cross the bridge..."));
+                        Console.WriteLine(CenterStr("1 to gain redemption...."));
+                        Console.WriteLine(CenterStr("The choice is yours....."));
+                        Console.WriteLine(CenterStr("You wake up in your home"));
+                        Console.WriteLine(CenterStr("Clutching your chest...."));
+                        Console.WriteLine(CenterStr("Welcome to.............."));
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine("\n\n\n");
+                        Console.WriteLine(CenterStr(@"    )     (    (     "));
+                        Console.WriteLine(CenterStr(@" ( /(     )\ ) )\ )  "));
+                        Console.WriteLine(CenterStr(@" )\())(  (()/((()/(  "));
+                        Console.WriteLine(CenterStr(@"((_)\ )\  /(_))/(_)) "));
+                        Console.WriteLine(CenterStr(@" _((_|(_)(_)) (_))   "));
+                        Console.WriteLine(CenterStr(@"| || | __| |  | |    "));
+                        Console.WriteLine(CenterStr(@"| __ | _|| |__| |__  "));
+                        Console.WriteLine(CenterStr(@"|_||_|___|____|____| "));
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("\n\n\n");
+                        BlinkText("Press ENTER to continue", true);
+                    }
+                    catch (ThreadInterruptedException)
+                    {
+                        return;
+                    }
+                });
+                while (true)
+                {
+                    key = Console.ReadKey(true);
+                    if (key.Key == ConsoleKey.Enter)
+                    {
+                        if (thread != null) thread.Interrupt();
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.White;
+                        break;
+                    }
+                }
+                break;
+            }
         }
     }
     public static void OutroScreen()
