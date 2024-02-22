@@ -38,26 +38,26 @@ public class Location{
     public string Map()
     {
         string map = $@"
-                                *********┌─────────────┐***  ≈≈≈≈≈      LEGEND
-                                ***      │ .....P..... │*  ≈≈≈≈≈        H: Home
-                                         │     ...     │  ≈≈≈≈≈         T: Town Square
-                                         └──┐   ▄   ┌──┘ ≈≈≈≈≈          F: Farmhouse
-                                 <=>        │ ▄███▄ │    ≈≈≈≈≈          V: Farmer's Field
-                                    ██      │  ▀A▀  │    ≈≈≈≈≈          A: Alchemist's Hut
-                                     ▐      └───|───┘    ≈≈≈≈≈          P: Alchemist's Garden
-                                               /        ≈≈≈≈≈           G: Guard Post
-                                _____     ▐▀  /         ≈≈≈≈    *       B: Bridge
-                                =====▐▀   ▀█ | █▀█     ≈≈≈≈   ***       S: Forest
-                                =====F___   ┌───┐      ≈≈≈   ****       
-                                =====    \__│   │▄  ▄▄≈≈≈≈  *****
-                                __V__     ▀▀│ T │---G╠═B═╣--*****
-                                =====       │   │█  ▀▀≈≈≈  ******
-                                =====     ▀█└───┘     ≈≈≈  **S***
-                                =====       |▐█▀     ≈≈≈  *******       Current Location: {Name}
-                                       *     \     ≈≈≈≈ *********
-                                   ▄▌ ***    |     ≈≈≈≈ *********
-                                **********   ▀   ≈≈≈≈≈ **********
-                                ***********  H   ≈≈≈≈≈ **********
+                                    *********┌─────────────┐***  ≈≈≈≈≈      LEGEND
+                                    ***      │ .....P..... │*  ≈≈≈≈≈        H: Home
+                                             │     ...     │  ≈≈≈≈≈         T: Town Square
+                                             └──┐   ▄   ┌──┘ ≈≈≈≈≈          F: Farmhouse
+                                     <=>        │ ▄███▄ │    ≈≈≈≈≈          V: Farmer's Field
+                                        ██      │  ▀A▀  │    ≈≈≈≈≈          A: Alchemist's Hut
+                                         ▐      └───|───┘    ≈≈≈≈≈          P: Alchemist's Garden
+                                                   /        ≈≈≈≈≈           G: Guard Post
+                                    _____     ▐▀  /         ≈≈≈≈    *       B: Bridge
+                                    =====▐▀   ▀█ | █▀█     ≈≈≈≈   ***       S: Forest
+                                    =====F___   ┌───┐      ≈≈≈   ****       
+                                    =====    \__│   │▄  ▄▄≈≈≈≈  *****
+                                    __V__     ▀▀│ T │---G╠═B═╣--*****
+                                    =====       │   │█  ▀▀≈≈≈  ******
+                                    =====     ▀█└───┘     ≈≈≈  **S***
+                                    =====       |▐█▀     ≈≈≈  *******       Current Location: {Name}
+                                           *     \     ≈≈≈≈ *********
+                                       ▄▌ ***    |     ≈≈≈≈ *********
+                                    **********   ▀   ≈≈≈≈≈ **********
+                                    ***********  H   ≈≈≈≈≈ **********
         ";
         return map;
     }
@@ -67,24 +67,24 @@ public class Location{
         string compass = Helper.CenterStr("From here you can go:\n");
         if (LocationToNorth != null)
         {
-            compass += "    N\n    |\n";
+            compass += "\t\t\t\t\t\t\t    N\n\t\t\t\t\t\t\t    |\n";
         }
         if (LocationToWest != null)
         {
-            compass += "W---|";
+            compass += "\t\t\t\t\t\t\tW---|";
         }
         else
         {
-            compass += "    |";
+            compass += "\t\t\t\t\t\t\t    |";
         }
         if (LocationToEast != null)
         {
             compass += "---E";
         }
-        compass += "\n";
+        compass += "\t\t\t\t\t\t\t\t\n";
         if (LocationToSouth != null)
         {
-            compass += "    |\n    S\n";
+            compass += "\t\t\t\t\t\t\t    |\n\t\t\t\t\t\t\t    S\n";
         }
         return compass;
     }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.CompilerServices;
 
 public class Player : Character
 {
@@ -25,14 +26,14 @@ public class Player : Character
 
     public void DisplayStats()
     {
-        Console.WriteLine("╔═══════════════════════════════════╗");
-        Console.WriteLine("║               Stats               ║");
-        Console.WriteLine("╠═══════════════════════════════════╣");
-        Console.WriteLine("║ HEALTH:      {0, -8}             ║", $"{CurrentHealth}/{MaxHealth}");
-        Console.WriteLine("║ WEAPON:      {0, -21}║", $"{CurrentWeapon.Name}");
-        Console.WriteLine("║ DAMAGE:      {0, -10}           ║", $"{(int)CurrentWeapon.MaxDamage * 0.8}-{CurrentWeapon.MaxDamage}");
-        Console.WriteLine("║ CRITCHANCE:  {0}                 ║", $"{(double)CurrentWeapon.CritChance}");
-        Console.WriteLine("╚═══════════════════════════════════╝");
+        Console.WriteLine("\t\t\t\t\t╔═══════════════════════════════════╗");
+        Console.WriteLine("\t\t\t\t\t║               Stats               ║");
+        Console.WriteLine("\t\t\t\t\t╠═══════════════════════════════════╣");
+        Console.WriteLine("\t\t\t\t\t║ HEALTH:      {0, -8}             ║", $"{CurrentHealth}/{MaxHealth}");
+        Console.WriteLine("\t\t\t\t\t║ WEAPON:      {0, -21}║", $"{CurrentWeapon.Name}");
+        Console.WriteLine("\t\t\t\t\t║ DAMAGE:      {0, -10}           ║", $"{(int)CurrentWeapon.MaxDamage * 0.8}-{CurrentWeapon.MaxDamage}");
+        Console.WriteLine("\t\t\t\t\t║ CRITCHANCE:  {0}                 ║", $"{(double)CurrentWeapon.CritChance}");
+        Console.WriteLine("\t\t\t\t\t╚═══════════════════════════════════╝");
     }
 
     public void AddWeapon(Weapon weapon)
@@ -221,13 +222,13 @@ public class Player : Character
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine(Helper.CenterStr("[1][2][3][4][5]"));
         Console.ForegroundColor = ConsoleColor.White;
-        Console.WriteLine("╔═════════════════════════╗");
-        Console.WriteLine("║ [1] MOVE                ║");
-        Console.WriteLine("║ [2] INVENTORY           ║");
-        Console.WriteLine("║ [3] CHANGE EQUIPMENT    ║");
-        Console.WriteLine("║ [4] STATS               ║");
-        Console.WriteLine("║ [5] QUIT TO TITLESCREEN ║");
-        Console.WriteLine("╚═════════════════════════╝");
+        Console.WriteLine(Helper.CenterStr("╔═════════════════════════╗"));
+        Console.WriteLine(Helper.CenterStr("║ [1] MOVE                ║"));
+        Console.WriteLine(Helper.CenterStr("║ [2] INVENTORY           ║"));
+        Console.WriteLine(Helper.CenterStr("║ [3] CHANGE EQUIPMENT    ║"));
+        Console.WriteLine(Helper.CenterStr("║ [4] STATS               ║"));
+        Console.WriteLine(Helper.CenterStr("║ [5] QUIT TO TITLESCREEN ║"));
+        Console.WriteLine(Helper.CenterStr("╚═════════════════════════╝"));
 
         int playerAction;
         bool succesfulParse;
