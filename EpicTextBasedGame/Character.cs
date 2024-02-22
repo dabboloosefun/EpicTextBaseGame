@@ -46,7 +46,7 @@ public abstract class Character{
         if (CurrentHealth <= 0)
         {
             CurrentHealth = 0; // HP wont go into negative when printing
-            Helper.Deathscreen(); 
+            if (Name == "Player") Helper.Deathscreen(); 
         }
         else
         {
