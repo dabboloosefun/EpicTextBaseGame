@@ -1,30 +1,15 @@
-
-// public enum ItemTypes //I tried this in a namespace but like that we would have to put everything in the same namespace or 
-// //prefix every mention of ItemType by "namespacename." e.g. EpicTextBasedGame.ItemType.Potion.
-// {
-//     HEALINGPOTION,
-//     DAMAGEPOTION,
-//     BUFFCRITCHANCESPELL,
-//     BUFFMAXDAMAGESPELL,
-//     BUFFMAXHEALTHSPELL,
-//     DEBUFFMAXDAMAGESPELL,
-
-// }
-
 public class Item{
     
     public int ID;
     public string Name;
-    //public ItemTypes ItemType;
-    public Effect ItemEffect;
+    public Effect? ItemEffect; //nullable since not all items have effects
     public string Description;
     public int Count;
     
 
-    public Item(int id, string name, Effect itemEffect, string description="", int count=1){ //, ItemTypes itemType
+    public Item(int id, string name, Effect? itemEffect = null, string description="", int count=1){
         ID = id;
         Name = name;
-        //ItemType = itemType;
         ItemEffect = itemEffect;
         Count = count;
         Description = description;
@@ -39,12 +24,25 @@ public class Item{
         return $"{Count} {Name}: {Description}";
     }
 
-    public void UseItem(Character character){ //in fight, prompt a target
-        Console.WriteLine("using Item: {Name}");
-        character.AddEffect(ItemEffect);
-
+    public void UseItem(Character? character = null){ //in fight, prompt a target
+        Console.WriteLine($"using Item: {Name}");
+        if (ItemEffect == null && character == null){
+            //if item is e.g. a key to open some door
+        }
+        else if(ItemEffect == null && character != null){
+            //if item is supposed to e.g. be given to an npc
+        }
+        else if(ItemEffect != null && character != null)
+        {
+            //if item has an applicable effect
+            Console.WriteLine($"Item.cs: Applying {ItemEffect.EffectType} to {character.Name}");
+            character.AddEffect(ItemEffect);
+        }
+        else{
+            Console.WriteLine("this item has an applicable effect and likely needs a target. pass a target");
+        }
         
-        //player.RemoveItem(player.Items[itemIndex]);
+       //item removal handled in Player.PromptUseItem() at the moment
 
     }
 }

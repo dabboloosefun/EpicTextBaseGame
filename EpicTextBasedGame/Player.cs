@@ -22,6 +22,7 @@ public class Player : Character
         CurrentLocation = World.Locations[0]; // Home
         CurrentWeapon = World.Weapons[0]; // starter weapon
         QuestList = new List<Quest>{};
+        ActiveEffects = new List<Effect>();
     }
 
     public void DisplayStats()
@@ -128,7 +129,7 @@ public class Player : Character
             {
                 Items[selectedItemNumber].UseItem(this);
                 Items.RemoveAt(selectedItemNumber);
-                actionDoneRef = true;
+                //actionDoneRef = true;
                 return;
             }
             else if(selectedTargetNumber == 2)
@@ -136,7 +137,7 @@ public class Player : Character
                 Items[selectedItemNumber].UseItem(monsterTarget);
                 Console.WriteLine("");
                 Items.RemoveAt(selectedItemNumber);
-                actionDoneRef = true;
+                //actionDoneRef = true;
                 return;
             }
             else if(selectedTargetNumber == 3)

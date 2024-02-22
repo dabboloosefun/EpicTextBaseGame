@@ -11,14 +11,16 @@ DEBUFFMAXHEALTH
 }
 
 public class Effect{
-    public int ID; //no use for ID yet
+    //public int ID; //no use for ID yet
+    //I don't want to bother right now to implement turn-extension of effects, so for now they stack additively and seperately
+    //we will likely need ID if we want to be able to extend the amount of turns an effect lasts
     public double Power;
     public EffectTypes EffectType;
     public int TurnsLeft;
     public bool EffectIsApplied;
     public Character? AffectedCharacter;
-    public Effect(int id, double power, EffectTypes effectType, int turnsleft){
-        ID = id;
+    public Effect(double power, EffectTypes effectType, int turnsleft){ //int id, 
+        //ID = id;
         Power = power;
         EffectType = effectType; 
         TurnsLeft = turnsleft;
@@ -39,11 +41,11 @@ public class Effect{
                     if (weapon != null) 
                     {
                         weapon.CritChance += Power;
-                        Console.WriteLine($"Your weapons crit chance is now {weapon.CritChance}");
+                        Console.WriteLine($"At ApplyEffect(): Your weapons crit chance is now {weapon.CritChance}");
                     }
                     else Console.WriteLine("You don't have a weapon equipped!");
                 }
-                Console.WriteLine("Monsters can't critical hit! Also why would you want them to?");
+                else Console.WriteLine("Monsters can't critical hit! Also why would you want them to?");
                 
             }
             else if(EffectType == EffectTypes.BUFFMAXDAMAGE)
@@ -90,6 +92,19 @@ public class Effect{
         if (AffectedCharacter == null) Console.WriteLine("Error in UpdateEffect(): effect wasn't linked properly to a character");
         else
         {
+            //currently if effects last 3 turns they are removed at the start of the 4th rather than the end of the third. 
+            //this is fine for most spells but for over-time effects it might be better to notify user at last application so they don't expect another heal 
+            //don't know how to do this yet!
+            if(EffectIsApplied)
+            {
+                if(TurnsLeft <=0)
+                {
+                    EffectIsApplied = false;
+                    RemoveEffect();
+                }
+                TurnsLeft -= 1;
+            }
+
             if (EffectType == EffectTypes.HEALOVERTIME && EffectIsApplied)
             {
                 AffectedCharacter.RegenarateHealth((int)Power);
@@ -99,36 +114,25 @@ public class Effect{
                 AffectedCharacter.TakeDamage((int)Power);
             }
 
-            if(EffectIsApplied)
-            {
-                TurnsLeft -= 1;
-                if(TurnsLeft <=0)
-                {
-                    EffectIsApplied = false;
-                }
-            }
-            // else if (!EffectIsApplied) 
-            // {
-            //     Console.WriteLine($"Attempting removing effect {EffectType} from {AffectedCharacter}");
-            //     RemoveEffect();
-            // }
-
             //3 turns buffcritchance
             //apply current turn, TurnsLeft 3->2
             //apply 1 more turn, TurnsLeft 2->1
-            //apply 1 more turn, TurnsLeft 1->0, EffectIsApplied = false
-            //Start of next turn, call RemoveEffect()
+            //apply 1 more turn, TurnsLeft 1->0
+            //Start of next turn, EffectIsApplied = false, call RemoveEffect()
 
             //3 turns healovertime
             //apply current turn, TurnsLeft 3->2
             //apply 1 more turn, TurnsLeft 2->1
-            //apply 1 more turn, TurnsLeft 1->0, EffectIsApplied = false
-            //don't apply next turn bc EffectApplied = false. Then call RemoveEffect()
+            //apply 1 more turn, TurnsLeft 1->0
+            //Start of next turn, EffectIsApplied = false, call RemoveEffect(), over-time effects aren't called
+            
         }
     }
 
     public void RemoveEffect(){
-        if (AffectedCharacter == null) Console.WriteLine("Error in RemoveEffect(): effect wasn't linked properly to a character");
+        if (AffectedCharacter == null) {
+            Console.WriteLine("Error in RemoveEffect(): effect wasn't linked properly to a character");
+        }
         else
         {
             if (EffectType == EffectTypes.BUFFCRITCHANCE)
@@ -137,7 +141,6 @@ public class Effect{
                     if (weapon != null)
                     {
                         weapon.CritChance -= Power;
-                        Console.WriteLine($"succesfully removed {this.EffectType} from {this.AffectedCharacter}");
                     }
                 }
             else if(EffectType == EffectTypes.BUFFMAXDAMAGE)
@@ -174,7 +177,9 @@ public class Effect{
             }
 
             AffectedCharacter.ActiveEffects.Remove(this);
-
+            if (EffectType != EffectTypes.HEALOVERTIME && EffectType != EffectTypes.DAMAGEOVERTIME){
+                Console.WriteLine($"{AffectedCharacter} ran out of {EffectType}({Power})");
+            }
         }
     }
 }
