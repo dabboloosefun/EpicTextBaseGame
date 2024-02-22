@@ -31,7 +31,15 @@ public class Location{
     public void StartLocationQuest(Player player)
     {
         //if player.Inventory contains certain item > I'd rather have you be prompted to start a quest regardless (MMO style: speak to NPC: y/n)
-        QuestAvailableHere.StartQuest(player);
+        string prompt;
+        do
+        {
+
+            Console.WriteLine(Helper.CenterStr("Would you like to talk to the npc? (yes/no)"));
+            prompt = Console.ReadLine();
+        } while ((prompt.ToLower() != "yes") && (prompt.ToLower() != "no"));
+        if (prompt == "yes") QuestAvailableHere.StartQuest(player);
+        return;
 
     }
 

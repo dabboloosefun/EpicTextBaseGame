@@ -1,4 +1,4 @@
-public class Monster : Character
+﻿public class Monster : Character
 {
 
     public int ID;
@@ -17,7 +17,12 @@ public class Monster : Character
 
     public void DisplayStats()
     {
-        Console.WriteLine($"Name: {this.Name}\nHealth: {this.CurrentHealth}/{this.MaxHealth}");
+        Console.WriteLine("\t\t\t\t\t╔═══════════════════════════════════╗");
+        Console.WriteLine("\t\t\t\t\t║               {0, -20}║", $"{this.Name}");
+        Console.WriteLine("\t\t\t\t\t╠═══════════════════════════════════╣");
+        Console.WriteLine("\t\t\t\t\t║ HEALTH:        {0, -8}           ║", $"{this.CurrentHealth}/{this.MaxHealth}");
+        Console.WriteLine("\t\t\t\t\t║ MAXDMG:        {0, -10}         ║", $"{this.MaxDamage}");
+        Console.WriteLine("\t\t\t\t\t╚═══════════════════════════════════╝");
     }
     
     public int RollDamageMonster(int minimumDamage = 0)

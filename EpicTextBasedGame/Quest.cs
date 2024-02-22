@@ -21,6 +21,9 @@ public class Quest
 
     public void StartQuest(Player player)
     {
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine(Helper.CenterStr($"Quest started: {Name}"));
+        Console.ForegroundColor = ConsoleColor.White;
         player.QuestList.Add(this);
     }
     

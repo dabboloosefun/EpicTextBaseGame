@@ -56,7 +56,7 @@ public static class World
         Monster giantSpider = new Monster(MONSTER_ID_GIANT_SPIDER, "giant spider", 3, 10, 10);
 
 
-        Monster faceless = new Monster(MONSTER_ID_FACELESS, "faceless reaper", 20, 30, 30);
+        Monster faceless = new Monster(MONSTER_ID_FACELESS, "reaper", 20, 30, 30);
 
 
         Monsters.Add(rat);
