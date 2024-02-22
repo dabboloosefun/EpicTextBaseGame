@@ -127,5 +127,14 @@ public class SuperAdventure
             playerturn = !playerturn; // Draait player turn om
         } // While loop voor fight
         monster.CurrentHealth = monster.MaxHealth; //reset monster in this location
+        foreach (Quest quest in player.QuestList)
+        {
+            if ((quest.Target == player.CurrentLocation.MonsterLivingHere) && (quest.Cleared is false))
+            {
+                quest.UpdateQuest(player);
+                Console.WriteLine(Helper.CenterStr($"You've killed: {quest.CurrentKills}/{quest.TargetKills} {player.CurrentLocation.MonsterLivingHere.Name}"));
+            }
+        }
+        
     }
 }

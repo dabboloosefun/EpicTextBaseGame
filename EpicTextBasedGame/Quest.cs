@@ -23,21 +23,25 @@ public class Quest
     {
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine(Helper.CenterStr($"Quest started: {Name}"));
+        Console.WriteLine("\n");
         Console.ForegroundColor = ConsoleColor.White;
         player.QuestList.Add(this);
+        if (player.CurrentLocation.Name == "Farmhouse") player.CurrentLocation.AdjustDescription("The farmer is waiting impatiently");
     }
     
-    public void UpdateQuest()
+    public void UpdateQuest(Player player)
     {
         CurrentKills++;
-        if (CurrentKills == TargetKills) EndQuest();;   
+        if (CurrentKills == TargetKills) EndQuest(player);
     }
 
-    public void EndQuest()
+    public void EndQuest(Player player)
     {
         Cleared = true;
         Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine(Helper.CenterStr($"You've cleared {Name}!"));
+        Console.WriteLine(Helper.CenterStr($"Quest cleared: {Name}!"));
+        Console.WriteLine("\n");
         Console.ForegroundColor = ConsoleColor.White;
+        if (player.CurrentLocation.LocationToEast.Name == "Farmhouse") player.CurrentLocation.LocationToEast.AdjustDescription("The farmer is pleased");
     }
 }

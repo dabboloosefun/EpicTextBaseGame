@@ -250,8 +250,10 @@ public class Player : Character
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine(Helper.CenterStr($"Now entering: {CurrentLocation.Name}"));
+                    Console.WriteLine("\n");
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine(Helper.CenterStr(CurrentLocation.Description));
+                    Console.WriteLine("\n");
                     break;
                 } 
                 Console.WriteLine(Helper.CenterStr("That direction is invalid"));
