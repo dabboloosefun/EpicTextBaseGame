@@ -47,16 +47,16 @@ public static class World
 
     public static void PopulateMonsters()
     {
-        Monster rat = new Monster(MONSTER_ID_RAT, "rat", 1, 3, 3);
+        Monster rat = new Monster(MONSTER_ID_RAT, "rat", 1, 3, 3, 3);
 
 
-        Monster snake = new Monster(MONSTER_ID_SNAKE, "snake", 10, 7, 7);
+        Monster snake = new Monster(MONSTER_ID_SNAKE, "snake", 10, 7, 7, 7);
 
 
-        Monster giantSpider = new Monster(MONSTER_ID_GIANT_SPIDER, "giant spider", 3, 10, 10);
+        Monster giantSpider = new Monster(MONSTER_ID_GIANT_SPIDER, "giant spider", 3, 10, 10, 10);
 
 
-        Monster faceless = new Monster(MONSTER_ID_FACELESS, "reaper", 20, 30, 30);
+        Monster faceless = new Monster(MONSTER_ID_FACELESS, "reaper", 20, 30, 30, 30);
 
 
         Monsters.Add(rat);
@@ -197,8 +197,6 @@ public static class World
 
         return null;
     }
-
-
 
     public static Monster MonsterByID(int id)
     {

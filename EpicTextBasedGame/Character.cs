@@ -3,6 +3,8 @@ using System.Security.Cryptography;
 public abstract class Character{
     public int CurrentHealth;
     public int MaxHealth;
+    public int Experience;
+    public int Level;
     public string Name;
     public List<Effect> ActiveEffects;
 

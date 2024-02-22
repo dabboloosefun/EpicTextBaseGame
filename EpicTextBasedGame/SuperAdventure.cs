@@ -1,10 +1,12 @@
-//Heal and spell for Fight still needs to be implemented. It is now commented.
+﻿//Heal and spell for Fight still needs to be implemented. It is now commented.
+
+using System.Runtime.CompilerServices;
 
 public class SuperAdventure
 {
     public static void Fight(Player player, Monster monster)
     {
-        Console.WriteLine($"A {monster.Name} has appeared");
+        if (monster.CurrentHealth > 0) Console.WriteLine(Helper.CenterStr($"A {monster.Name} has appeared"));
         bool playerturn = true;
         while (player.CurrentHealth > 0 && monster.CurrentHealth > 0)
         {
@@ -126,15 +128,35 @@ public class SuperAdventure
             } // While loop voor enemy
             playerturn = !playerturn; // Draait player turn om
         } // While loop voor fight
-        monster.CurrentHealth = monster.MaxHealth; //reset monster in this location
-        foreach (Quest quest in player.QuestList)
+        CheckQuestExpResetArea(monster, player);
+    }
+
+    public static void CheckQuestExpResetArea(Monster monster, Player player)
+    {
+        player.Experience += monster.GiveExp;
+        if (player.Experience > 2 * (5 * player.Level))
         {
-            if ((quest.Target == player.CurrentLocation.MonsterLivingHere) && (quest.Cleared is false))
+            player.Level += 1;
+            player.MaxHealth += 10;
+            player.CurrentHealth = player.MaxHealth;
+            player.CurrentWeapon.RaiseMaxDamage(1);
+            Console.WriteLine(Helper.CenterStr("╔═════════════════════════╗"));
+            Console.WriteLine(Helper.CenterStr("║*************************║"));
+            Console.WriteLine(Helper.CenterStr("║        LEVEL UP         ║"));
+            Console.WriteLine(Helper.CenterStr("║*************************║"));
+            Console.WriteLine(Helper.CenterStr("╚═════════════════════════╝"));
+            Console.WriteLine("\n");
+        }
+
+            foreach (Quest quest in player.QuestList)
+        {
+            if ((quest.Target == monster) && (quest.Cleared is false))
             {
                 quest.UpdateQuest(player);
-                Console.WriteLine(Helper.CenterStr($"You've killed: {quest.CurrentKills}/{quest.TargetKills} {player.CurrentLocation.MonsterLivingHere.Name}"));
+                Console.WriteLine(Helper.CenterStr($"You've killed: {quest.CurrentKills}/{quest.TargetKills} {quest.Target.Name}"));
+                if (quest.Cleared is false) monster.CurrentHealth = monster.MaxHealth;
             }
         }
-        
+        if (!player.QuestList.Contains(player.CurrentLocation.LocationToEast.QuestAvailableHere)) monster.CurrentHealth = monster.MaxHealth;
     }
 }

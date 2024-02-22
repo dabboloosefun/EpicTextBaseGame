@@ -3,13 +3,16 @@
 
     public int ID;
     public int MaxDamage;
-    public Monster(int id, string name, int maxDamage, int currentHealth , int maxHealth)
+    public int GiveExp;
+
+    public Monster(int id, string name, int maxDamage, int currentHealth , int maxHealth, int GiveExp)
     {
         this.ID = id;
         this.Name = name;
         this.MaxDamage = maxDamage;
         this.MaxHealth = maxHealth;
         this.CurrentHealth = currentHealth;
+        this.GiveExp = GiveExp;
         ActiveEffects = new List<Effect>();
     }
 
@@ -20,7 +23,7 @@
         Console.WriteLine("\t\t\t\t\t║               {0, -20}║", $"{this.Name}");
         Console.WriteLine("\t\t\t\t\t╠═══════════════════════════════════╣");
         Console.WriteLine("\t\t\t\t\t║ HEALTH:        {0, -8}           ║", $"{this.CurrentHealth}/{this.MaxHealth}");
-        Console.WriteLine("\t\t\t\t\t║ MAXDMG:        {0, -10}         ║", $"{this.MaxDamage}");
+        Console.WriteLine("\t\t\t\t\t║ DAMAGE:        {0, -10}         ║", $"{this.MaxDamage}");
         Console.WriteLine("\t\t\t\t\t╚═══════════════════════════════════╝");
     }
     

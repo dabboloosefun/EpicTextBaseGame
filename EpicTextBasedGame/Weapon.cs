@@ -29,7 +29,7 @@ public class Weapon
     public void RaiseMaxDamage(int raisedDamage)
     {
         this.MaxDamage += raisedDamage;
-        Console.WriteLine($"{Name}'s damage has been raised!");
+        //Console.WriteLine($"{Name}'s damage has been raised!");
     }
 
 

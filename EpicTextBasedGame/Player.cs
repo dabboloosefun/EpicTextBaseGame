@@ -23,17 +23,26 @@ public class Player : Character
         CurrentWeapon = World.Weapons[0]; // starter weapon
         QuestList = new List<Quest>{};
         ActiveEffects = new List<Effect>();
+        Experience = 0;
+        Level = 1;
+    }
+
+    public void LevelUp()
+    {
+
     }
 
     public void DisplayStats()
     {
         Console.WriteLine("\t\t\t\t\t╔═══════════════════════════════════╗");
-        Console.WriteLine("\t\t\t\t\t║               Stats               ║");
+        Console.WriteLine("\t\t\t\t\t║              Player               ║");
         Console.WriteLine("\t\t\t\t\t╠═══════════════════════════════════╣");
         Console.WriteLine("\t\t\t\t\t║ HEALTH:      {0, -8}             ║", $"{CurrentHealth}/{MaxHealth}");
         Console.WriteLine("\t\t\t\t\t║ WEAPON:      {0, -21}║", $"{CurrentWeapon.Name}");
         Console.WriteLine("\t\t\t\t\t║ DAMAGE:      {0, -10}           ║", $"{(int)CurrentWeapon.MaxDamage * 0.8}-{CurrentWeapon.MaxDamage}");
         Console.WriteLine("\t\t\t\t\t║ CRITCHANCE:  {0}                 ║", $"{(double)CurrentWeapon.CritChance}");
+        Console.WriteLine("\t\t\t\t\t║ EXP:         {0, -21}║", $"{Experience}");
+        Console.WriteLine("\t\t\t\t\t║ LVL:         {0, -21}║", $"{Level}");
         Console.WriteLine("\t\t\t\t\t╚═══════════════════════════════════╝");
     }
 
