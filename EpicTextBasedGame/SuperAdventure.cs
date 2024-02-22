@@ -126,5 +126,6 @@ public class SuperAdventure
             } // While loop voor enemy
             playerturn = !playerturn; // Draait player turn om
         } // While loop voor fight
+        monster.CurrentHealth = monster.MaxHealth; //reset monster in this location
     }
 }

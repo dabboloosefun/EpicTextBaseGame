@@ -217,7 +217,7 @@ public class Player : Character
         return false;
     }
 
-    public int AskPlayerAction()
+    public void AskPlayerAction()
     {
         Console.WriteLine(Helper.CenterStr("What would you like to do?"));
         Console.ForegroundColor = ConsoleColor.Yellow;
@@ -238,7 +238,7 @@ public class Player : Character
             succesfulParse = int.TryParse(Console.ReadLine(), out playerAction);
         } while((playerAction < 1 && playerAction > 4) || !succesfulParse);
 
-        return playerAction;
+        CommenceAction(playerAction);
     }
 
     public void CommenceAction(int playerAction)
@@ -255,25 +255,30 @@ public class Player : Character
                     break;
                 } 
                 Console.WriteLine(Helper.CenterStr("That direction is invalid"));
+                AskPlayerAction();
                 break;
 
             case 2:
                 ListWeapons();
                 ListItems();
+                AskPlayerAction();
                 break;
 
             case 3:
                 PromptSelectWeapon();
+                AskPlayerAction();
                 break;
 
             case 4:
                 DisplayStats();
+                AskPlayerAction();
                 break;
             case 5:
                 Program.Main();
                 break;
             default:
                 Console.WriteLine("Input error");
+                AskPlayerAction();
                 break;
         }
     }
