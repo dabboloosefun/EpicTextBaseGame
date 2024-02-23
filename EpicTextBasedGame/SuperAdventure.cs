@@ -6,7 +6,8 @@ public class SuperAdventure
 {
     public static void Fight(Player player, Monster monster)
     {
-        if (monster.CurrentHealth > 0) Console.WriteLine(Helper.CenterStr($"A {monster.Name} has appeared"));
+        if (monster.CurrentHealth == 0) return;
+        Console.WriteLine(Helper.CenterStr($"A {monster.Name} has appeared"));
         bool playerturn = true;
         while (player.CurrentHealth > 0 && monster.CurrentHealth > 0)
         {
@@ -150,23 +151,21 @@ public class SuperAdventure
             Console.WriteLine("\n");
         }
 
-        foreach (Quest quest in player.QuestList)
+        if (player.QuestList.Any(x => x.Target == monster))
         {
-            if ((quest.Target == monster) && (quest.Cleared is false))
+            foreach (Quest quest in player.QuestList)
             {
-                quest.UpdateQuest(player);
-                Console.WriteLine(Helper.CenterStr($"You've killed: {quest.CurrentKills}/{quest.TargetKills} {quest.Target.Name}"));
-                if (quest.Cleared is false) monster.CurrentHealth = monster.MaxHealth;
-            }
-            else if ((quest.Target == monster) && (quest.Cleared is true))
-            {
-                monster.CurrentHealth = 0;
-            }
-            else
-            {
-                monster.CurrentHealth = monster.MaxHealth;
+                if ((quest.Target == monster) && (quest.Cleared is false))
+                {
+                    quest.UpdateQuest(player);
+                    if (player.QuestList.Any(x => x.Cleared is false))
+                    {
+                        Console.WriteLine(Helper.CenterStr($"You've killed: {quest.CurrentKills}/{quest.TargetKills} {quest.Target.Name}"));
+                        monster.CurrentHealth = monster.MaxHealth;
+                    }  
+                }
             }
         }
-        Console.WriteLine(monster.CurrentHealth);
+        else monster.CurrentHealth = monster.MaxHealth;
     }
 }

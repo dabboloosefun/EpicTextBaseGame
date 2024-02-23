@@ -39,10 +39,11 @@ public class Quest
     {
         player.Experience += 50;
         Cleared = true;
+        if (Name == "Collect spider silk") Helper.OutroScreen();
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine(Helper.CenterStr($"Quest cleared: {Name}!"));
         Console.WriteLine("\n");
         Console.ForegroundColor = ConsoleColor.White;
-        if (player.CurrentLocation.LocationToEast.Name == "Farmhouse") player.CurrentLocation.LocationToEast.AdjustDescription("The farmer is pleased");
+        if (player.CurrentLocation.Name == "Farmer's field") player.CurrentLocation.LocationToEast.AdjustDescription("The farmer is pleased");
     }
 }

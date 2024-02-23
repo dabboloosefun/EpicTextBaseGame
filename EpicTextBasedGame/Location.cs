@@ -44,6 +44,27 @@ public class Location{
 
     }
 
+    public void StartEndGame(Player player)
+    {
+        int completed = 0;
+        foreach (Quest quest in player.QuestList)
+        {
+            if (quest.Cleared is true)
+            {
+                completed += 1;
+            }
+        }
+        if (completed == 2)
+        {
+            Console.WriteLine(Helper.CenterStr("You're up to the challenge, proceed.\n"));
+        }
+        else
+        {
+            Console.WriteLine(Helper.CenterStr("You're not allowed beyond this point!\n"));
+            player.CurrentLocation = player.CurrentLocation.LocationToWest;
+        }
+    }
+
     public string Map()
     {
         string map = $@"

@@ -26,6 +26,7 @@
             double encounterRoll = encounterChance.NextDouble();
             if (player.CurrentLocation.MonsterLivingHere != null && encounterRoll <= succesfulEncounter) SuperAdventure.Fight(player, player.CurrentLocation.MonsterLivingHere);
             if (player.CurrentLocation.QuestAvailableHere != null) player.CurrentLocation.StartLocationQuest(player);
+            if (player.CurrentLocation.Name == "Guard post") player.CurrentLocation.StartEndGame(player);
             player.AskPlayerAction();
         }
 
