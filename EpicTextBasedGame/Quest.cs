@@ -37,6 +37,7 @@ public class Quest
 
     public void EndQuest(Player player)
     {
+        player.Experience += 50;
         Cleared = true;
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine(Helper.CenterStr($"Quest cleared: {Name}!"));

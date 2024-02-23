@@ -133,13 +133,15 @@ public class SuperAdventure
 
     public static void CheckQuestExpResetArea(Monster monster, Player player)
     {
-        player.Experience += monster.GiveExp;
-        if (player.Experience > 2 * (5 * player.Level))
+        //exp is given
+        if (monster.CurrentHealth == 0) player.Experience += monster.GiveExp;
+        if (player.Experience >= 2 * (5 * player.Level))
         {
             player.Level += 1;
             player.MaxHealth += 10;
             player.CurrentHealth = player.MaxHealth;
             player.CurrentWeapon.RaiseMaxDamage(1);
+            player.Experience = 0;
             Console.WriteLine(Helper.CenterStr("╔═════════════════════════╗"));
             Console.WriteLine(Helper.CenterStr("║*************************║"));
             Console.WriteLine(Helper.CenterStr("║        LEVEL UP         ║"));
@@ -148,7 +150,7 @@ public class SuperAdventure
             Console.WriteLine("\n");
         }
 
-            foreach (Quest quest in player.QuestList)
+        foreach (Quest quest in player.QuestList)
         {
             if ((quest.Target == monster) && (quest.Cleared is false))
             {
@@ -156,7 +158,15 @@ public class SuperAdventure
                 Console.WriteLine(Helper.CenterStr($"You've killed: {quest.CurrentKills}/{quest.TargetKills} {quest.Target.Name}"));
                 if (quest.Cleared is false) monster.CurrentHealth = monster.MaxHealth;
             }
+            else if ((quest.Target == monster) && (quest.Cleared is true))
+            {
+                monster.CurrentHealth = 0;
+            }
+            else
+            {
+                monster.CurrentHealth = monster.MaxHealth;
+            }
         }
-        if (!player.QuestList.Contains(player.CurrentLocation.LocationToEast.QuestAvailableHere)) monster.CurrentHealth = monster.MaxHealth;
+        Console.WriteLine(monster.CurrentHealth);
     }
 }
