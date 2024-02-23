@@ -57,7 +57,12 @@ public class Helper
             try
             {
                 thread = Thread.CurrentThread;
+                Thread.Sleep(1000);
                 Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("\n\n\n\n\n\n\n\n\n");
+                Console.WriteLine(Helper.CenterStr(@"“all hope abandon ye who enter here”"));
+                Thread.Sleep(4000);
+                Console.Clear();
                 RollStr(CenterStr("You're falling..........\n"));
                 RollStr(CenterStr("The void envelops you...\n"));
                 RollStr(CenterStr("Then.....a voice........\n"));
