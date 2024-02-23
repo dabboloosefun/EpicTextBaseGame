@@ -4,8 +4,9 @@
     public int ID;
     public int MaxDamage;
     public int GiveExp;
+    public string Image;
 
-    public Monster(int id, string name, int maxDamage, int currentHealth , int maxHealth, int GiveExp)
+    public Monster(int id, string name, int maxDamage, int currentHealth , int maxHealth, int GiveExp, string Image)
     {
         this.ID = id;
         this.Name = name;
@@ -13,7 +14,9 @@
         this.MaxHealth = maxHealth;
         this.CurrentHealth = currentHealth;
         this.GiveExp = GiveExp;
+        this.Image = Image;
         ActiveEffects = new List<Effect>();
+
     }
 
 

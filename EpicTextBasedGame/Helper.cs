@@ -220,8 +220,9 @@ public class Helper
         Console.CursorVisible = false;
         Console.Clear();
         Thread.Sleep(1000);
+        Console.WriteLine("\n\n\n\n\n\n\n\n");
         Console.ForegroundColor = ConsoleColor.DarkRed;
-        Console.WriteLine(CenterStr(@"▄██   ▄    ▄██████▄  ███    █▄       ████████▄   ▄█     ▄████████ ████████▄  "));
+        Console.WriteLine(CenterStr(@"▄██   ▄    ▄██████▄  ███    █▄       ████████▄   ▄█     ▄████████ ████████▄ "));
         Console.WriteLine(CenterStr(@"███   ██▄ ███    ███ ███    ███      ███   ▀███ ███    ███    ███ ███   ▀███"));
         Console.WriteLine(CenterStr(@"███▄▄▄███ ███    ███ ███    ███      ███    ███ ███▌   ███    █▀  ███    ███"));
         Console.WriteLine(CenterStr(@"▀▀▀▀▀▀███ ███    ███ ███    ███      ███    ███ ███▌  ▄███▄▄▄     ███    ███"));
@@ -238,6 +239,7 @@ public class Helper
         Console.CursorVisible = false;
         Console.Clear();
         Thread.Sleep(1000);
+        Console.WriteLine("\n\n\n\n\n\n\n\n");
         Console.ForegroundColor = ConsoleColor.DarkRed;
         Console.WriteLine(CenterStr(@"▄██   ▄    ▄██████▄  ███    █▄        ▄█     █▄   ▄██████▄  ███▄▄▄▄  "));
         Console.WriteLine(CenterStr(@"███   ██▄ ███    ███ ███    ███      ███     ███ ███    ███ ███▀▀▀██▄"));

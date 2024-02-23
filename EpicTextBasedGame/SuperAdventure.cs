@@ -7,6 +7,9 @@ public class SuperAdventure
     public static void Fight(Player player, Monster monster)
     {
         if (monster.CurrentHealth == 0) return;
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.WriteLine(monster.Image);
+        Console.ForegroundColor = ConsoleColor.White;
         Console.WriteLine(Helper.CenterStr($"A {monster.Name} has appeared"));
         bool playerturn = true;
         while (player.CurrentHealth > 0 && monster.CurrentHealth > 0)

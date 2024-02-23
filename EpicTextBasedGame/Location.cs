@@ -60,7 +60,8 @@ public class Location{
         }
         else
         {
-            Console.WriteLine(Helper.CenterStr("You're not allowed beyond this point!\n"));
+            Console.WriteLine(Helper.CenterStr("You're not allowed beyond this point!"));
+            Console.WriteLine(Helper.CenterStr("I'll have you escorted back to the town.\n"));
             player.CurrentLocation = player.CurrentLocation.LocationToWest;
         }
     }
