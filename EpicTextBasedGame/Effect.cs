@@ -38,7 +38,8 @@ public class Effect{
     public bool EffectIsApplied;
     public Character? AffectedCharacter;
     public static Dictionary<int, Effect> CustomEffects = new(); // can be called without Wffect object
-    public static Dictionary<string, Effect> BaseEffects = new(){ // can be called without Wffect object
+    public static Dictionary<string, Effect> BaseEffects = new()
+    { // can be called without Wffect object
         {"HealInstant10", new Effect(1, 10, EffectTypes.HEALINSTANT, 1)},
         {"HealInstant20", new Effect(2, 20, EffectTypes.HEALINSTANT, 1)},
         {"HealInstant30", new Effect(3, 30, EffectTypes.HEALINSTANT, 1)},
@@ -48,7 +49,8 @@ public class Effect{
         {"HealOverTime50_3T", new Effect(7, 5, EffectTypes.HEALOVERTIME, 3)},
         {"HealOverTime20_2T", new Effect(8, 20, EffectTypes.HEALOVERTIME, 2)}
     };
-    private Effect(int id, double power, EffectTypes effectType, int turnsLeft){ //used only for manual initialization in above dictionary
+    private Effect(int id, double power, EffectTypes effectType, int turnsLeft)
+    { //used only for manual initialization in above dictionary
         ID = id;
         Power = power;
         EffectType = effectType; 
@@ -61,21 +63,23 @@ public class Effect{
     //string rewardStrength = monster.Power * 5;
     //ReaperPotion = new Item(6(id), "ReaperPotion", new Effect("DamageInstant"+ Convert.ToString(rewardStrength), rewardStrength, EffectTypes.DAMAGEINSTANT, 1) , $"Deals {rewardStrength} Damage");
     //the point of this all is so that dynamically created effects will always have the same ID if they have the same name and can thus technically stack.
-    public Effect(string name, double power, EffectTypes effectType, int turnsLeft){ 
-        if (BaseEffects.ContainsKey(name)){
-            ID = BaseEffects[name].ID;
-            Power = BaseEffects[name].Power;
-            EffectType = BaseEffects[name].EffectType; 
-            TurnsLeft = BaseEffects[name].TurnsLeft;
-        }
-        ID = BaseEffects.Count+1;
+    public Effect(string name, double power, EffectTypes effectType, int turnsLeft)
+    { 
         Power = power;
         EffectType = effectType; 
         TurnsLeft = turnsLeft;
-        BaseEffects.Add(name, this);
+        if (BaseEffects.ContainsKey(name)){
+            ID = BaseEffects[name].ID;
+        }
+        else
+        {
+            ID = BaseEffects.Count+1;
+            BaseEffects.Add(name, this);
+        }
     }
 
-    public void ApplyEffect(){
+    public void ApplyEffect()
+    {
         if (AffectedCharacter == null) Console.WriteLine("Error in ApplyEffect(): effect wasn't linked properly to a character");
         else
         {
@@ -137,7 +141,8 @@ public class Effect{
         }
     }
    
-    public void UpdateEffect(){
+    public void UpdateEffect()
+    {
         if (AffectedCharacter == null) Console.WriteLine("Error in UpdateEffect(): effect wasn't linked properly to a character");
         else
         {
@@ -178,7 +183,8 @@ public class Effect{
         }
     }
 
-    public void RemoveEffect(){
+    public void RemoveEffect()
+    {
         if (AffectedCharacter == null) {
             Console.WriteLine("Error in RemoveEffect(): effect wasn't linked properly to a character");
         }
