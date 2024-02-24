@@ -257,10 +257,8 @@ public class Player : Character
             case 1:
                 if(TryMoveTo())
                 {
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine(Helper.CenterStr($"Now entering: {CurrentLocation.Name}"));
-                    Console.WriteLine("\n");
-                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Clear();
+                    CurrentLocation.Map();
                     Console.WriteLine(Helper.CenterStr(CurrentLocation.Description));
                     Console.WriteLine("\n");
                     break;
