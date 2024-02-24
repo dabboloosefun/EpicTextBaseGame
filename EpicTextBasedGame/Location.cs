@@ -63,6 +63,8 @@ public class Location{
             Console.WriteLine(Helper.CenterStr("You're not allowed beyond this point!"));
             Console.WriteLine(Helper.CenterStr("I'll have you escorted back to the town.\n"));
             player.CurrentLocation = player.CurrentLocation.LocationToWest;
+            Thread.Sleep(4000);
+            player.CurrentLocation.Map();
         }
     }
 
@@ -87,8 +89,7 @@ public class Location{
                                     =====       |▐█▀     ≈≈≈  *******       Current Location: {Name}
                                            *     \     ≈≈≈≈ *********
                                        ▄▌ ***    |     ≈≈≈≈ *********
-                                    **********   ▀   ≈≈≈≈≈ **********
-                                    ***********  H   ≈≈≈≈≈ **********
+                                    **********   ▀ H ≈≈≈≈≈ **********
         ";
         int indexPos = 0;
         switch (Name)
@@ -136,7 +137,6 @@ public class Location{
         var newmap = ReplaceAt(map, indexPos + 4, Convert.ToChar("X"));
 
         WriteLineWithColoredLetter(newmap);
-        Console.WriteLine();
     }
 
     public static void WriteLineWithColoredLetter(string letters)
@@ -156,6 +156,7 @@ public class Location{
                 Console.Write(c);
             }
         }
+        Console.WriteLine();
     }
 
     public static string ReplaceAt(string input, int index, char newChar)

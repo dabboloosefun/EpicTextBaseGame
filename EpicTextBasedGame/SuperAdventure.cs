@@ -140,20 +140,7 @@ public class SuperAdventure
     {
         //exp is given
         if (monster.CurrentHealth == 0) player.Experience += monster.GiveExp;
-        if (player.Experience >= 2 * (5 * player.Level))
-        {
-            player.Level += 1;
-            player.MaxHealth += 10;
-            player.CurrentHealth = player.MaxHealth;
-            player.CurrentWeapon.RaiseMaxDamage(1);
-            player.Experience = 0;
-            Console.WriteLine(Helper.CenterStr("╔═════════════════════════╗"));
-            Console.WriteLine(Helper.CenterStr("║*************************║"));
-            Console.WriteLine(Helper.CenterStr("║        LEVEL UP         ║"));
-            Console.WriteLine(Helper.CenterStr("║*************************║"));
-            Console.WriteLine(Helper.CenterStr("╚═════════════════════════╝"));
-            Console.WriteLine("\n");
-        }
+        player.LevelUp();
 
         if (player.QuestList.Any(x => x.Target == monster))
         {

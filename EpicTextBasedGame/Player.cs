@@ -29,7 +29,20 @@ public class Player : Character
 
     public void LevelUp()
     {
-
+        if (Experience >= 2 * (5 * Level))
+        {
+            Level += 1;
+            MaxHealth += 10;
+            CurrentHealth = MaxHealth;
+            CurrentWeapon.RaiseMaxDamage(1);
+            Experience = 0;
+            Console.WriteLine(Helper.CenterStr("╔═════════════════════════╗"));
+            Console.WriteLine(Helper.CenterStr("║*************************║"));
+            Console.WriteLine(Helper.CenterStr("║        LEVEL UP         ║"));
+            Console.WriteLine(Helper.CenterStr("║*************************║"));
+            Console.WriteLine(Helper.CenterStr("╚═════════════════════════╝"));
+            Console.WriteLine("\n");
+        }
     }
 
     public void DisplayStats()
@@ -237,9 +250,7 @@ public class Player : Character
     public void AskPlayerAction()
     {
         Console.WriteLine(Helper.CenterStr("What would you like to do?"));
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine(Helper.CenterStr("[1][2][3][4][5]"));
-        Console.ForegroundColor = ConsoleColor.White;
+        Console.ForegroundColor = ConsoleColor.DarkCyan;
         Console.WriteLine(Helper.CenterStr("╔═════════════════════════╗"));
         Console.WriteLine(Helper.CenterStr("║ [1] MOVE                ║"));
         Console.WriteLine(Helper.CenterStr("║ [2] INVENTORY           ║"));
@@ -247,6 +258,7 @@ public class Player : Character
         Console.WriteLine(Helper.CenterStr("║ [4] STATS               ║"));
         Console.WriteLine(Helper.CenterStr("║ [5] QUIT TO TITLESCREEN ║"));
         Console.WriteLine(Helper.CenterStr("╚═════════════════════════╝"));
+        Console.ForegroundColor = ConsoleColor.White;
 
         int playerAction;
         bool succesfulParse;
@@ -265,10 +277,8 @@ public class Player : Character
             case 1:
                 if(TryMoveTo())
                 {
-                    Console.Clear();
                     CurrentLocation.Map();
                     Console.WriteLine(Helper.CenterStr(CurrentLocation.Description));
-                    Console.WriteLine("\n");
                     break;
                 } 
                 Console.WriteLine(Helper.CenterStr("That direction is invalid"));
