@@ -209,7 +209,7 @@ public class Player : Character
 
     public bool TryMoveTo()
     {
-        Console.WriteLine(CurrentLocation.Map());
+        CurrentLocation.Map();
         Console.WriteLine(CurrentLocation.Compass());
         Console.WriteLine(Helper.CenterStr("In what direction would you like to go?"));
         Console.ForegroundColor = ConsoleColor.Yellow;
@@ -261,10 +261,8 @@ public class Player : Character
             case 1:
                 if(TryMoveTo())
                 {
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine(Helper.CenterStr($"Now entering: {CurrentLocation.Name}"));
-                    Console.WriteLine("\n");
-                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Clear();
+                    CurrentLocation.Map();
                     Console.WriteLine(Helper.CenterStr(CurrentLocation.Description));
                     Console.WriteLine("\n");
                     break;
@@ -288,9 +286,11 @@ public class Player : Character
                 DisplayStats();
                 AskPlayerAction();
                 break;
+
             case 5:
                 Program.Main();
                 break;
+
             default:
                 Console.WriteLine("Input error");
                 AskPlayerAction();
