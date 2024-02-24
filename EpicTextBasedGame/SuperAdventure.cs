@@ -133,6 +133,7 @@ public class SuperAdventure
             playerturn = !playerturn; // Draait player turn om
         } // While loop voor fight
         CheckQuestExpResetArea(monster, player);
+        player.CurrentLocation.Map();
     }
 
     public static void CheckQuestExpResetArea(Monster monster, Player player)
