@@ -144,12 +144,18 @@ public class Location{
     public static void WriteLineWithColoredLetter(string letters)
     {
         Char[] array = letters.ToCharArray();
+        char[] yellow = {'S', 'B', 'G', 'P', 'A', 'V', 'F', 'T', 'H', '1', '2', '3', '4', '5' };
 
         foreach (Char c in array)
         {
             if (c == 'X')
             {
                 Console.ForegroundColor = System.ConsoleColor.DarkRed;
+                Console.Write(c);
+            }
+            else if (yellow.Contains(c))
+            {
+                Console.ForegroundColor = System.ConsoleColor.Yellow;
                 Console.Write(c);
             }
             else

@@ -250,7 +250,7 @@ public class Player : Character
     public void AskPlayerAction()
     {
         Console.WriteLine(Helper.CenterStr("What would you like to do?"));
-        Console.ForegroundColor = ConsoleColor.DarkCyan;
+        Console.ForegroundColor = ConsoleColor.DarkGray;
         Console.WriteLine(Helper.CenterStr("╔═════════════════════════╗"));
         Console.WriteLine(Helper.CenterStr("║ [1] MOVE                ║"));
         Console.WriteLine(Helper.CenterStr("║ [2] INVENTORY           ║"));
