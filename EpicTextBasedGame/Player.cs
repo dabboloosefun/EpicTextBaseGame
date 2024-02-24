@@ -66,10 +66,14 @@ public class Player : Character
     public void AddItem(Item item){ //note: change for stacking
         bool itemAlreadyInList = false;
         foreach(Item itemInList in Items){
-            if(itemInList.ID == item.ID) //using Name should also be fine unless items could have same name but different stats
+            if(itemInList.ID == item.ID && itemInList.ItemEffect?.ID == item.ItemEffect?.ID) //using Name should also be fine unless items could have same name but different stats
             {   //considering items in List will now stack, using Items.Count+1 for ID should still work, multiples will have same ID
-                itemInList.Increment();
+                itemInList.Increment(item.Count);
                 itemAlreadyInList = true;
+            }
+            else if(itemInList.ID == item.ID && itemInList.ItemEffect?.ID != item.ItemEffect?.ID){
+                //Items with different effects shouldn't have the same Item ID
+                return;
             }
         }
         if (!itemAlreadyInList) Items.Add(item);

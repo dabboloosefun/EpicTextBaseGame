@@ -12,7 +12,13 @@
         Player player = new Player();
         player.AddItem(CritPotion3T);
         player.AddItem(HealOverTimePotion3T);
-        player.AddItem(new Item(3, "Healing Potion", Effect.BaseEffects["HealInstant10"], "heals 10 instantly", 3));
+        player.AddItem(new Item(3, "Healing Potion1", Effect.BaseEffects["HealInstant10"], "heals 10 instantly", 1));
+        player.AddItem(new Item(3, "Healing Potion2", Effect.BaseEffects["HealInstant10"], "heals 10 instantly", 3));
+        player.AddItem(new Item(3, "Healing Potion2", Effect.BaseEffects["HealInstant20"], "heals 20 instantly", 2)); //shouldn't work
+        player.AddItem(new Item(4, "Healing Potion3", Effect.BaseEffects["HealInstant10"], "heals 10 instantly", 4));
+        player.AddItem(new Item(5, "Healing Potion4", Effect.BaseEffects["HealInstant20"], "heals 20 instantly", 9));
+        player.AddItem(new Item(5, "Healing Potion5", Effect.BaseEffects["HealInstant20"], "heals 20 instantly", 12));
+        player.AddItem(new Item(6, "Healing Potion6", Effect.BaseEffects["HealInstant20"], "heals 20 instantly", 25));
 
         //player.AddItem(new Item(3, "Healing Potion", BaseEffects.HealInstant10, "heals 10 instantly", 1));
         bool victory = false;

@@ -14,11 +14,11 @@ public class Item{
         Count = count;
         Description = description;
     }
-    public void Increment(){
-        Count +=1;
+    public void Increment(int amount=1){
+        Count += amount;
     }
-    public void Decrement(){
-        Count -= 1;
+    public void Decrement(int amount=1){
+        Count -= amount;
     }
     public string Info(){
         return $"{Count}x{Name}: {Description}";
