@@ -1,15 +1,20 @@
 ﻿class Program
 {
+    
     public static void Main()
     {
+        
         // Our main code code here, preferably everything is dynamic (so lots of methods).
-        Effect critChaceBuffEffect3T = new Effect(0.2, EffectTypes.BUFFCRITCHANCE, 3);
+        Effect critChaceBuffEffect3T = new Effect("BuffCritChance0.2_3T", 0.2, EffectTypes.BUFFCRITCHANCE, 3);
         Item CritPotion3T = new Item(1, "CritPotion", critChaceBuffEffect3T, "increases crit chance by 0.2. lasts 3 turns");
-        Effect HealOverTimeEffect3T = new Effect(2, EffectTypes.HEALOVERTIME, 3);
+        Effect HealOverTimeEffect3T = new Effect("HealOverTime2_3T", 2, EffectTypes.HEALOVERTIME, 3);
         Item HealOverTimePotion3T = new Item(2, "lingering healing potion", HealOverTimeEffect3T, "Heals user 2 health points every turn");
         Player player = new Player();
         player.AddItem(CritPotion3T);
         player.AddItem(HealOverTimePotion3T);
+        player.AddItem(new Item(3, "Healing Potion", Effect.BaseEffects["HealInstant10"], "heals 10 instantly", 3));
+
+        //player.AddItem(new Item(3, "Healing Potion", BaseEffects.HealInstant10, "heals 10 instantly", 1));
         bool victory = false;
         Helper.TitleScreen();
 

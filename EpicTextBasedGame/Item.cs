@@ -21,7 +21,7 @@ public class Item{
         Count -= 1;
     }
     public string Info(){
-        return $"{Count} {Name}: {Description}";
+        return $"{Count}x{Name}: {Description}";
     }
 
     public void UseItem(Character? character = null){ //in fight, prompt a target

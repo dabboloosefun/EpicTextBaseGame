@@ -1,6 +1,9 @@
 using Microsoft.VisualBasic;
 
+
 public enum EffectTypes{
+HEALINSTANT,
+DAMAGEINSTANT,
 HEALOVERTIME,
 DAMAGEOVERTIME,
 BUFFCRITCHANCE,
@@ -10,20 +13,66 @@ BUFFMAXHEALTH,
 DEBUFFMAXHEALTH
 }
 
+//potions with the same name but different power/length shouldn't stack. 
+//Here we can define common effects with an ID and use the ID to make them stack.
+// public static class BaseEffects{
+//     public static Effect Heal10Instant = new Effect(110, 10, EffectTypes.HEALINSTANT, 1);
+//     public static Effect Heal20Instant = new Effect(120, 20, EffectTypes.HEALINSTANT, 1);
+//     public static Effect Heal30Instant = new Effect(130, 30, EffectTypes.HEALINSTANT, 1);
+//     public static Effect Heal50Instant = new Effect(150, 50, EffectTypes.HEALINSTANT, 1);
+//     public static Effect Heal100Instant = new Effect(200, 100, EffectTypes.HEALINSTANT, 1);
+//     public static Effect Damage10Instant = new Effect(210, 10, EffectTypes.DAMAGEINSTANT, 1);
+
+//     public static Effect Heal5OverTime3T = new Effect(1053, 5, EffectTypes.HEALOVERTIME, 3);
+//     public static Effect Heal20OverTime2T = new Effect(1202, 20, EffectTypes.HEALOVERTIME, 2);
+
+// }
+
+
+
 public class Effect{
-    //public int ID; //no use for ID yet
-    //I don't want to bother right now to implement turn-extension of effects, so for now they stack additively and seperately
-    //we will likely need ID if we want to be able to extend the amount of turns an effect lasts
+    public int ID; 
     public double Power;
     public EffectTypes EffectType;
     public int TurnsLeft;
     public bool EffectIsApplied;
     public Character? AffectedCharacter;
-    public Effect(double power, EffectTypes effectType, int turnsleft){ //int id, 
-        //ID = id;
+    public static Dictionary<int, Effect> CustomEffects = new(); // can be called without Wffect object
+    public static Dictionary<string, Effect> BaseEffects = new(){ // can be called without Wffect object
+        {"HealInstant10", new Effect(1, 10, EffectTypes.HEALINSTANT, 1)},
+        {"HealInstant20", new Effect(2, 20, EffectTypes.HEALINSTANT, 1)},
+        {"HealInstant30", new Effect(3, 30, EffectTypes.HEALINSTANT, 1)},
+        {"HealInstant50", new Effect(4, 50, EffectTypes.HEALINSTANT, 1)},
+        {"HealInstant100", new Effect(5, 100, EffectTypes.HEALINSTANT, 1)},
+        {"DamageInstant10", new Effect(6, 10, EffectTypes.DAMAGEINSTANT, 1)},
+        {"HealOverTime50_3T", new Effect(7, 5, EffectTypes.HEALOVERTIME, 3)},
+        {"HealOverTime20_2T", new Effect(8, 20, EffectTypes.HEALOVERTIME, 2)}
+    };
+    private Effect(int id, double power, EffectTypes effectType, int turnsLeft){ //used only for manual initialization in above dictionary
+        ID = id;
         Power = power;
         EffectType = effectType; 
-        TurnsLeft = turnsleft;
+        TurnsLeft = turnsLeft;
+    }
+
+    //If we want to use an effect it's best to add it manually to above dictionary and use that effect directly in an Item constructor
+    //(so without new Effect()). The below constructor should probably only ever be used if we want to dynamically add new effects 
+    //with e.g. incrementing strength based on enemy level as a reward like so:
+    //string rewardStrength = monster.Power * 5;
+    //ReaperPotion = new Item(6(id), "ReaperPotion", new Effect("DamageInstant"+ Convert.ToString(rewardStrength), rewardStrength, EffectTypes.DAMAGEINSTANT, 1) , $"Deals {rewardStrength} Damage");
+    //the point of this all is so that dynamically created effects will always have the same ID if they have the same name and can thus technically stack.
+    public Effect(string name, double power, EffectTypes effectType, int turnsLeft){ 
+        if (BaseEffects.ContainsKey(name)){
+            ID = BaseEffects[name].ID;
+            Power = BaseEffects[name].Power;
+            EffectType = BaseEffects[name].EffectType; 
+            TurnsLeft = BaseEffects[name].TurnsLeft;
+        }
+        ID = BaseEffects.Count+1;
+        Power = power;
+        EffectType = effectType; 
+        TurnsLeft = turnsLeft;
+        BaseEffects.Add(name, this);
     }
 
     public void ApplyEffect(){

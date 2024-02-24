@@ -78,8 +78,10 @@ public class Player : Character
     public void RemoveItem(Item item){  //call like RemoveItem(Player.Items.Find(searchItem => searchItem.ID ==  ID you want to remove ))
                                         //or better RemoveItem(Player.Items[index]) using userInput in new UseItem() method
         bool itemFoundInList = false;
-        foreach(Item itemInList in Items){
-            if(itemInList.ID == item.ID) //using Name should also be fine unless items could have same name but different stats
+
+        for (int i = Items.Count-1; i>=0; i--)
+        {
+            if(Items[i].ID == item.ID) //using Name should also be fine unless items could have same name but different stats
             {   //considering items in List will now stack, using Items.Count+1 for ID should still work, multiples will have same ID
                 itemFoundInList = true;
                 item.Decrement();
@@ -96,76 +98,78 @@ public class Player : Character
     public void ListItems()
     {
         Console.WriteLine("You are carrying these items in your inventory:");
-        for (int i = 0; i < Items.Count; i++)
+        for (int i = 0; i <= Items.Count - 1; i++)
         {
-            Console.WriteLine($"{i}: {Items[i].Info()}\n");
+            Console.WriteLine($"{i+1}: {Items[i].Info()}"); //only add 1 to displayed item number
         }
     }
 
     public void PromptUseItem(ref bool actionDoneRef, Monster? monsterTarget = null){
-        string? userInput = "";
-        do
-        { //move elsewhere for potential out of combat uses. it's a useless prompt in combat
-            Console.WriteLine("Would you like to use an item? yes/no"); 
-            userInput = Console.ReadLine();
-        } while (userInput != "yes" && userInput != "no");
-        if (userInput == "no") return;
-        else if (userInput == "yes")
+        // string? userInput = "";
+        // do
+        // { //move elsewhere for potential out of combat uses. it's a useless prompt in combat
+        //     Console.WriteLine("Would you like to use an item? yes/no"); 
+        //     userInput = Console.ReadLine();
+        // } while (userInput != "yes" && userInput != "no");
+        // if (userInput == "no") return;
+        // else if (userInput == "yes")
+        // {
+        if (Items.Count <= 0)
         {
-            if (Items.Count <= 0)
-            {
-                Console.WriteLine("You have no items");
-                return;
-            }
-            ListItems();
-            int selectedItemNumber;
-            int selectedTargetNumber;
-            bool successfulParse;
-            do
-            {
-                Console.WriteLine($"Enter the number of the item you wish to use. 0-{Items.Count - 1}");
-                successfulParse = int.TryParse(Console.ReadLine(), out selectedItemNumber);
-            } while (!successfulParse || !(0 <= selectedItemNumber && selectedItemNumber < Items.Count));
-            do
-            {
-                Console.WriteLine($"Who do you want to use the item on?");
-                Console.WriteLine($"1. Yourself");
-                Console.WriteLine($"2. Enemy");
-                Console.WriteLine($"3. Cancel");
-                successfulParse = int.TryParse(Console.ReadLine(), out selectedTargetNumber);
-            } while (!successfulParse || !(1 <= selectedTargetNumber && selectedTargetNumber <= 2));
-            if(selectedTargetNumber == 1)
-            {
-                Items[selectedItemNumber].UseItem(this);
-                Items.RemoveAt(selectedItemNumber);
-                //actionDoneRef = true;
-                return;
-            }
-            else if(selectedTargetNumber == 2)
-            {
-                Items[selectedItemNumber].UseItem(monsterTarget);
-                Console.WriteLine("");
-                Items.RemoveAt(selectedItemNumber);
-                //actionDoneRef = true;
-                return;
-            }
-            else if(selectedTargetNumber == 3)
-            {
-                Console.WriteLine("You put the item back in your backpack");
-                return;
-            }
-            
+            Console.WriteLine("You have no items");
+            return;
         }
+        ListItems();
+        int selectedItemNumber;
+        int selectedTargetNumber;
+        bool successfulParse;
+        do
+        {
+            Console.WriteLine($"Enter the number of the item you wish to use. 1-{Items.Count}");
+            successfulParse = int.TryParse(Console.ReadLine(), out selectedItemNumber);
+        } while (!successfulParse || !(1 <= selectedItemNumber && selectedItemNumber <= Items.Count));
+        do
+        {
+            Console.WriteLine($"Who do you want to use the item on?");
+            Console.WriteLine($"1. Yourself");
+            Console.WriteLine($"2. Enemy");
+            Console.WriteLine($"3. Cancel");
+            successfulParse = int.TryParse(Console.ReadLine(), out selectedTargetNumber);
+        } while (!successfulParse || !(1 <= selectedTargetNumber && selectedTargetNumber <= 3));
+        if(selectedTargetNumber == 1)
+        {
+            Items[selectedItemNumber-1].UseItem(this); //displayed number is now 1 higher so we need displayednumber - 1
+            RemoveItem(Items[selectedItemNumber-1]);
+            //Items.RemoveAt(selectedItemNumber);
+            //actionDoneRef = true;
+            return;
+        }
+        else if(selectedTargetNumber == 2)
+        {
+            Items[selectedItemNumber-1].UseItem(monsterTarget);
+            Console.WriteLine("");
+            RemoveItem(Items[selectedItemNumber-1]);
+            //Items.RemoveAt(selectedItemNumber);
+            //actionDoneRef = true;
+            return;
+        }
+        else if(selectedTargetNumber == 3)
+        {
+            Console.WriteLine("You put the item back in your backpack");
+            return;
+        }
+            
+        //}
 
     }
     public void ListWeapons()
     {
         Console.WriteLine($"Equipped weapon: {CurrentWeapon.Name}: Max damage: {CurrentWeapon.MaxDamage}, Crit chance: {CurrentWeapon.CritChance}\n");
         Console.WriteLine("You are carrying these weapons in your inventory:");
-        for (int i = 0; i < Weapons.Count; i++)
+        for (int i = 0; i < Weapons.Count - 1; i++)
         {
             Weapon currentWeapon = Weapons[i];
-            Console.WriteLine($"{i}. {currentWeapon.Name}: Max damage: {currentWeapon.MaxDamage}, Crit chance: {currentWeapon.CritChance}\n");
+            Console.WriteLine($"{i+1}. {currentWeapon.Name}: Max damage: {currentWeapon.MaxDamage}, Crit chance: {currentWeapon.CritChance}\n");
         }
     }
 
@@ -192,13 +196,13 @@ public class Player : Character
             do
             {
 
-                Console.WriteLine($"Enter the number of the weapon you wish to equip. 0-{Weapons.Count - 1}");
+                Console.WriteLine($"Enter the number of the weapon you wish to equip. 1-{Weapons.Count}");
                 successfulParse = int.TryParse(Console.ReadLine(), out selectedNumber);
             } while (!successfulParse || !(0 <= selectedNumber && selectedNumber < Weapons.Count));
 
             Weapons.Add(CurrentWeapon);
-            CurrentWeapon = Weapons[selectedNumber];
-            Weapons.Remove(Weapons[selectedNumber]);
+            CurrentWeapon = Weapons[selectedNumber-1];
+            Weapons.Remove(Weapons[selectedNumber-1]);
             Console.WriteLine($"You've now equipped this new weapon! {CurrentWeapon.Name}: Max damage: {CurrentWeapon.MaxDamage}, Crit chance: {CurrentWeapon.CritChance}");
         }
     }
