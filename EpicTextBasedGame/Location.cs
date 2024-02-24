@@ -66,7 +66,7 @@ public class Location{
         }
     }
 
-    public string Map()
+    public void Map()
     {
         string map = $@"
                                     *********┌─────────────┐***  ≈≈≈≈≈      LEGEND
@@ -83,14 +83,86 @@ public class Location{
                                     =====    \__│   │▄  ▄▄≈≈≈≈  *****
                                     __V__     ▀▀│ T │---G╠═B═╣--*****
                                     =====       │   │█  ▀▀≈≈≈  ******
-                                    =====     ▀█└───┘     ≈≈≈  **S***
+                                    =====     ▀█└───┘     ≈≈≈  **S***       X: Player
                                     =====       |▐█▀     ≈≈≈  *******       Current Location: {Name}
                                            *     \     ≈≈≈≈ *********
                                        ▄▌ ***    |     ≈≈≈≈ *********
                                     **********   ▀   ≈≈≈≈≈ **********
                                     ***********  H   ≈≈≈≈≈ **********
         ";
-        return map;
+        int indexPos = 0;
+        switch (Name)
+        {
+            case "Home":
+                indexPos = map.IndexOf("    |     ");
+                break;
+
+            case "Town square":
+                indexPos = map.IndexOf("  │   │█");
+                break;
+
+            case "Alchemist's hut":
+                indexPos = map.IndexOf("│ ▄███▄ ");
+                break;
+
+            case "Alchemist's garden":
+                indexPos = map.IndexOf("   ...  ");
+                break;
+
+            case "Farmhouse":
+                indexPos = map.IndexOf("===F___");
+                break;
+
+            case "Farmer's field":
+                indexPos = map.IndexOf("  =====       │");
+                break;
+
+            case "Cornfield":
+                indexPos = map.IndexOf("      ▄▌ *");
+                break;
+
+            case "Guard post":
+                indexPos = map.IndexOf(" │---G╠");
+                break;
+
+            case "Bridge":
+                indexPos = map.IndexOf("--G╠═B═");
+                break;
+
+            case "Forest":
+                indexPos = map.IndexOf(" **S***");
+                break;
+        }
+        var newmap = ReplaceAt(map, indexPos + 4, Convert.ToChar("X"));
+
+        WriteLineWithColoredLetter(newmap);
+        Console.WriteLine();
+    }
+
+    public static void WriteLineWithColoredLetter(string letters)
+    {
+        Char[] array = letters.ToCharArray();
+
+        foreach (Char c in array)
+        {
+            if (c == 'X')
+            {
+                Console.ForegroundColor = System.ConsoleColor.DarkRed;
+                Console.Write(c);
+            }
+            else
+            {
+                Console.ForegroundColor = System.ConsoleColor.White;
+                Console.Write(c);
+            }
+        }
+    }
+
+    public static string ReplaceAt(string input, int index, char newChar)
+    {
+        char[] chars = input.ToCharArray();
+        chars[index] = newChar;
+        return new string(chars);
     }
 
     public string Compass()
