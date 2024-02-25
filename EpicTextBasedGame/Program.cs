@@ -38,13 +38,7 @@
             //SuperAdventure.Fight(player, new Monster(1, "Goblin", 1, 80, 100));
             
             // Main Gameplay loop hierin > bij elke stap checken of er op escape wordt gedrukt dan of menu openen of game afsluiten.
-            double succesfulEncounter = 1;
-            Random encounterChance = new Random();  // Dit kan allemaal afgestaan worden aan de monster class, dan kunnen we elk monster een persoonlijk encounter chance geven.
-            double encounterRoll = encounterChance.NextDouble();
-            if (player.CurrentLocation.MonsterLivingHere != null && encounterRoll <= succesfulEncounter) SuperAdventure.Fight(player, player.CurrentLocation.MonsterLivingHere);
-            if (player.CurrentLocation.QuestAvailableHere != null) player.CurrentLocation.StartLocationQuest(player);
-            if (player.CurrentLocation.Name == "Guard post") player.CurrentLocation.StartEndGame(player);
-            player.AskPlayerAction();
+            player.AskPlayerAction(player);
         }
 
         Helper.OutroScreen();

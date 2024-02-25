@@ -224,7 +224,7 @@ public class Player : Character
         }
     }
 
-    public bool TryMoveTo()
+    public bool TryMoveTo(Player player)
     {
         CurrentLocation.Map();
         Console.WriteLine(CurrentLocation.Compass());
@@ -242,22 +242,25 @@ public class Player : Character
         if (newLocation != null)
         {
             CurrentLocation = newLocation;
+            double succesfulEncounter = 1;
+            Random encounterChance = new Random();
+            double encounterRoll = encounterChance.NextDouble();
+            if (player.CurrentLocation.MonsterLivingHere != null && encounterRoll <= succesfulEncounter) SuperAdventure.Fight(player, player.CurrentLocation.MonsterLivingHere);
+            if (player.CurrentLocation.Name == "Guard post") player.CurrentLocation.StartEndGame(player);
             return true;
         }
         return false;
     }
 
-    public void AskPlayerAction()
+    public void AskPlayerAction(Player player)
     {
         Console.WriteLine(Helper.CenterStr("What would you like to do?"));
         Console.ForegroundColor = ConsoleColor.DarkGray;
-        Console.WriteLine(Helper.CenterStr("╔═════════════════════════╗"));
-        Console.WriteLine(Helper.CenterStr("║ [1] MOVE                ║"));
-        Console.WriteLine(Helper.CenterStr("║ [2] INVENTORY           ║"));
-        Console.WriteLine(Helper.CenterStr("║ [3] CHANGE EQUIPMENT    ║"));
-        Console.WriteLine(Helper.CenterStr("║ [4] STATS               ║"));
-        Console.WriteLine(Helper.CenterStr("║ [5] QUIT TO TITLESCREEN ║"));
-        Console.WriteLine(Helper.CenterStr("╚═════════════════════════╝"));
+        Console.WriteLine(Helper.CenterStr("╔══════════════════════════════════════════════════╗"));
+        Console.WriteLine(Helper.CenterStr("║ [1] MOVE                [4] STATS                ║"));
+        Console.WriteLine(Helper.CenterStr("║ [2] INVENTORY           [5] INTERACT             ║"));
+        Console.WriteLine(Helper.CenterStr("║ [3] CHANGE EQUIPMENT    [6] QUIT TO TITLESCREEN  ║"));
+        Console.WriteLine(Helper.CenterStr("╚══════════════════════════════════════════════════╝"));
         Console.ForegroundColor = ConsoleColor.White;
 
         int playerAction;
@@ -265,49 +268,58 @@ public class Player : Character
         do
         {
             succesfulParse = int.TryParse(Console.ReadLine(), out playerAction);
-        } while((playerAction < 1 && playerAction > 4) || !succesfulParse);
+        } while((playerAction < 1 && playerAction > 5) || !succesfulParse);
 
-        CommenceAction(playerAction);
+        CommenceAction(playerAction, player);
     }
 
-    public void CommenceAction(int playerAction)
+    public void CommenceAction(int playerAction, Player player)
     {
         switch (playerAction)
         {
             case 1:
-                if(TryMoveTo())
+                if(TryMoveTo(player))
                 {
                     CurrentLocation.Map();
                     Console.WriteLine(Helper.CenterStr(CurrentLocation.Description));
                     break;
                 } 
                 Console.WriteLine(Helper.CenterStr("That direction is invalid"));
-                AskPlayerAction();
+                AskPlayerAction(player);
                 break;
 
             case 2:
                 ListWeapons();
                 ListItems();
-                AskPlayerAction();
+                AskPlayerAction(player);
                 break;
 
             case 3:
                 PromptSelectWeapon();
-                AskPlayerAction();
+                AskPlayerAction(player);
                 break;
 
             case 4:
                 DisplayStats();
-                AskPlayerAction();
+                AskPlayerAction(player);
                 break;
 
             case 5:
+                //can interact to start quest or fight monster present in the location again.
+                double succesfulEncounter = 1;
+                Random encounterChance = new Random();
+                double encounterRoll = encounterChance.NextDouble();
+                if (CurrentLocation.QuestAvailableHere != null) CurrentLocation.StartLocationQuest(player);
+                if (player.CurrentLocation.MonsterLivingHere != null && encounterRoll <= succesfulEncounter) SuperAdventure.Fight(player, player.CurrentLocation.MonsterLivingHere);
+                break;
+
+            case 6:
                 Program.Main();
                 break;
 
             default:
                 Console.WriteLine("Input error");
-                AskPlayerAction();
+                AskPlayerAction(player);
                 break;
         }
     }
