@@ -242,7 +242,6 @@ public class Player : Character
 
     public void AskPlayerAction(Player player)
     {
-        Console.WriteLine(Helper.CenterStr("What would you like to do?"));
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine(Helper.CenterStr("[N][E][S][W] TO MOVE"));
         Console.ForegroundColor = ConsoleColor.DarkGray;
@@ -262,7 +261,8 @@ public class Player : Character
             playerAction = Console.ReadLine();
             if (playerAction is string)
             {
-                if (movement.Contains(playerAction.ToLower()))
+                playerAction = playerAction.ToLower();
+                if (movement.Contains(playerAction))
                 {
                     if (TryMoveTo(playerAction, player))
                     {
@@ -270,8 +270,6 @@ public class Player : Character
                         Console.WriteLine(Helper.CenterStr(CurrentLocation.Description));
                         AskPlayerAction(player);
                     }
-                    Helper.ClearLastLine();
-                    Console.WriteLine(Helper.CenterStr("That direction is invalid\r"));
                 }
             }
             Int32.TryParse(playerAction, out intplayerAction);
@@ -288,7 +286,6 @@ public class Player : Character
         {
             case 1:
                 Console.WriteLine(CurrentLocation.Compass());
-                AskPlayerAction(player);
                 break;
 
             case 2:
@@ -304,7 +301,6 @@ public class Player : Character
 
             case 4:
                 DisplayStats();
-                AskPlayerAction(player);
                 break;
 
             case 5:
@@ -314,6 +310,7 @@ public class Player : Character
                 double encounterRoll = encounterChance.NextDouble();
                 if (CurrentLocation.QuestAvailableHere != null) CurrentLocation.StartLocationQuest(player);
                 if (player.CurrentLocation.MonsterLivingHere != null && encounterRoll <= succesfulEncounter) SuperAdventure.Fight(player, player.CurrentLocation.MonsterLivingHere);
+                AskPlayerAction(player);
                 break;
 
             case 6:

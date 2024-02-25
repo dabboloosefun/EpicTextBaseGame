@@ -4,8 +4,8 @@ public class Location{
     public int ID;
     public string Name;
     public string Description;
-    public Quest QuestAvailableHere;
-    public Monster MonsterLivingHere;
+    public Quest? QuestAvailableHere;
+    public Monster? MonsterLivingHere;
     //these are filled in World.cs
     public Location? LocationToNorth;
     public Location? LocationToEast;
@@ -40,8 +40,6 @@ public class Location{
             prompt = Console.ReadLine();
         } while ((prompt.ToLower() != "yes") && (prompt.ToLower() != "no"));
         if (prompt == "yes") QuestAvailableHere.StartQuest(player);
-        return;
-
     }
 
     public void StartEndGame(Player player)
