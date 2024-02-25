@@ -270,15 +270,13 @@ public class Player : Character
                         Console.WriteLine(Helper.CenterStr(CurrentLocation.Description));
                         AskPlayerAction(player);
                     }
-                    Console.WriteLine(Helper.CenterStr("That direction is invalid"));
-                    AskPlayerAction(player);
+                    Helper.ClearLastLine();
+                    Console.WriteLine(Helper.CenterStr("That direction is invalid\r"));
                 }
             }
-            if (Int32.TryParse(playerAction, out intplayerAction))
-            {
-                break;
-            }
-        } while(true);
+            Int32.TryParse(playerAction, out intplayerAction);
+            Helper.ClearLastLine();
+        } while ((intplayerAction < 1) || (intplayerAction > 6));
 
 
         CommenceAction(intplayerAction, player);
@@ -288,11 +286,9 @@ public class Player : Character
     {
         switch (playerAction)
         {
-            case 0:
-
-
             case 1:
                 Console.WriteLine(CurrentLocation.Compass());
+                AskPlayerAction(player);
                 break;
 
             case 2:
@@ -322,11 +318,6 @@ public class Player : Character
 
             case 6:
                 Program.Main();
-                break;
-
-            default:
-                Console.WriteLine("Input error");
-                AskPlayerAction(player);
                 break;
         }
     }

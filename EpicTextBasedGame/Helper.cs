@@ -305,4 +305,10 @@ public class Helper
         }
         else Program.Main();
     }
+
+    public static void ClearLastLine()
+    {
+        Console.Write(new string(' ', Console.BufferWidth));
+        Console.SetCursorPosition(0, Console.CursorTop - 1);
+    }
 }
