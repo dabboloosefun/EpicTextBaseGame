@@ -57,6 +57,7 @@ public class Location{
         if (completed == 2)
         {
             Console.WriteLine(Helper.CenterStr("You're up to the challenge, proceed.\n"));
+            Thread.Sleep(3000);
         }
         else
         {

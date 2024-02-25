@@ -160,56 +160,56 @@ public class Helper
     {
         WinScreen();
         Thread? thread = null;
+        Console.CursorVisible = false;
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.WriteLine(CenterStr(" ██████╗██████╗ ███████╗██████╗ ██╗████████╗███████╗"));
+        Console.WriteLine(CenterStr("██╔════╝██╔══██╗██╔════╝██╔══██╗██║╚══██╔══╝██╔════╝"));
+        Console.WriteLine(CenterStr("██║     ██████╔╝█████╗  ██║  ██║██║   ██║   ███████╗"));
+        Console.WriteLine(CenterStr("██║     ██╔══██╗██╔══╝  ██║  ██║██║   ██║   ╚════██║"));
+        Console.WriteLine(CenterStr("╚██████╗██║  ██║███████╗██████╔╝██║   ██║   ███████║"));
+        Console.WriteLine(CenterStr(" ╚═════╝╚═╝  ╚═╝╚══════╝╚═════╝ ╚═╝   ╚═╝   ╚══════╝"));
+        Console.WriteLine(CenterStr(@"     _                "));
+        Console.WriteLine(CenterStr(@"    | |               "));
+        Console.WriteLine(CenterStr(@"  __| | _____   _____ "));
+        Console.WriteLine(CenterStr(@" / _` |/ _ \ \ / / __|"));
+        Console.WriteLine(CenterStr(@"| (_| |  __/\ V /\__ \"));
+        Console.WriteLine(CenterStr(@" \__,_|\___| \_/ |___/"));
+        Console.ForegroundColor = ConsoleColor.Gray;
+        Console.WriteLine("\n");
+        Console.WriteLine(CenterStr(@"Mathijs Hoek"));
+        Console.WriteLine(CenterStr(@"Yannick Lankhorst"));
+        Console.WriteLine(CenterStr(@"Julian Kreugel"));
+        Console.WriteLine(CenterStr(@"Utku Özyurt"));
+        Console.WriteLine(CenterStr(@"Vincent van Oosten"));
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.WriteLine(CenterStr(@" _____                 _       _   _____ _                 _        "));
+        Console.WriteLine(CenterStr(@"/  ___|               (_)     | | |_   _| |               | |       "));
+        Console.WriteLine(CenterStr(@"\ `--. _ __   ___  ___ _  __ _| |   | | | |__   __ _ _ __ | | _____ "));
+        Console.WriteLine(CenterStr(@" `--. \ '_ \ / _ \/ __| |/ _` | |   | | | '_ \ / _` | '_ \| |/ / __|"));
+        Console.WriteLine(CenterStr(@"/\__/ / |_) |  __/ (__| | (_| | |   | | | | | | (_| | | | |   <\__ \"));
+        Console.WriteLine(CenterStr(@"\____/| .__/ \___|\___|_|\__,_|_|   \_/ |_| |_|\__,_|_| |_|_|\_\___/"));
+        Console.WriteLine(CenterStr(@"      | |                                                           "));
+        Console.WriteLine(CenterStr(@"      |_|                                                           "));
+        Console.ForegroundColor = ConsoleColor.Gray;
+        Console.WriteLine(CenterStr("Cigdem Okuyucu"));
+        Console.WriteLine(CenterStr("Karlijn van den Hoff"));
+        Task.Run(() =>
+        {
+            try
+            {
+                if (thread == null) thread = Thread.CurrentThread;
+                Thread.Sleep(3000);
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                BlinkText("Press ENTER to return to titlescreen", true);
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+            }
+            catch (ThreadInterruptedException)
+            {
+                return;
+            }
+        });
         while (true)
         {
-            Console.CursorVisible = false;
-            Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.WriteLine(CenterStr(" ██████╗██████╗ ███████╗██████╗ ██╗████████╗███████╗"));
-            Console.WriteLine(CenterStr("██╔════╝██╔══██╗██╔════╝██╔══██╗██║╚══██╔══╝██╔════╝"));
-            Console.WriteLine(CenterStr("██║     ██████╔╝█████╗  ██║  ██║██║   ██║   ███████╗"));
-            Console.WriteLine(CenterStr("██║     ██╔══██╗██╔══╝  ██║  ██║██║   ██║   ╚════██║"));
-            Console.WriteLine(CenterStr("╚██████╗██║  ██║███████╗██████╔╝██║   ██║   ███████║"));
-            Console.WriteLine(CenterStr(" ╚═════╝╚═╝  ╚═╝╚══════╝╚═════╝ ╚═╝   ╚═╝   ╚══════╝"));
-            Console.WriteLine(CenterStr(@"     _                "));
-            Console.WriteLine(CenterStr(@"    | |               "));
-            Console.WriteLine(CenterStr(@"  __| | _____   _____ "));
-            Console.WriteLine(CenterStr(@" / _` |/ _ \ \ / / __|"));
-            Console.WriteLine(CenterStr(@"| (_| |  __/\ V /\__ \"));
-            Console.WriteLine(CenterStr(@" \__,_|\___| \_/ |___/"));
-            Console.ForegroundColor = ConsoleColor.Gray;
-            Console.WriteLine("\n");
-            Console.WriteLine(CenterStr(@"Mathijs Hoek"));
-            Console.WriteLine(CenterStr(@"Yannick Lankhorst"));
-            Console.WriteLine(CenterStr(@"Julian Kreugel"));
-            Console.WriteLine(CenterStr(@"Utku Özyurt"));
-            Console.WriteLine(CenterStr(@"Vincent van Oosten"));
-            Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.WriteLine(CenterStr(@" _____                 _       _   _____ _                 _        "));
-            Console.WriteLine(CenterStr(@"/  ___|               (_)     | | |_   _| |               | |       "));
-            Console.WriteLine(CenterStr(@"\ `--. _ __   ___  ___ _  __ _| |   | | | |__   __ _ _ __ | | _____ "));
-            Console.WriteLine(CenterStr(@" `--. \ '_ \ / _ \/ __| |/ _` | |   | | | '_ \ / _` | '_ \| |/ / __|"));
-            Console.WriteLine(CenterStr(@"/\__/ / |_) |  __/ (__| | (_| | |   | | | | | | (_| | | | |   <\__ \"));
-            Console.WriteLine(CenterStr(@"\____/| .__/ \___|\___|_|\__,_|_|   \_/ |_| |_|\__,_|_| |_|_|\_\___/"));
-            Console.WriteLine(CenterStr(@"      | |                                                           "));
-            Console.WriteLine(CenterStr(@"      |_|                                                           "));
-            Console.ForegroundColor = ConsoleColor.Gray;
-            Console.WriteLine(CenterStr("Cigdem Okuyucu"));
-            Console.WriteLine(CenterStr("Karlijn van den Hoff"));
-            Task.Run(() =>
-            {
-                try
-                {
-                    if (thread == null) thread = Thread.CurrentThread;
-                    Thread.Sleep(3000);
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    BlinkText("Press ENTER to return to titlescreen", true);
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                }
-                catch (ThreadInterruptedException)
-                {
-                    return;
-                }
-            });
             var key = Console.ReadKey(true);
             if (key.Key == ConsoleKey.Enter)
             {
