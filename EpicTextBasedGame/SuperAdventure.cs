@@ -19,8 +19,7 @@ public class SuperAdventure
             while(!Actiondone){
                 player.UpdateEffects();
                 monster.UpdateEffects();
-                monster.DisplayStats();
-                player.DisplayStats();
+                FightStats(player, monster);
                 Console.WriteLine("1. Attack");
                 Console.WriteLine("2. Use item");
                 //Console.WriteLine("2. Heal");
@@ -158,5 +157,19 @@ public class SuperAdventure
             }
         }
         else monster.CurrentHealth = monster.MaxHealth;
+    }
+
+    public static void FightStats(Player player, Monster monster)
+    {
+        Console.WriteLine("╔═══════════════════════════════════╗\t\t\t\t\t\t  ╔═══════════════════════════════════╗");
+        Console.WriteLine("║              Player               ║\t\t\t\t\t\t  ║               {0, -20}║", $"{monster.Name}");
+        Console.WriteLine("╠═══════════════════════════════════╣\t\t\t\t\t\t  ╠═══════════════════════════════════╣");
+        Console.WriteLine("║ HEALTH:      {0, -8}             ║\t\t\t\t\t\t  ║ HEALTH:        {1, -8}           ║", $"{player.CurrentHealth}/{player.MaxHealth}", $"{monster.CurrentHealth}/{monster.MaxHealth}");
+        Console.WriteLine("║ WEAPON:      {0, -21}║\t\t\t\t\t\t  ║ DAMAGE:        {1, -10}         ║", $"{player.CurrentWeapon.Name}", $"{monster.MaxDamage}");
+        Console.WriteLine("║ DAMAGE:      {0, -10}           ║\t\t\t\t\t\t  ╚═══════════════════════════════════╝", $"{(int)(player.CurrentWeapon.MaxDamage * 0.8)}-{player.CurrentWeapon.MaxDamage}");
+        Console.WriteLine("║ CRITCHANCE:  {0}                 ║", $"{(double)(player.CurrentWeapon.CritChance)}");
+        Console.WriteLine("║ EXP:         {0, -21}║", $"{player.Experience}");
+        Console.WriteLine("║ LVL:         {0, -21}║", $"{player.Level}");
+        Console.WriteLine("╚═══════════════════════════════════╝");
     }
 }
