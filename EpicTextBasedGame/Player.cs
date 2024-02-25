@@ -224,20 +224,8 @@ public class Player : Character
         }
     }
 
-    public bool TryMoveTo(Player player)
+    public bool TryMoveTo(string direction, Player player)
     {
-        CurrentLocation.Map();
-        Console.WriteLine(CurrentLocation.Compass());
-        Console.WriteLine(Helper.CenterStr("In what direction would you like to go?"));
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine(Helper.CenterStr("[N][E][S][W]"));
-        Console.ForegroundColor = ConsoleColor.White;
-        string direction;
-        do
-        {
-            direction = Console.ReadLine().ToLower();
-        }while (direction != "n" && direction != "s" && direction != "w" && direction != "e");
-
         Location? newLocation = CurrentLocation.GetLocationAt(direction);
         if (newLocation != null)
         {
@@ -255,37 +243,56 @@ public class Player : Character
     public void AskPlayerAction(Player player)
     {
         Console.WriteLine(Helper.CenterStr("What would you like to do?"));
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine(Helper.CenterStr("[N][E][S][W] TO MOVE"));
         Console.ForegroundColor = ConsoleColor.DarkGray;
         Console.WriteLine(Helper.CenterStr("╔══════════════════════════════════════════════════╗"));
-        Console.WriteLine(Helper.CenterStr("║ [1] MOVE                [4] STATS                ║"));
+        Console.WriteLine(Helper.CenterStr("║ [1] MOVEMENT OPTIONS    [4] STATS                ║"));
         Console.WriteLine(Helper.CenterStr("║ [2] INVENTORY           [5] INTERACT             ║"));
         Console.WriteLine(Helper.CenterStr("║ [3] CHANGE EQUIPMENT    [6] QUIT TO TITLESCREEN  ║"));
         Console.WriteLine(Helper.CenterStr("╚══════════════════════════════════════════════════╝"));
         Console.ForegroundColor = ConsoleColor.White;
 
-        int playerAction;
-        bool succesfulParse;
+        string movement = "nswe";
+        string playerAction;
+        int intplayerAction;
+
         do
         {
-            succesfulParse = int.TryParse(Console.ReadLine(), out playerAction);
-        } while((playerAction < 1 && playerAction > 5) || !succesfulParse);
+            playerAction = Console.ReadLine();
+            if (playerAction is string)
+            {
+                if (movement.Contains(playerAction.ToLower()))
+                {
+                    if (TryMoveTo(playerAction, player))
+                    {
+                        CurrentLocation.Map();
+                        Console.WriteLine(Helper.CenterStr(CurrentLocation.Description));
+                        AskPlayerAction(player);
+                    }
+                    Console.WriteLine(Helper.CenterStr("That direction is invalid"));
+                    AskPlayerAction(player);
+                }
+            }
+            if (Int32.TryParse(playerAction, out intplayerAction))
+            {
+                break;
+            }
+        } while(true);
 
-        CommenceAction(playerAction, player);
+
+        CommenceAction(intplayerAction, player);
     }
 
     public void CommenceAction(int playerAction, Player player)
     {
         switch (playerAction)
         {
+            case 0:
+
+
             case 1:
-                if(TryMoveTo(player))
-                {
-                    CurrentLocation.Map();
-                    Console.WriteLine(Helper.CenterStr(CurrentLocation.Description));
-                    break;
-                } 
-                Console.WriteLine(Helper.CenterStr("That direction is invalid"));
-                AskPlayerAction(player);
+                Console.WriteLine(CurrentLocation.Compass());
                 break;
 
             case 2:

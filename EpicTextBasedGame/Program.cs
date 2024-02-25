@@ -26,16 +26,13 @@
         //but dynamically created items can't be compared yet because Item class doesn't handle ID generation. I will add this
 
         //player.AddItem(new Item(3, "Healing Potion", BaseEffects.HealInstant10, "heals 10 instantly", 1));
-        bool victory = false;
         Helper.TitleScreen();
 
-        while (!victory)
+        while (true)
         {
             //enable to force a fight at the start
             //SuperAdventure.Fight(player, new Monster(1, "Goblin", 1, 80, 100));
             player.AskPlayerAction(player);
         }
-
-        Helper.OutroScreen();
     }
 }
