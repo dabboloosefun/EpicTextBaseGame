@@ -147,7 +147,7 @@ public class SuperAdventure
                 if ((quest.Target == monster) && (quest.Cleared is false))
                 {
                     quest.UpdateQuest(player);
-                    if (player.QuestList.Any(x => x.Cleared is false))
+                    if (quest.Cleared is false)
                     {
                         Console.WriteLine(Helper.CenterStr($"You've killed: {quest.CurrentKills}/{quest.TargetKills} {quest.Target.Name}"));
                         monster.CurrentHealth = monster.MaxHealth;
