@@ -17,13 +17,12 @@
         player.AddItem(Item.BaseItems["Healing Potion123"].Copy());
         player.AddItem(Item.BaseItems["Healing Potion123"].Copy());
         player.AddItem(Item.BaseItems["Healing Potion123"].Copy());
-        //player.AddItem(Item.BaseItems["Healing Potion100"].Copy());
+        player.AddItem(Item.BaseItems["Healing Potion100"].Copy());
         player.AddItem(new Item("Healing Potion100", Effect.BaseEffects["HealInstant100"], "heals 100 instantly", 1)); //stacks fine
         player.AddItem(new Item("Healing Potion100", new Effect("HealInstant100", 100, EffectTypes.HEALINSTANT, 1), "heals 100 instantly", 1)); //stacks fine
         player.AddItem(Item.BaseItems["Healing Potion100"].Copy());
 
-        //dynamically created effects can now be compared with eachother for stacking because Effect class handles ID generation, 
-        //but dynamically created items can't be compared yet because Item class doesn't handle ID generation. I will add this
+
 
         //player.AddItem(new Item(3, "Healing Potion", BaseEffects.HealInstant10, "heals 10 instantly", 1));
         Helper.TitleScreen();

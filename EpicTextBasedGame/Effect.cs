@@ -32,7 +32,6 @@ DEBUFFMAXHEALTH
 
 public class Effect{
     public int ID; 
-    public string Name;
     public double Power;
     public EffectTypes EffectType;
     public int TurnsLeft;
@@ -40,7 +39,7 @@ public class Effect{
     public Character? AffectedCharacter;
     public static Dictionary<int, Effect> CustomEffects = new(); // can be called without Wffect object
     public static Dictionary<string, Effect> BaseEffects = new()
-    { // can be called without Wffect object
+    { // can be called without Effect object
         {"HealInstant10", new Effect(1, 10, EffectTypes.HEALINSTANT, 1)},
         {"HealInstant20", new Effect(2, 20, EffectTypes.HEALINSTANT, 1)},
         {"HealInstant30", new Effect(3, 30, EffectTypes.HEALINSTANT, 1)},
@@ -62,11 +61,10 @@ public class Effect{
     //(so without new Effect()). The below constructor should probably only ever be used if we want to dynamically add new effects 
     //with e.g. incrementing strength based on enemy level as a reward like so:
     //string rewardStrength = monster.Power * 5;
-    //ReaperPotion = new Item(6(id), "ReaperPotion", new Effect("DamageInstant"+ Convert.ToString(rewardStrength), rewardStrength, EffectTypes.DAMAGEINSTANT, 1) , $"Deals {rewardStrength} Damage");
+    //ReaperPotion = new Item("ReaperPotion", new Effect("DamageInstant"+ Convert.ToString(rewardStrength), rewardStrength, EffectTypes.DAMAGEINSTANT, 1) , $"Deals {rewardStrength} Damage");
     //the point of this all is so that dynamically created effects will always have the same ID if they have the same name and can thus technically stack.
     public Effect(string name, double power, EffectTypes effectType, int turnsLeft)
     { 
-        Name = name;
         Power = power;
         EffectType = effectType; 
         TurnsLeft = turnsLeft;
