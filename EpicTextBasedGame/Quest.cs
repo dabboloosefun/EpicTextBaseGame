@@ -45,5 +45,6 @@ public class Quest
         Console.WriteLine("\n");
         Console.ForegroundColor = ConsoleColor.White;
         if (player.CurrentLocation.Name == "Farmer's field") player.CurrentLocation.LocationToEast.AdjustDescription("The farmer is pleased");
+        Thread.Sleep(1000);
     }
 }

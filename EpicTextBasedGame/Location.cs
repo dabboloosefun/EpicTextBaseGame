@@ -41,7 +41,6 @@ public class Location{
             Helper.ClearLastLine();
         } while (userInput != "y" && userInput != "n");
         if (userInput == "y") QuestAvailableHere.StartQuest(player);
-        Console.Clear();
     }
 
     public void StartEndGame(Player player)

@@ -151,6 +151,7 @@ public class SuperAdventure
                     {
                         Console.WriteLine(Helper.CenterStr($"You've killed: {quest.CurrentKills}/{quest.TargetKills} {quest.Target.Name}"));
                         monster.CurrentHealth = monster.MaxHealth;
+                        Thread.Sleep(1000);
                     }  
                 }
             }

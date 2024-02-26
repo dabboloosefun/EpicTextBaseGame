@@ -242,6 +242,7 @@ public class Player : Character
             double encounterRoll = encounterChance.NextDouble();
             if (player.CurrentLocation.MonsterLivingHere != null && encounterRoll <= succesfulEncounter) SuperAdventure.Fight(player, player.CurrentLocation.MonsterLivingHere);
             if (player.CurrentLocation.Name == "Guard post") player.CurrentLocation.StartEndGame(player);
+            CurrentLocation.Map();
             return true;
         }
         return false;
@@ -265,7 +266,6 @@ public class Player : Character
                 {
                     if (TryMoveTo(playerAction, player))
                     {
-                        CurrentLocation.Map();
                         Console.WriteLine(Helper.CenterStr(CurrentLocation.Description));
                         Helper.GameOptions();
                     }
@@ -312,9 +312,12 @@ public class Player : Character
                 Random encounterChance = new Random();
                 double encounterRoll = encounterChance.NextDouble();
                 if (CurrentLocation.QuestAvailableHere != null) CurrentLocation.StartLocationQuest(player);
-                else if (player.CurrentLocation.MonsterLivingHere != null && encounterRoll <= succesfulEncounter) SuperAdventure.Fight(player, player.CurrentLocation.MonsterLivingHere);
+                else if (player.CurrentLocation.MonsterLivingHere != null && encounterRoll <= succesfulEncounter)
+                {
+                    SuperAdventure.Fight(player, player.CurrentLocation.MonsterLivingHere);
+                    CurrentLocation.Map();
+                } 
                 else Console.WriteLine(Helper.CenterStr("Nothing to interact with here"));
-                CurrentLocation.Map();
                 break;
 
             case 6:
