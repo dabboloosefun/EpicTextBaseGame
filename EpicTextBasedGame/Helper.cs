@@ -332,6 +332,7 @@ public class Helper
     public static void ProjectMonser(Monster monster)
     {
         Console.Clear();
+        Console.WriteLine("\u001b[2J\u001b[3J");
         Console.ForegroundColor = ConsoleColor.DarkRed;
         Console.WriteLine(monster.Image);
         Console.ForegroundColor = ConsoleColor.White;
