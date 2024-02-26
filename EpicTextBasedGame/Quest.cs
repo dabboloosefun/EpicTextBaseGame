@@ -28,7 +28,7 @@ public class Quest
         player.QuestList.Add(this);
         if (player.CurrentLocation.Name == "Farmhouse") player.CurrentLocation.AdjustDescription("The farmer is waiting impatiently");
     }
-    
+
     public void UpdateQuest(Player player)
     {
         CurrentKills++;
@@ -39,12 +39,19 @@ public class Quest
     {
         player.Experience += 50;
         Cleared = true;
-        if (Name == "Collect spider silk") Helper.OutroScreen();
+        if (Name == "Collect spider silk") EndBoss(player);
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine(Helper.CenterStr($"Quest cleared: {Name}!"));
         Console.WriteLine("\n");
         Console.ForegroundColor = ConsoleColor.White;
         if (player.CurrentLocation.Name == "Farmer's field") player.CurrentLocation.LocationToEast.AdjustDescription("The farmer is pleased");
         Thread.Sleep(1000);
+    }
+
+    public void EndBoss(Player player)
+    {
+        player.CurrentLocation = World.Locations[10];
+        SuperAdventure.Fight(player, player.CurrentLocation.MonsterLivingHere);
+        Helper.OutroScreen();
     }
 }

@@ -14,6 +14,7 @@
     public const int MONSTER_ID_SNAKE = 2;
     public const int MONSTER_ID_GIANT_SPIDER = 3;
     public const int MONSTER_ID_FACELESS = 4;
+    public const int MONSTER_ID_ALIEN = 5;
 
     public const int QUEST_ID_CLEAR_ALCHEMIST_GARDEN = 1;
     public const int QUEST_ID_CLEAR_FARMERS_FIELD = 2;
@@ -29,6 +30,7 @@
     public const int LOCATION_ID_BRIDGE = 8;
     public const int LOCATION_ID_SPIDER_FIELD = 9;
     public const int LOCATION_ID_FIELD_SOUTH = 10;
+    public const int LOCATION_ID_ARENA = 11;
 
     static World()
     {
@@ -140,12 +142,62 @@
                         `-.___,-.      .-.        ___,'        (/    
                                  `---'`   `'----'`
 ");
+        Monster alien = new Monster(MONSTER_ID_ALIEN, "alien", 25, 60, 60, 0, @"
+                                                                                     / /
+                                                                                  | | |  /
+                                                                                   \|_|_/
+                                                                                 ,--/.__/--'
+                                                 _.-/   _   \-._                    .'|
+                                               .'::(_,-' `-._)::`.                  |:|
+                                              (:::::::::::::::::::)                .':|
+                                               \_:::;;;::::;;;:::/    /            |::|
+                                       \        ,---'..\::/..`-.'    /             |::|
+                                        \       \_;:....|'...:_ )   /             .'=||
+                                         \.       )---. )_.--< (   /'             ||=||
+                                          \\     //|:: /--\:::\\\ //             _||= |
+                                           \\   ||::\:|----|:/:||/--.______,--==' \ - /
+                                    -._     \`.  \\:|:|-- -|:\:/-.,,\\  .----'//'_.`-'
+                                \.     `-.   \ \ _|:|:|-- -|::||::\,,||-'////---' |/'
+                                 \\       `._)\ / |\/:|-/|--\:/|. :\_,'---'       /
+                                  \\_      /,,\/:.'\\/-.'`-.-//  \ |
+                                  /`\-    //,,,' |-.\-'\--/|-/ ./| |             /
+                                   /||-   ||, /| |\. |.-==-.| . /| |            | /
+                           __  |    /||-  ||,,\- | .  \;;;;/ .  .':/         _,-=/-'
+                          /  \//    /||-  ' `,-|::\ . \,..,/   /: /         /.-'
+                          ,--||      /||-/.-.'  \  `._ `--' _.' .'|        //
+                          .--||`.    /||//\ '   |-'.___`___' _,'|//       /;
+                            /\| \     ///\ /     \\_`-.`--`-'_==|'       /;'
+                           / |'\ \.   //\ /       \_\__)\`==-_'_|       / /
+                            .'  \.=`./|\ /          \`-- \--._/_/------( /
+                                 \.=| `_/|-          |\`-| -/| `--------'
+                                  \\` ./|-/-         |\`-| |-|     ________
+                                   `--\ |=|'        _|\`-| |-|----'.-._ ..\`-.
+                                       -|-|-     .-':`-;-| |./.-.-( | ||..|=-\\
+                                       `'= /'   / ,--.:|-| ||_|_|_|_|-'__ .`-._)
+                                        /|-|- .' /\ \ \|-` \\ ____,---'  `-. ..|
+                                         /\=\/..'\ \_>-'`-\ \'              \ .|
+                                         `,-':/\`.>' |\/ \/\ \              `- |
+                                         //::/\ \/_/|-' \/| \ `.            / ||
+                                        / (:|\ \/) \ \|.'-'  `-\\          |;:|\_
+                                       || |:`-/:.'-|-' \|       \\          `;_\-`-._
+                                       \\=/:_/::/\| \|          |\\            `-._ =`-._
+                                        \_)' |:|                | //               `--.__`-.
+                                             |:|                                         )\|
+                                             /;/                                         / (\_
+                                            / /                                         |\\;;_`-.
+                                          _/ /                                          ' `---\.-\
+                                         /::||
+                                        /:::/
+                                       //;;'
+                                      `-'
+");
 
 
         Monsters.Add(rat);
         Monsters.Add(snake);
         Monsters.Add(giantSpider);
         Monsters.Add(faceless);
+        Monsters.Add(alien);
     }
 
     public static void PopulateQuests()
@@ -206,6 +258,8 @@
 
         Location spiderField = new Location(LOCATION_ID_SPIDER_FIELD, "Forest", "You see spider webs covering covering the trees in this forest.", null, MonsterByID(MONSTER_ID_GIANT_SPIDER));
 
+        Location arena = new Location(LOCATION_ID_ARENA, "EndArena", "The final boss", null, MonsterByID(MONSTER_ID_ALIEN));
+
         // Link the locations together
         home.LocationToNorth = townSquare;
 
@@ -246,6 +300,7 @@
         Locations.Add(bridge);
         Locations.Add(spiderField);
         Locations.Add(fieldsouth);
+        Locations.Add(arena);
     }
 
     public static Location LocationByID(int id)
