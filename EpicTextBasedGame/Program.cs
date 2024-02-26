@@ -17,7 +17,7 @@
         player.AddItem(Item.BaseItems["Healing Potion123"].Copy());
         player.AddItem(Item.BaseItems["Healing Potion123"].Copy());
         player.AddItem(Item.BaseItems["Healing Potion123"].Copy());
-        player.AddItem(Item.BaseItems["Healing Potion100"].Copy());
+        //player.AddItem(Item.BaseItems["Healing Potion100"].Copy());
         player.AddItem(new Item("Healing Potion100", Effect.BaseEffects["HealInstant100"], "heals 100 instantly", 1)); //stacks fine
         player.AddItem(new Item("Healing Potion100", new Effect("HealInstant100", 100, EffectTypes.HEALINSTANT, 1), "heals 100 instantly", 1)); //stacks fine
         player.AddItem(Item.BaseItems["Healing Potion100"].Copy());

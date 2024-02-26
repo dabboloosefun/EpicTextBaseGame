@@ -32,6 +32,7 @@ DEBUFFMAXHEALTH
 
 public class Effect{
     public int ID; 
+    public string Name;
     public double Power;
     public EffectTypes EffectType;
     public int TurnsLeft;
@@ -65,6 +66,7 @@ public class Effect{
     //the point of this all is so that dynamically created effects will always have the same ID if they have the same name and can thus technically stack.
     public Effect(string name, double power, EffectTypes effectType, int turnsLeft)
     { 
+        Name = name;
         Power = power;
         EffectType = effectType; 
         TurnsLeft = turnsLeft;
@@ -134,6 +136,14 @@ public class Effect{
             else if(EffectType == EffectTypes.DEBUFFMAXHEALTH)
             {
                 AffectedCharacter.LowerMaxHealth((int) Power);
+            }
+            else if(EffectType == EffectTypes.HEALINSTANT)
+            {
+                AffectedCharacter.RegenarateHealth((int)Power);
+            }
+            else if(EffectType == EffectTypes.DAMAGEINSTANT)
+            {
+                AffectedCharacter.TakeDamage((int)Power);
             }
 
             UpdateEffect(); //update once at application so it applies immediately. then update again at the start of each turn
@@ -236,5 +246,9 @@ public class Effect{
                 Console.WriteLine($"{AffectedCharacter} ran out of {EffectType}({Power})");
             }
         }
+    }
+
+    public Effect Copy(){
+        return new Effect(ID, Power, EffectType, TurnsLeft);
     }
 }

@@ -7,11 +7,11 @@ public class Item{
     public int Count;
     public static Dictionary<string, Item> BaseItems = new()
     {
-        {"Healing Potion10", new Item(1, "Healing Potion10", Effect.BaseEffects["HealInstant10"], "heals 10 instantly", 1)},
-        {"Healing Potion20", new Item(2, "Healing Potion20", Effect.BaseEffects["HealInstant20"], "heals 20 instantly", 1)}, //stacks on "Healing Potion1"
-        {"Healing Potion30", new Item(3, "Healing Potion30", Effect.BaseEffects["HealInstant30"], "heals 30 instantly", 1)},
-        {"Healing Potion50", new Item(4, "Healing Potion50", Effect.BaseEffects["HealInstant50"], "heals 50 instantly", 1)},
-        {"Healing Potion100", new Item(5, "Healing Potion100", Effect.BaseEffects["HealInstant100"], "heals 100 instantly", 1)}, //stacks on "Healing Potion5"
+        {"Healing Potion10", new Item(1, "Healing Potion10", Effect.BaseEffects["HealInstant10"].Copy(), "heals 10 instantly", 1)},
+        {"Healing Potion20", new Item(2, "Healing Potion20", Effect.BaseEffects["HealInstant20"].Copy(), "heals 20 instantly", 1)}, //stacks on "Healing Potion1"
+        {"Healing Potion30", new Item(3, "Healing Potion30", Effect.BaseEffects["HealInstant30"].Copy(), "heals 30 instantly", 1)},
+        {"Healing Potion50", new Item(4, "Healing Potion50", Effect.BaseEffects["HealInstant50"].Copy(), "heals 50 instantly", 1)},
+        {"Healing Potion100", new Item(5, "Healing Potion100", Effect.BaseEffects["HealInstant100"].Copy(), "heals 100 instantly", 1)}, //stacks on "Healing Potion5"
         {"Healing Potion123", new Item(6, "Healing Potion123", new Effect("HealInstant123", 123, EffectTypes.HEALINSTANT, 1), "heals 123 instantly", 1)}
     };
 
