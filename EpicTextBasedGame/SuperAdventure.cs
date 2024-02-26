@@ -7,9 +7,7 @@ public class SuperAdventure
     public static void Fight(Player player, Monster monster)
     {
         if (monster.CurrentHealth == 0) return;
-        Console.ForegroundColor = ConsoleColor.DarkRed;
-        Console.WriteLine(monster.Image);
-        Console.ForegroundColor = ConsoleColor.White;
+        Helper.ProjectMonser(monster);
         Console.WriteLine(Helper.CenterStr($"A {monster.Name} has appeared"));
         bool playerturn = true;
         while (player.CurrentHealth > 0 && monster.CurrentHealth > 0)
@@ -30,12 +28,14 @@ public class SuperAdventure
                     
                     case "1":
                     case "attack":
+                        Helper.ProjectMonser(monster);
                         monster.TakeDamage(player.CurrentWeapon.RollDamage());
                         Actiondone = true;
                         break;
 
                     case "2":
                     case "use item":
+                        Helper.ProjectMonser(monster);
                         player.PromptUseItem(ref Actiondone, monster);
                         break;
 /*
@@ -138,7 +138,7 @@ public class SuperAdventure
     {
         //exp is given
         if (monster.CurrentHealth == 0) player.Experience += monster.GiveExp;
-        player.LevelUp();
+        Helper.FightWinScreen(player);
 
         if (player.QuestList.Any(x => x.Target == monster))
         {

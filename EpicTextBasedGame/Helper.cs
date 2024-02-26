@@ -220,6 +220,28 @@ public class Helper
             }
         }
     }
+
+    public static void FightWinScreen(Player player)
+    {
+        Console.WriteLine("\u001b[2J\u001b[3J");
+        Console.Clear();
+        Thread.Sleep(500);
+        Console.WriteLine("\n\n");
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.WriteLine(CenterStr(@"        )       *        )   (   (            (       ) "));
+        Console.WriteLine(CenterStr(@"     ( /(     (  `    ( /(   )\ ))\ )   (     )\ ) ( /( "));
+        Console.WriteLine(CenterStr(@" (   )\())(   )\))(   )\()) (()/(()/(   )\   (()/( )\())"));
+        Console.WriteLine(CenterStr(@" )\ ((_)\ )\ ((_)()\ ((_)\   /(_))(_)|(((_)(  /(_)|(_)\ "));
+        Console.WriteLine(CenterStr(@"((_) _((_|(_)(_()((_)_ ((_) (_))(_))  )\ _ )\(_))  _((_)"));
+        Console.WriteLine(CenterStr(@"| __| \| | __|  \/  \ \ / / / __| |   (_)_\(_)_ _|| \| |"));
+        Console.WriteLine(CenterStr(@"| _|| .` | _|| |\/| |\ V /  \__ \ |__  / _ \  | | | .` |"));
+        Console.WriteLine(CenterStr(@"|___|_|\_|___|_|  |_| |_|   |___/____|/_/ \_\|___||_|\_|"));
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.WriteLine("\n\n");
+        if (player.LevelUp() is true) Thread.Sleep(1000);
+        else Thread.Sleep(500);
+    }
+
     public static void Deathscreen()
     {
         Console.CursorVisible = false;
@@ -239,6 +261,7 @@ public class Helper
         Console.Clear();
         Program.Main();
     }
+
     public static void WinScreen()
     {
         Console.CursorVisible = false;
@@ -303,6 +326,14 @@ public class Helper
         Console.WriteLine(Helper.CenterStr("║ [2] INVENTORY           [5] INTERACT             ║"));
         Console.WriteLine(Helper.CenterStr("║ [3] CHANGE EQUIPMENT    [6] QUIT TO TITLESCREEN  ║"));
         Console.WriteLine(Helper.CenterStr("╚══════════════════════════════════════════════════╝"));
+        Console.ForegroundColor = ConsoleColor.White;
+    }
+
+    public static void ProjectMonser(Monster monster)
+    {
+        Console.Clear();
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.WriteLine(monster.Image);
         Console.ForegroundColor = ConsoleColor.White;
     }
 

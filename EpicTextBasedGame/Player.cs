@@ -27,7 +27,7 @@ public class Player : Character
         Level = 1;
     }
 
-    public void LevelUp()
+    public bool LevelUp()
     {
         if (Experience >= 2 * (5 * Level))
         {
@@ -42,7 +42,9 @@ public class Player : Character
             Console.WriteLine(Helper.CenterStr("║*************************║"));
             Console.WriteLine(Helper.CenterStr("╚═════════════════════════╝"));
             Console.WriteLine("\n");
+            return true;
         }
+        return false;
     }
 
     public void DisplayStats()
@@ -312,6 +314,7 @@ public class Player : Character
                 if (CurrentLocation.QuestAvailableHere != null) CurrentLocation.StartLocationQuest(player);
                 else if (player.CurrentLocation.MonsterLivingHere != null && encounterRoll <= succesfulEncounter) SuperAdventure.Fight(player, player.CurrentLocation.MonsterLivingHere);
                 else Console.WriteLine(Helper.CenterStr("Nothing to interact with here"));
+                CurrentLocation.Map();
                 break;
 
             case 6:
