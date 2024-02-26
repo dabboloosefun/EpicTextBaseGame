@@ -114,10 +114,10 @@ public class Player : Character
     }
     public void ListItems()
     {
-        Console.WriteLine("You are carrying these items in your inventory:");
+        Console.WriteLine(Helper.CenterStr("You are carrying these items in your inventory:"));
         for (int i = 0; i <= Items.Count - 1; i++)
         {
-            Console.WriteLine($"{i+1}: {Items[i].Info()}"); //only add 1 to displayed item number
+            Console.WriteLine(Helper.CenterStr($"{i+1}: {Items[i].Info()}")); //only add 1 to displayed item number
         }
     }
 
@@ -181,12 +181,12 @@ public class Player : Character
     }
     public void ListWeapons()
     {
-        Console.WriteLine($"Equipped weapon: {CurrentWeapon.Name}: Max damage: {CurrentWeapon.MaxDamage}, Crit chance: {CurrentWeapon.CritChance}\n");
-        Console.WriteLine("You are carrying these weapons in your inventory:");
+        Console.WriteLine(Helper.CenterStr($"Equipped weapon: {CurrentWeapon.Name}: Max damage: {CurrentWeapon.MaxDamage}, Crit chance: {CurrentWeapon.CritChance}\n"));
+        Console.WriteLine(Helper.CenterStr("You are carrying these weapons in your inventory:"));
         for (int i = 0; i < Weapons.Count - 1; i++)
         {
             Weapon currentWeapon = Weapons[i];
-            Console.WriteLine($"{i+1}. {currentWeapon.Name}: Max damage: {currentWeapon.MaxDamage}, Crit chance: {currentWeapon.CritChance}\n");
+            Console.WriteLine(Helper.CenterStr($"{i+1}. {currentWeapon.Name}: Max damage: {currentWeapon.MaxDamage}, Crit chance: {currentWeapon.CritChance}\n"));
         }
     }
 
@@ -196,12 +196,17 @@ public class Player : Character
 
         do
         {
-            Console.WriteLine("Would you like to swap your weapon? yes/no");
-            userInput = Console.ReadLine();
-        } while (userInput != "yes" && userInput != "no");
+            Console.WriteLine(Helper.CenterStr("Would you like to swap your weapon? Y/N"));
+            userInput = (Console.ReadLine()).ToLower();
+            Helper.ClearLastLine();
+        } while (userInput != "y" && userInput != "n");
 
-        if (userInput == "no") return;
-        else if (userInput == "yes")
+        if (userInput == "n")
+        {
+            Console.Clear();
+            return;
+        } 
+        else if (userInput == "y")
         {
             if (Weapons.Count <= 0)
             {
@@ -273,7 +278,8 @@ public class Player : Character
                 }
             }
             Int32.TryParse(playerAction, out intplayerAction);
-            Helper.ClearLastLine();
+            Console.Write(new string(' ', Console.BufferWidth));
+            Console.SetCursorPosition(0, Console.CursorTop - 1);
         } while ((intplayerAction < 1) || (intplayerAction > 6));
 
 
@@ -285,32 +291,35 @@ public class Player : Character
         switch (playerAction)
         {
             case 1:
+                Console.Clear();
                 Console.WriteLine(CurrentLocation.Compass());
                 break;
 
             case 2:
+                Console.Clear();
                 ListWeapons();
                 ListItems();
-                AskPlayerAction(player);
                 break;
 
             case 3:
+                Console.Clear();
                 PromptSelectWeapon();
-                AskPlayerAction(player);
                 break;
 
             case 4:
+                Console.Clear();
                 DisplayStats();
                 break;
 
             case 5:
+                Console.Clear();
                 //can interact to start quest or fight monster present in the location again.
                 double succesfulEncounter = 1;
                 Random encounterChance = new Random();
                 double encounterRoll = encounterChance.NextDouble();
                 if (CurrentLocation.QuestAvailableHere != null) CurrentLocation.StartLocationQuest(player);
-                if (player.CurrentLocation.MonsterLivingHere != null && encounterRoll <= succesfulEncounter) SuperAdventure.Fight(player, player.CurrentLocation.MonsterLivingHere);
-                AskPlayerAction(player);
+                else if (player.CurrentLocation.MonsterLivingHere != null && encounterRoll <= succesfulEncounter) SuperAdventure.Fight(player, player.CurrentLocation.MonsterLivingHere);
+                else Console.WriteLine(Helper.CenterStr("Nothing to interact with here"));
                 break;
 
             case 6:
