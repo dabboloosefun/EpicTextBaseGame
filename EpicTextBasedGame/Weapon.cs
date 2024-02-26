@@ -18,7 +18,7 @@ public class Weapon
     {
         Random rand = new Random();
         minimumDamage = minimumDamage == 0 ? (Convert.ToInt32(this.MaxDamage * 0.8)) : minimumDamage;
-        int rolledDamage = rand.Next(minimumDamage, Convert.ToInt32(this.MaxDamage * 1.2));
+        int rolledDamage = rand.Next(minimumDamage, Convert.ToInt32(this.MaxDamage));
 
         if (rand.NextDouble() <= this.CritChance) return (rolledDamage * 2);
         return rolledDamage;
