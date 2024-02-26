@@ -292,6 +292,20 @@ public class Helper
             visible = !visible;
         }
     }
+
+    public static void GameOptions()
+    {
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine(Helper.CenterStr("[N][E][S][W] TO MOVE"));
+        Console.ForegroundColor = ConsoleColor.DarkGray;
+        Console.WriteLine(Helper.CenterStr("╔══════════════════════════════════════════════════╗"));
+        Console.WriteLine(Helper.CenterStr("║ [1] MOVEMENT OPTIONS    [4] STATS                ║"));
+        Console.WriteLine(Helper.CenterStr("║ [2] INVENTORY           [5] INTERACT             ║"));
+        Console.WriteLine(Helper.CenterStr("║ [3] CHANGE EQUIPMENT    [6] QUIT TO TITLESCREEN  ║"));
+        Console.WriteLine(Helper.CenterStr("╚══════════════════════════════════════════════════╝"));
+        Console.ForegroundColor = ConsoleColor.White;
+    }
+
     [DllImport("User32.dll", CharSet = CharSet.Unicode)]
     static extern int MessageBox(IntPtr h, string m, string c, int type);
 

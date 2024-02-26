@@ -71,7 +71,6 @@ public class Location{
     public void Map()
     {
         Console.Clear();
-        Console.WriteLine("\u001b[2J\u001b[3J");
         string map = $@"
                                     *********┌─────────────┐***  ≈≈≈≈≈      LEGEND
                                     ***      │ .....P..... │*  ≈≈≈≈≈        H: Home

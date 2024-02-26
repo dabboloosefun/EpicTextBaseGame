@@ -210,7 +210,7 @@ public class Player : Character
         {
             if (Weapons.Count <= 0)
             {
-                Console.WriteLine("No other weapon to equip");
+                Console.WriteLine(Helper.CenterStr("No other weapon to equip................."));
                 return;
             }
             int selectedNumber;
@@ -247,15 +247,7 @@ public class Player : Character
 
     public void AskPlayerAction(Player player)
     {
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine(Helper.CenterStr("[N][E][S][W] TO MOVE"));
-        Console.ForegroundColor = ConsoleColor.DarkGray;
-        Console.WriteLine(Helper.CenterStr("╔══════════════════════════════════════════════════╗"));
-        Console.WriteLine(Helper.CenterStr("║ [1] MOVEMENT OPTIONS    [4] STATS                ║"));
-        Console.WriteLine(Helper.CenterStr("║ [2] INVENTORY           [5] INTERACT             ║"));
-        Console.WriteLine(Helper.CenterStr("║ [3] CHANGE EQUIPMENT    [6] QUIT TO TITLESCREEN  ║"));
-        Console.WriteLine(Helper.CenterStr("╚══════════════════════════════════════════════════╝"));
-        Console.ForegroundColor = ConsoleColor.White;
+        Helper.GameOptions();
 
         string movement = "nswe";
         string playerAction;
@@ -273,7 +265,7 @@ public class Player : Character
                     {
                         CurrentLocation.Map();
                         Console.WriteLine(Helper.CenterStr(CurrentLocation.Description));
-                        AskPlayerAction(player);
+                        Helper.GameOptions();
                     }
                 }
             }
