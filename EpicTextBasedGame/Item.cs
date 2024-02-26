@@ -71,7 +71,7 @@ public class Item{
         {
             //if item has an applicable effect
             Console.WriteLine($"Item.cs: Applying {ItemEffect.EffectType} to {character.Name}");
-            character.AddEffect(ItemEffect);
+            character.AddEffect(ItemEffect.Copy());
         }
         else{
             Console.WriteLine("this item has an applicable effect and likely needs a target. pass a target");

@@ -46,7 +46,7 @@ public class Effect{
         {"HealInstant50", new Effect(4, 50, EffectTypes.HEALINSTANT, 1)},
         {"HealInstant100", new Effect(5, 100, EffectTypes.HEALINSTANT, 1)},
         {"DamageInstant10", new Effect(6, 10, EffectTypes.DAMAGEINSTANT, 1)},
-        {"HealOverTime50_3T", new Effect(7, 5, EffectTypes.HEALOVERTIME, 3)},
+        {"HealOverTime50_3T", new Effect(7, 50, EffectTypes.HEALOVERTIME, 3)},
         {"HealOverTime20_2T", new Effect(8, 20, EffectTypes.HEALOVERTIME, 2)}
     };
     private Effect(int id, double power, EffectTypes effectType, int turnsLeft)
@@ -57,8 +57,7 @@ public class Effect{
         TurnsLeft = turnsLeft;
     }
 
-    //If we want to use an effect it's best to add it manually to above dictionary and use that effect directly in an Item constructor
-    //(so without new Effect()). The below constructor should probably only ever be used if we want to dynamically add new effects 
+    //The below constructor could be used if we want to dynamically add new effects 
     //with e.g. incrementing strength based on enemy level as a reward like so:
     //string rewardStrength = monster.Power * 5;
     //ReaperPotion = new Item("ReaperPotion", new Effect("DamageInstant"+ Convert.ToString(rewardStrength), rewardStrength, EffectTypes.DAMAGEINSTANT, 1) , $"Deals {rewardStrength} Damage");
