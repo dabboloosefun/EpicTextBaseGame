@@ -252,7 +252,7 @@ public class Player : Character
     {
         Helper.GameOptions();
 
-        string movement = "nswe";
+        string movement = "nswem";
         string playerAction;
         int intplayerAction;
 
@@ -264,7 +264,12 @@ public class Player : Character
                 playerAction = playerAction.ToLower();
                 if (movement.Contains(playerAction))
                 {
-                    if (TryMoveTo(playerAction, player))
+                    if (playerAction == "m")
+                    {
+                        CurrentLocation.Map();
+                        Helper.GameOptions();
+                    } 
+                    else if (TryMoveTo(playerAction, player))
                     {
                         Console.WriteLine(Helper.CenterStr(CurrentLocation.Description));
                         Helper.GameOptions();

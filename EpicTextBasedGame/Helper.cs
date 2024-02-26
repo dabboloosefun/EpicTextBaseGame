@@ -319,7 +319,7 @@ public class Helper
     public static void GameOptions()
     {
         Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine(Helper.CenterStr("[N][E][S][W] TO MOVE"));
+        Console.WriteLine(Helper.CenterStr("[N][E][S][W] TO MOVE [M] FOR MAP"));
         Console.ForegroundColor = ConsoleColor.DarkGray;
         Console.WriteLine(Helper.CenterStr("╔══════════════════════════════════════════════════╗"));
         Console.WriteLine(Helper.CenterStr("║ [1] MOVEMENT OPTIONS    [4] STATS                ║"));
