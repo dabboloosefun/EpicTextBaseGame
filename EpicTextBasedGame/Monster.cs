@@ -62,10 +62,8 @@
         Console.WriteLine($"{this.Name}'s attack has been lowered!");
     }
 
-    public List<Item> DropLoot()
+    public void DropLoot(Player player)
     {
-        List<Item> droppedItems = new List<Item>();
-
         foreach (var lootDrop in LootDrops)
         {
             if (lootDrop.ShouldDrop())
@@ -81,10 +79,8 @@
                     Item droppedItem = lootDrop.LootItem;
                     Console.WriteLine($"{this.Name} dropped an item: {droppedItem.Name}");
                     player.AddItem(droppedItem);
-                    droppedItems.Add(droppedItem);
                 }
             }
         }
-        return droppedItems;
     }
 }
