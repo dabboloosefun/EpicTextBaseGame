@@ -238,25 +238,25 @@
     public static void PopulateLocations()
     {
         // Create each location
-        Location home = new Location(LOCATION_ID_HOME, "Home", "Your house. You really need to clean up the place.", null, null);
+        Location home = new Location(LOCATION_ID_HOME, "Home", "Your house. It seems all your candles have dimmed...\nYou can feel the wind breezing through the broken walls", null, null);
 
-        Location townSquare = new Location(LOCATION_ID_TOWN_SQUARE, "Town square", "You see a fountain.", null, null);
+        Location townSquare = new Location(LOCATION_ID_TOWN_SQUARE, "Town square", "You see a fountain adorned with stone eyes.\nThe statue atop seems to resemble a bull standing on it hind legs...", null, null);
 
-        Location alchemistHut = new Location(LOCATION_ID_ALCHEMIST_HUT, "Alchemist's hut", "There are many strange plants on the shelves.", QuestByID(QUEST_ID_CLEAR_ALCHEMIST_GARDEN), null);
+        Location alchemistHut = new Location(LOCATION_ID_ALCHEMIST_HUT, "Alchemist's hut", "There are many strange plants on the shelves.\nYou peer into a cualdron... you regret that decision.", QuestByID(QUEST_ID_CLEAR_ALCHEMIST_GARDEN), null);
 
-        Location alchemistsGarden = new Location(LOCATION_ID_ALCHEMISTS_GARDEN, "Alchemist's garden", "Many plants are growing here.", null, MonsterByID(MONSTER_ID_RAT));
+        Location alchemistsGarden = new Location(LOCATION_ID_ALCHEMISTS_GARDEN, "Alchemist's garden", "The garden smells of rot and mold.\nIt seems that the various plants have not been cared for.\nOr so you think, you're no alchemist.", null, MonsterByID(MONSTER_ID_RAT));
 
-        Location farmhouse = new Location(LOCATION_ID_FARMHOUSE, "Farmhouse", "There is a small farmhouse, with a farmer in front.", QuestByID(QUEST_ID_CLEAR_FARMERS_FIELD), null);
+        Location farmhouse = new Location(LOCATION_ID_FARMHOUSE, "Farmhouse", "The farmhouse rests nicely atop the hill.\nThe dead cows in rotting in the cell do not elude you however.\nThe farmer too, seems to be extremely distraught...", QuestByID(QUEST_ID_CLEAR_FARMERS_FIELD), null);
 
-        Location farmersField = new Location(LOCATION_ID_FARM_FIELD, "Farmer's field", "You see rows of vegetables growing here.", null, MonsterByID(MONSTER_ID_SNAKE));
+        Location farmersField = new Location(LOCATION_ID_FARM_FIELD, "Farmer's field", "You see rows of vegetables growing here.\nEven more rows however have been gnawd on, some are even burnt down.", null, MonsterByID(MONSTER_ID_SNAKE));
 
-        Location fieldsouth = new Location(LOCATION_ID_FIELD_SOUTH, "Cornfield", "The corn rustles in the wind.", null, MonsterByID(MONSTER_ID_FACELESS));
+        Location fieldsouth = new Location(LOCATION_ID_FIELD_SOUTH, "Cornfield", "The corn rustles in the wind. Who knows what's hiding in there...", null, MonsterByID(MONSTER_ID_FACELESS));
 
-        Location guardPost = new Location(LOCATION_ID_GUARD_POST, "Guard post", "There is a large, tough-looking guard here.", null, null);
+        Location guardPost = new Location(LOCATION_ID_GUARD_POST, "Guard post", "There is a large, tough-looking guard here.\nHis armor is battered and bruised. Yet he still stands tall.", null, null);
 
-        Location bridge = new Location(LOCATION_ID_BRIDGE, "Bridge", "A stone bridge crosses a wide river.", QuestByID(QUEST_ID_COLLECT_SPIDER_SILK), null);
+        Location bridge = new Location(LOCATION_ID_BRIDGE, "Bridge", "You try to ignore the bodies piled up under the bridge...", QuestByID(QUEST_ID_COLLECT_SPIDER_SILK), null);
 
-        Location spiderField = new Location(LOCATION_ID_SPIDER_FIELD, "Forest", "You see spider webs covering covering the trees in this forest.", null, MonsterByID(MONSTER_ID_GIANT_SPIDER));
+        Location spiderField = new Location(LOCATION_ID_SPIDER_FIELD, "Forest", "You see webs covering covering the grass and trees.\nIt seems several people did not...", null, MonsterByID(MONSTER_ID_GIANT_SPIDER));
 
         Location arena = new Location(LOCATION_ID_ARENA, "EndArena", "The final boss", null, MonsterByID(MONSTER_ID_ALIEN));
 
