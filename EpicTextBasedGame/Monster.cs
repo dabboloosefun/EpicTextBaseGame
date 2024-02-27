@@ -72,17 +72,19 @@
             {
                 if (lootDrop.LootWeapon != null)
                 {
-                    Console.WriteLine($"{this.Name} dropped a weapon: {lootDrop.LootWeapon.Name}");
-                    // weapon drops
+                    Weapon droppedWeapon = lootDrop.LootWeapon;
+                    Console.WriteLine($"{this.Name} dropped a weapon: {droppedWeapon.Name}");
+                    player.AddWeapon(droppedWeapon);
                 }
                 else if (lootDrop.LootItem != null)
                 {
-                    Console.WriteLine($"{this.Name} dropped an item: {lootDrop.LootItem.Name}");
-                    // potion drops
+                    Item droppedItem = lootDrop.LootItem;
+                    Console.WriteLine($"{this.Name} dropped an item: {droppedItem.Name}");
+                    player.AddItem(droppedItem);
+                    droppedItems.Add(droppedItem);
                 }
             }
         }
-
         return droppedItems;
     }
 }
