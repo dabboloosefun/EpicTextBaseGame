@@ -272,7 +272,7 @@ public class Player : Character
                     } 
                     else if (TryMoveTo(playerAction, player))
                     {
-                        Console.WriteLine(Helper.CenterStr(CurrentLocation.Description));
+                        Helper.WriteInCenter(player.CurrentLocation.Description);
                         Helper.GameOptions();
                     }
                 }

@@ -5,8 +5,9 @@
     public int MaxDamage;
     public int GiveExp;
     public string Image;
+    public List<LootDrop> LootDrops;
 
-    public Monster(int id, string name, int maxDamage, int currentHealth , int maxHealth, int GiveExp, string Image)
+    public Monster(int id, string name, int maxDamage, int currentHealth , int maxHealth, int GiveExp, List<LootDrop> lootDrops, string Image)
     {
         this.ID = id;
         this.Name = name;
@@ -14,9 +15,9 @@
         this.MaxHealth = maxHealth;
         this.CurrentHealth = currentHealth;
         this.GiveExp = GiveExp;
+        this.LootDrops = lootDrops;
         this.Image = Image;
         ActiveEffects = new List<Effect>();
-
     }
 
 
@@ -36,7 +37,7 @@
         minimumDamage = minimumDamage == 0 ? (Convert.ToInt32(this.MaxDamage * 0.8)) : minimumDamage;
         int rolledDamage = rand.Next(minimumDamage, Convert.ToInt32(this.MaxDamage * 1.2));
 
-        if (rand.NextDouble() <= 0.9) return (rolledDamage * 2); // For now 0.9, can be changed to needing to be declared
+        if (rand.NextDouble() <= 0.05) return (rolledDamage * 2);
         else {return rolledDamage;}
     }
 
@@ -59,5 +60,31 @@
             this.MaxDamage = 0;
         }
         Console.WriteLine($"{this.Name}'s attack has been lowered!");
+    }
+
+    public List<Item> DropLoot()
+    {
+        List<Item> droppedItems = new List<Item>();
+
+        foreach (var lootDrop in LootDrops)
+        {
+            if (lootDrop.ShouldDrop())
+            {
+                if (lootDrop.LootWeapon != null)
+                {
+                    Weapon droppedWeapon = lootDrop.LootWeapon;
+                    Console.WriteLine($"{this.Name} dropped a weapon: {droppedWeapon.Name}");
+                    player.AddWeapon(droppedWeapon);
+                }
+                else if (lootDrop.LootItem != null)
+                {
+                    Item droppedItem = lootDrop.LootItem;
+                    Console.WriteLine($"{this.Name} dropped an item: {droppedItem.Name}");
+                    player.AddItem(droppedItem);
+                    droppedItems.Add(droppedItem);
+                }
+            }
+        }
+        return droppedItems;
     }
 }

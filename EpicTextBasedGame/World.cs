@@ -49,7 +49,7 @@
 
     public static void PopulateMonsters()
     {
-        Monster rat = new Monster(MONSTER_ID_RAT, "rat", 1, 3, 3, 3, @"
+        Monster rat = new Monster(MONSTER_ID_RAT, "rat", 3, 8, 8, 8, new List<LootDrop>(), @"
                                  __             _,-""~^""-.
                                _// )      _,-""~`         `.
                              ."" ( /`""-,-""`                 ;
@@ -65,7 +65,7 @@
 ");
 
 
-        Monster snake = new Monster(MONSTER_ID_SNAKE, "snake", 10, 7, 7, 7, @"                                                           
+        Monster snake = new Monster(MONSTER_ID_SNAKE, "snake", 10, 10, 10, 10, new List<LootDrop>(), @"                                                           
                                                             _.--....
                                                  _....---;:'::' ^__/
                                                .' `'`___....---=-'`
@@ -83,7 +83,7 @@
 ");
 
 
-        Monster giantSpider = new Monster(MONSTER_ID_GIANT_SPIDER, "giant spider", 3, 10, 10, 10, @"
+        Monster giantSpider = new Monster(MONSTER_ID_GIANT_SPIDER, "giant spider", 6, 16, 16, 16, new List<LootDrop>(), @"
                                  />\\//\\/>\                     /<\//\\//<\
                                   \Y  \>
                                 />  //\ />\ \>    .;`'`/`;<\   ;/> /> \>/ \\: \>
@@ -104,7 +104,7 @@
 ");
 
 
-        Monster faceless = new Monster(MONSTER_ID_FACELESS, "reaper", 20, 30, 30, 30, @"
+        Monster faceless = new Monster(MONSTER_ID_FACELESS, "reaper", 20, 30, 30, 30, new List<LootDrop>(), @"
                                                                  .""--..__
                                              _                     []       ``-.._
                                           .'` `'.                  ||__           `-._
@@ -142,7 +142,7 @@
                         `-.___,-.      .-.        ___,'        (/    
                                  `---'`   `'----'`
 ");
-        Monster alien = new Monster(MONSTER_ID_ALIEN, "alien", 25, 60, 60, 0, @"
+        Monster alien = new Monster(MONSTER_ID_ALIEN, "alien", 25, 60, 60, 0, new List<LootDrop>(), @"
                                                                                      / /
                                                                                   | | |  /
                                                                                    \|_|_/
@@ -238,25 +238,25 @@
     public static void PopulateLocations()
     {
         // Create each location
-        Location home = new Location(LOCATION_ID_HOME, "Home", "Your house. You really need to clean up the place.", null, null);
+        Location home = new Location(LOCATION_ID_HOME, "Home", "Your house. It seems all your candles have dimmed...\nYou can feel the wind breezing through the broken walls", null, null);
 
-        Location townSquare = new Location(LOCATION_ID_TOWN_SQUARE, "Town square", "You see a fountain.", null, null);
+        Location townSquare = new Location(LOCATION_ID_TOWN_SQUARE, "Town square", "You see a fountain adorned with stone eyes.\nThe statue atop seems to resemble a bull standing on it hind legs...", null, null);
 
-        Location alchemistHut = new Location(LOCATION_ID_ALCHEMIST_HUT, "Alchemist's hut", "There are many strange plants on the shelves.", QuestByID(QUEST_ID_CLEAR_ALCHEMIST_GARDEN), null);
+        Location alchemistHut = new Location(LOCATION_ID_ALCHEMIST_HUT, "Alchemist's hut", "There are many strange plants on the shelves.\nYou peer into a cualdron... you regret that decision.", QuestByID(QUEST_ID_CLEAR_ALCHEMIST_GARDEN), null);
 
-        Location alchemistsGarden = new Location(LOCATION_ID_ALCHEMISTS_GARDEN, "Alchemist's garden", "Many plants are growing here.", null, MonsterByID(MONSTER_ID_RAT));
+        Location alchemistsGarden = new Location(LOCATION_ID_ALCHEMISTS_GARDEN, "Alchemist's garden", "The garden smells of rot and mold.\nIt seems that the various plants have not been cared for. Or so you think, you're no alchemist.", null, MonsterByID(MONSTER_ID_RAT));
 
-        Location farmhouse = new Location(LOCATION_ID_FARMHOUSE, "Farmhouse", "There is a small farmhouse, with a farmer in front.", QuestByID(QUEST_ID_CLEAR_FARMERS_FIELD), null);
+        Location farmhouse = new Location(LOCATION_ID_FARMHOUSE, "Farmhouse", "The farmhouse rests nicely atop the hill.\nThe dead cows in rotting in the cell do not elude you however. The farmer too, seems to be extremely distraught...", QuestByID(QUEST_ID_CLEAR_FARMERS_FIELD), null);
 
-        Location farmersField = new Location(LOCATION_ID_FARM_FIELD, "Farmer's field", "You see rows of vegetables growing here.", null, MonsterByID(MONSTER_ID_SNAKE));
+        Location farmersField = new Location(LOCATION_ID_FARM_FIELD, "Farmer's field", "You see rows of vegetables growing here.\nEven more rows however have been gnawd on, some are even burnt down.", null, MonsterByID(MONSTER_ID_SNAKE));
 
-        Location fieldsouth = new Location(LOCATION_ID_FIELD_SOUTH, "Cornfield", "The corn rustles in the wind.", null, MonsterByID(MONSTER_ID_FACELESS));
+        Location fieldsouth = new Location(LOCATION_ID_FIELD_SOUTH, "Cornfield", "The corn rustles in the wind.\nWho knows what's hiding in there...", null, MonsterByID(MONSTER_ID_FACELESS));
 
-        Location guardPost = new Location(LOCATION_ID_GUARD_POST, "Guard post", "There is a large, tough-looking guard here.", null, null);
+        Location guardPost = new Location(LOCATION_ID_GUARD_POST, "Guard post", "There is a large, tough-looking guard here. His armor is battered and bruised.\nYet he still stands tall.", null, null);
 
-        Location bridge = new Location(LOCATION_ID_BRIDGE, "Bridge", "A stone bridge crosses a wide river.", QuestByID(QUEST_ID_COLLECT_SPIDER_SILK), null);
+        Location bridge = new Location(LOCATION_ID_BRIDGE, "Bridge", "You try to ignore the bodies piled up under the bridge...", QuestByID(QUEST_ID_COLLECT_SPIDER_SILK), null);
 
-        Location spiderField = new Location(LOCATION_ID_SPIDER_FIELD, "Forest", "You see spider webs covering covering the trees in this forest.", null, MonsterByID(MONSTER_ID_GIANT_SPIDER));
+        Location spiderField = new Location(LOCATION_ID_SPIDER_FIELD, "Forest", "You see webs covering covering the grass and trees.\nIt seems several people did not...", null, MonsterByID(MONSTER_ID_GIANT_SPIDER));
 
         Location arena = new Location(LOCATION_ID_ARENA, "EndArena", "The final boss", null, MonsterByID(MONSTER_ID_ALIEN));
 

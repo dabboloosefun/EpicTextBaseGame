@@ -293,6 +293,16 @@ public class Helper
     {
         return (String.Format("{0," + ((Console.WindowWidth / 2) + (textToEnter.Length / 2)) + "}", textToEnter));
     }
+
+    public static void WriteInCenter(string data)
+    {
+        foreach (var model in data.Split('\n'))
+        {
+            Console.SetCursorPosition((Console.WindowWidth - model.Length) / 2, Console.CursorTop);
+            Console.WriteLine(model);
+        }
+    }
+
     public static void WriteBlinkingTextOptions()
     {
         bool visible = true;
