@@ -186,7 +186,7 @@ public class Player : Character
     {
         Console.WriteLine(Helper.CenterStr($"Equipped weapon: {CurrentWeapon.Name}: Max damage: {CurrentWeapon.MaxDamage}, Crit chance: {CurrentWeapon.CritChance}\n"));
         Console.WriteLine(Helper.CenterStr("You are carrying these weapons in your inventory:"));
-        for (int i = 0; i < Weapons.Count - 1; i++)
+        for (int i = 0; i <= Weapons.Count - 1; i++)
         {
             Weapon currentWeapon = Weapons[i];
             Console.WriteLine(Helper.CenterStr($"{i+1}. {currentWeapon.Name}: Max damage: {currentWeapon.MaxDamage}, Crit chance: {currentWeapon.CritChance}\n"));
@@ -327,8 +327,8 @@ public class Player : Character
                 {
                     Console.WriteLine("You decide to visit the market, where you notice a potion merchant and a weaponsmith.");
                     Console.WriteLine("1. Visit potion merchant");
-                    Console.WriteLine("2. Visit weaponsmoth");
-                    Console.WriteLine("3. Never mind");
+                    Console.WriteLine("2. Visit weaponsmith");
+                    Console.WriteLine("3. Nevermind");
                     Console.WriteLine("What would you like to do? 1-3");
                     int userInput;
                     bool parseSuccesful;
@@ -341,19 +341,21 @@ public class Player : Character
                         if (userInput==1){
                             Merchant merchant = new("Potion merchant");
                             merchant.Visit(player);
+                            CurrentLocation.Map(); // overrides any feedback about purchase now.
+                            break;
+                        }
+                        if (userInput==2){
+                            Merchant merchant = new("Weaponsmith");
+                            merchant.Visit(player);
                             CurrentLocation.Map();
                             break;
-                           
-    
+                        }
+                        if (userInput==3){
+                            break;
                         }
 
                     }
-                    if (userInput==2){
-                        break;
-                    }
-                    if (userInput==3){
-                        break;
-                    }
+                    
 
                 }
                 else Console.WriteLine(Helper.CenterStr("Nothing to interact with here"));
