@@ -67,6 +67,7 @@ public class SuperAdventure
                         }
 */
                     }
+                    Helper.ProjectMonser(monster);
                 }
             } // While loop voor player turn
             else if (!playerturn)
@@ -126,7 +127,8 @@ public class SuperAdventure
     public static void ResolveArea(Monster monster, Player player)
     {
         //monster bugg reset
-        monster.MaxDamage -= monster.OriginalDmg;
+        monster.MaxDamage -= monster.BuffedDmg;
+        monster.BuffedDmg = 0;
         //exp is given
         if (monster.CurrentHealth == 0) player.Experience += monster.GiveExp;
         Helper.FightWinScreen(player);
