@@ -114,8 +114,8 @@ public class SuperAdventure
                         Mactiondone = true;
                         break;
                     case "Heal":
-                        int regenamount = monster.CurrentHealth - monster.MaxHealth / 5;
-                        monster.RegenarateHealth(regenamount);
+                            int regenamount = (monster.MaxHealth - monster.CurrentHealth) / 5;
+                            monster.RegenarateHealth(regenamount);
                         Mactiondone = true;
                         break;
                     case "Debuff":
