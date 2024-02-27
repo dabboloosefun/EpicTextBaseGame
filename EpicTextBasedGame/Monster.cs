@@ -5,8 +5,9 @@
     public int MaxDamage;
     public int GiveExp;
     public string Image;
+    public List<LootDrop> LootDrops;
 
-    public Monster(int id, string name, int maxDamage, int currentHealth , int maxHealth, int GiveExp, string Image)
+    public Monster(int id, string name, int maxDamage, int currentHealth , int maxHealth, int GiveExp, string Image, List<LootDrop> lootDrops)
     {
         this.ID = id;
         this.Name = name;
@@ -15,8 +16,8 @@
         this.CurrentHealth = currentHealth;
         this.GiveExp = GiveExp;
         this.Image = Image;
+        this.LootDrops = lootDrops;
         ActiveEffects = new List<Effect>();
-
     }
 
 
