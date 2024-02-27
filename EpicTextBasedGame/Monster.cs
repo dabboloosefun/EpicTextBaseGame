@@ -61,4 +61,28 @@
         }
         Console.WriteLine($"{this.Name}'s attack has been lowered!");
     }
+
+    public List<Item> DropLoot()
+    {
+        List<Item> droppedItems = new List<Item>();
+
+        foreach (var lootDrop in LootDrops)
+        {
+            if (lootDrop.ShouldDrop())
+            {
+                if (lootDrop.LootWeapon != null)
+                {
+                    Console.WriteLine($"{this.Name} dropped a weapon: {lootDrop.LootWeapon.Name}");
+                    // weapon drops
+                }
+                else if (lootDrop.LootItem != null)
+                {
+                    Console.WriteLine($"{this.Name} dropped an item: {lootDrop.LootItem.Name}");
+                    // potion drops
+                }
+            }
+        }
+
+        return droppedItems;
+    }
 }
