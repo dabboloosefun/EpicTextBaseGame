@@ -244,15 +244,15 @@
 
         Location alchemistHut = new Location(LOCATION_ID_ALCHEMIST_HUT, "Alchemist's hut", "There are many strange plants on the shelves.\nYou peer into a cualdron... you regret that decision.", QuestByID(QUEST_ID_CLEAR_ALCHEMIST_GARDEN), null);
 
-        Location alchemistsGarden = new Location(LOCATION_ID_ALCHEMISTS_GARDEN, "Alchemist's garden", "The garden smells of rot and mold.\nIt seems that the various plants have not been cared for.\nOr so you think, you're no alchemist.", null, MonsterByID(MONSTER_ID_RAT));
+        Location alchemistsGarden = new Location(LOCATION_ID_ALCHEMISTS_GARDEN, "Alchemist's garden", "The garden smells of rot and mold.\nIt seems that the various plants have not been cared for. Or so you think, you're no alchemist.", null, MonsterByID(MONSTER_ID_RAT));
 
-        Location farmhouse = new Location(LOCATION_ID_FARMHOUSE, "Farmhouse", "The farmhouse rests nicely atop the hill.\nThe dead cows in rotting in the cell do not elude you however.\nThe farmer too, seems to be extremely distraught...", QuestByID(QUEST_ID_CLEAR_FARMERS_FIELD), null);
+        Location farmhouse = new Location(LOCATION_ID_FARMHOUSE, "Farmhouse", "The farmhouse rests nicely atop the hill.\nThe dead cows in rotting in the cell do not elude you however. The farmer too, seems to be extremely distraught...", QuestByID(QUEST_ID_CLEAR_FARMERS_FIELD), null);
 
         Location farmersField = new Location(LOCATION_ID_FARM_FIELD, "Farmer's field", "You see rows of vegetables growing here.\nEven more rows however have been gnawd on, some are even burnt down.", null, MonsterByID(MONSTER_ID_SNAKE));
 
-        Location fieldsouth = new Location(LOCATION_ID_FIELD_SOUTH, "Cornfield", "The corn rustles in the wind. Who knows what's hiding in there...", null, MonsterByID(MONSTER_ID_FACELESS));
+        Location fieldsouth = new Location(LOCATION_ID_FIELD_SOUTH, "Cornfield", "The corn rustles in the wind.\nWho knows what's hiding in there...", null, MonsterByID(MONSTER_ID_FACELESS));
 
-        Location guardPost = new Location(LOCATION_ID_GUARD_POST, "Guard post", "There is a large, tough-looking guard here.\nHis armor is battered and bruised. Yet he still stands tall.", null, null);
+        Location guardPost = new Location(LOCATION_ID_GUARD_POST, "Guard post", "There is a large, tough-looking guard here. His armor is battered and bruised.\nYet he still stands tall.", null, null);
 
         Location bridge = new Location(LOCATION_ID_BRIDGE, "Bridge", "You try to ignore the bodies piled up under the bridge...", QuestByID(QUEST_ID_COLLECT_SPIDER_SILK), null);
 

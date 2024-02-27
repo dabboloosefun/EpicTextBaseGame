@@ -17,6 +17,7 @@
         //player.AddItem(new Item("Healing Potion", BaseEffects.HealInstant10, "heals 10 instantly", 1));
         Helper.TitleScreen();
         player.CurrentLocation.Map();
+        Helper.WriteInCenter(player.CurrentLocation.Description);
         while (true)
         {
             //enable to force a fight at the start
