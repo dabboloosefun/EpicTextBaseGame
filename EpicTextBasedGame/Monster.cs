@@ -37,7 +37,7 @@
         minimumDamage = minimumDamage == 0 ? (Convert.ToInt32(this.MaxDamage * 0.8)) : minimumDamage;
         int rolledDamage = rand.Next(minimumDamage, Convert.ToInt32(this.MaxDamage * 1.2));
 
-        if (rand.NextDouble() <= 0.9) return (rolledDamage * 2); // For now 0.9, can be changed to needing to be declared
+        if (rand.NextDouble() <= 0.05) return (rolledDamage * 2);
         else {return rolledDamage;}
     }
 
