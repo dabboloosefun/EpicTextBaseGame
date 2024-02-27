@@ -1,6 +1,7 @@
 using System.Collections;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
+using System.Runtime.Intrinsics.Arm;
 
 public class Player : Character
 {
@@ -9,8 +10,6 @@ public class Player : Character
     public Weapon? CurrentWeapon;
     public Location CurrentLocation;
     public List<Quest> QuestList;
-    //public List<(Item item, int turns, bool applied)> ActiveEffects;
-    
 
     public Player()
     {
@@ -322,6 +321,75 @@ public class Player : Character
                     SuperAdventure.Fight(player, player.CurrentLocation.MonsterLivingHere);
                     CurrentLocation.Map();
                 } 
+                else if(player.CurrentLocation.ID == 2) //town square
+                {
+                    Console.WriteLine("You decide to visit the market. The only that appear of interest to you");
+                    Console.WriteLine("is the potion merchant, the weaponsmith. An old lady swarmed with cats also catches your interest.");
+                    Console.WriteLine("1. Visit potion merchant");
+                    Console.WriteLine("2. Visit weaponsmoth");
+                    Console.WriteLine("3. Visit cat lady");
+                    Console.WriteLine("4. Never mind");
+                    Console.WriteLine("What would you like to do? 1-3");
+                    int userInput;
+                    bool parseSuccesful;
+                    do{
+                        parseSuccesful = int.TryParse(Console.ReadLine(), out userInput);
+                    } while(!parseSuccesful || !(1<=userInput && userInput<=4));
+                    bool shopping = true;
+                    while(shopping)
+                    {
+                        if (userInput==1){
+                            Console.WriteLine("You decide to visit the potion merchant");
+                            Console.WriteLine("He smiles at you as you approach. 'Good day! Is there anything particular you need?");
+                            Console.WriteLine("I also sell mystery potions if you're willing to take a risk.");
+                            Console.WriteLine("1. Look at regular wares");
+                            Console.WriteLine("2. Ask more about mystery potion");
+                            Console.WriteLine("3. Leave");
+                            int potionInput;
+                            do{
+                            parseSuccesful = int.TryParse(Console.ReadLine(), out potionInput);
+                            } while(!parseSuccesful || !(1<=potionInput && potionInput<=3));
+                            if(potionInput == 1){
+                                
+                            }
+                            if(potionInput == 2){
+                                Console.WriteLine("'I'm not sure if they work as they should, which is why they're so cheap!'");
+                                Console.WriteLine("'If you're willing to pay more I'm willing to make it more potent'");
+                                Console.WriteLine("1. buy mystery potion");
+                                Console.WriteLine("2. Never mind");
+                                int mysteryPotionInput;
+                                do{
+                                parseSuccesful = int.TryParse(Console.ReadLine(), out mysteryPotionInput);
+                                } while(!parseSuccesful || !(1<=mysteryPotionInput && mysteryPotionInput<=2));
+                                if(mysteryPotionInput==1){
+                                    Console.WriteLine("How much are you willing to pay?");
+                                    int amountToPay;
+                                    do{
+                                    parseSuccesful = int.TryParse(Console.ReadLine(), out mysteryPotionInput);
+                                    } while(!parseSuccesful || !(1<=mysteryPotionInput && mysteryPotionInput<=2));
+                                }
+                                if(mysteryPotionInput==2) continue;
+                            }
+                            if(potionInput == 1){
+                                
+                            }
+                            if(potionInput == 3){
+                                Console.WriteLine("You leave the potion merchant");
+                                CurrentLocation.Map();
+                            }
+                        }
+
+                    }
+                    if (userInput==2){
+                        
+                    }
+                    if (userInput==3){
+                        
+                    }
+                    if (userInput==4){
+                        
+                    }
+                }
                 else Console.WriteLine(Helper.CenterStr("Nothing to interact with here"));
                 break;
 
