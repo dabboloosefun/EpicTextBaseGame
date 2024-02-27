@@ -28,7 +28,7 @@ public class Player : Character
 
     public bool LevelUp()
     {
-        if (Experience >= 2 * (5 * Level))
+        if (Experience >= Level / Math.Pow(0.3, 2.0))
         {
             Level += 1;
             MaxHealth += 10;
