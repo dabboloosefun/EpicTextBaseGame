@@ -15,8 +15,9 @@
         player.AddItem(new Item("Healing Potion10", new Effect("HealInstant10", 10, EffectTypes.HEALINSTANT, 1), "heals 10 instantly", 1));
         player.AddItem(new Item("Healing Potion10", new Effect("HealInstant10", 10, EffectTypes.HEALINSTANT, 1), "heals 10 instantly", 1));
         player.AddItem(Item.BaseItems["Healing Potion10"].Copy()); 
-        Item Coin = new Item("Gold Coin", new Effect("DamageInstant1", 1, EffectTypes.DAMAGEINSTANT, 1), "Pocket money", 10);
-        player.AddItem(Coin);
+        player.Coins = 200;
+
+
         //player.AddItem(new Item("Healing Potion", BaseEffects.HealInstant10, "heals 10 instantly", 1));
         Helper.TitleScreen();
         player.CurrentLocation.Map();
