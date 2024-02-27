@@ -97,14 +97,7 @@ public class SuperAdventure
                 }
                 else if (Monster_choice > 80)
                 {
-                    if (Monster_choice > 90)
-                    {
-                        Monster_action = "Debuff";
-                    }
-                    else
-                    {
-                        Monster_action = "Buff";
-                    }
+                    Monster_action = "Buff";
                 }
 
                 switch (Monster_action)
@@ -118,12 +111,8 @@ public class SuperAdventure
                             monster.RegenarateHealth(regenamount);
                         Mactiondone = true;
                         break;
-                    case "Debuff":
-                        // implement needed
-                        Mactiondone = true;
-                        break;
                     case "Buff":
-                        // implement needed
+                        monster.RaiseMaxDamage((monster.MaxHealth/10) * 2 + 5);
                         Mactiondone = true;
                         break;
                 }
