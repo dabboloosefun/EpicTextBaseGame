@@ -49,7 +49,7 @@
 
     public static void PopulateMonsters()
     {
-        Monster rat = new Monster(MONSTER_ID_RAT, "rat", 3, 8, 8, 8, @"
+        Monster rat = new Monster(MONSTER_ID_RAT, "rat", 3, 8, 8, 8, new List<LootDrop>(), @"
                                  __             _,-""~^""-.
                                _// )      _,-""~`         `.
                              ."" ( /`""-,-""`                 ;
@@ -62,10 +62,10 @@
                                 (((""`             (((---~""`         //
                                                                     ((________________
                                                                     `----""""""""~~~~^^^```
-");
+", new List<LootDrop>());
 
 
-        Monster snake = new Monster(MONSTER_ID_SNAKE, "snake", 10, 10, 10, 10, @"                                                           
+        Monster snake = new Monster(MONSTER_ID_SNAKE, "snake", 10, 10, 10, 10, new List<LootDrop>(), @"                                                           
                                                             _.--....
                                                  _....---;:'::' ^__/
                                                .' `'`___....---=-'`
@@ -80,10 +80,10 @@
                                        \:   .:. ''' .:| .:, _:./':.|
                                         '--.:::...---'\:'.:`':`':./
                                                        '-::..:::-'
-");
+", new List<LootDrop>());
 
 
-        Monster giantSpider = new Monster(MONSTER_ID_GIANT_SPIDER, "giant spider", 6, 16, 16, 16, @"
+        Monster giantSpider = new Monster(MONSTER_ID_GIANT_SPIDER, "giant spider", 6, 16, 16, 16, new List<LootDrop>(), @"
                                  />\\//\\/>\                     /<\//\\//<\
                                   \Y  \>
                                 />  //\ />\ \>    .;`'`/`;<\   ;/> /> \>/ \\: \>
@@ -101,10 +101,10 @@
                       \\>
                         \\(                                                       )//
                           \\                                                     // 
-");
+", new List<LootDrop>());
 
 
-        Monster faceless = new Monster(MONSTER_ID_FACELESS, "reaper", 20, 30, 30, 30, @"
+        Monster faceless = new Monster(MONSTER_ID_FACELESS, "reaper", 20, 30, 30, 30, new List<LootDrop>(), @"
                                                                  .""--..__
                                              _                     []       ``-.._
                                           .'` `'.                  ||__           `-._
@@ -141,8 +141,8 @@
                         /`                            |        ||    
                         `-.___,-.      .-.        ___,'        (/    
                                  `---'`   `'----'`
-");
-        Monster alien = new Monster(MONSTER_ID_ALIEN, "alien", 25, 60, 60, 0, @"
+", new List<LootDrop>());
+        Monster alien = new Monster(MONSTER_ID_ALIEN, "alien", 25, 60, 60, 0, new List<LootDrop>(), @"
                                                                                      / /
                                                                                   | | |  /
                                                                                    \|_|_/

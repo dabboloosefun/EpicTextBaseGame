@@ -7,7 +7,7 @@
     public string Image;
     public List<LootDrop> LootDrops;
 
-    public Monster(int id, string name, int maxDamage, int currentHealth , int maxHealth, int GiveExp, string Image, List<LootDrop> lootDrops)
+    public Monster(int id, string name, int maxDamage, int currentHealth , int maxHealth, int GiveExp, List<LootDrop> lootDrops, string Image)
     {
         this.ID = id;
         this.Name = name;
