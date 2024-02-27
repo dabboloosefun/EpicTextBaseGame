@@ -368,4 +368,10 @@ public class Helper
         Console.Write(new string(' ', Console.BufferWidth));
         Console.SetCursorPosition(0, Console.CursorTop - 1);
     }
+
+    public static void ClearLineDo()
+    {
+        Console.Write(new string(' ', Console.BufferWidth));
+        Console.SetCursorPosition(0, Console.CursorTop - 1);
+    }
 }

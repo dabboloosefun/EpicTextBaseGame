@@ -325,32 +325,36 @@ public class Player : Character
                 } 
                 else if(player.CurrentLocation.ID == 2) //town square
                 {
-                    Console.WriteLine("You decide to visit the market, where you notice a potion merchant and a weaponsmith.");
-                    Console.WriteLine("1. Visit potion merchant");
-                    Console.WriteLine("2. Visit weaponsmith");
-                    Console.WriteLine("3. Nevermind");
-                    Console.WriteLine("What would you like to do? 1-3");
+                    Helper.WriteInCenter(@"You decide to visit the market, where you notice a potion merchant and a weaponsmith.
+1. Visit potion merchant
+2. Visit weaponsmith
+3. Nevermind
+What would you like to do? 1-3");
                     int userInput;
                     bool parseSuccesful;
                     do{
                         parseSuccesful = int.TryParse(Console.ReadLine(), out userInput);
+                        Helper.ClearLineDo();
                     } while(!parseSuccesful || !(1<=userInput && userInput<=3));
                     bool shopping = true;
                     while(shopping)
                     {
                         if (userInput==1){
+                            Console.Clear();
                             Merchant merchant = new("Potion merchant");
                             merchant.Visit(player);
                             CurrentLocation.Map(); // overrides any feedback about purchase now.
                             break;
                         }
                         if (userInput==2){
+                            Console.Clear();
                             Merchant merchant = new("Weaponsmith");
                             merchant.Visit(player);
                             CurrentLocation.Map();
                             break;
                         }
                         if (userInput==3){
+                            Console.Clear();
                             break;
                         }
 

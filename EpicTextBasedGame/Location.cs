@@ -57,13 +57,13 @@ public class Location{
         if (completed == 2)
         {
             Console.WriteLine(Helper.CenterStr("You're up to the challenge, proceed.\n"));
-            Thread.Sleep(3000);
+            Thread.Sleep(2000);
         }
         else
         {
             Console.WriteLine(Helper.CenterStr("You're not allowed beyond this point!"));
             Console.WriteLine(Helper.CenterStr("I'll have you escorted back to the town.\n"));
-            Thread.Sleep(4000);
+            Thread.Sleep(2000);
             player.CurrentLocation = player.CurrentLocation.LocationToWest;
         }
     }
@@ -93,45 +93,45 @@ public class Location{
                                     **********   ▀ H ≈≈≈≈≈ **********
         ";
         int indexPos = 0;
-        switch (Name)
+        switch (ID)
         {
-            case "Home":
+            case World.LOCATION_ID_HOME:
                 indexPos = map.IndexOf("    |     ");
                 break;
 
-            case "Town square":
+            case World.LOCATION_ID_TOWN_SQUARE:
                 indexPos = map.IndexOf("  │   │█");
                 break;
 
-            case "Alchemist's hut":
+            case World.LOCATION_ID_ALCHEMIST_HUT:
                 indexPos = map.IndexOf("│ ▄███▄ ");
                 break;
 
-            case "Alchemist's garden":
+            case World.LOCATION_ID_ALCHEMISTS_GARDEN:
                 indexPos = map.IndexOf("   ...  ");
                 break;
 
-            case "Farmhouse":
+            case World.LOCATION_ID_FARMHOUSE:
                 indexPos = map.IndexOf("===F___");
                 break;
 
-            case "Farmer's field":
+            case World.LOCATION_ID_FARM_FIELD:
                 indexPos = map.IndexOf("  =====       │");
                 break;
 
-            case "Cornfield":
+            case World.LOCATION_ID_FIELD_SOUTH:
                 indexPos = map.IndexOf("      ▄▌ *");
                 break;
 
-            case "Guard post":
+            case World.LOCATION_ID_GUARD_POST:
                 indexPos = map.IndexOf(" │---G╠");
                 break;
 
-            case "Bridge":
+            case World.LOCATION_ID_BRIDGE:
                 indexPos = map.IndexOf("--G╠═B═");
                 break;
 
-            case "Forest":
+            case World.LOCATION_ID_SPIDER_FIELD:
                 indexPos = map.IndexOf(" **S***");
                 break;
         }
