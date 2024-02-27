@@ -1,8 +1,11 @@
-﻿public class Monster : Character
+﻿using System.Runtime.CompilerServices;
+
+public class Monster : Character
 {
 
     public int ID;
     public int MaxDamage;
+    public int OriginalDmg = 0;
     public int GiveExp;
     public string Image;
     public List<LootDrop> LootDrops;
@@ -46,6 +49,7 @@
     // Ter gebruik voor Monster attack buffs
     public void RaiseMaxDamage(int raisedDamage)
     {
+        OriginalDmg += raisedDamage;
         this.MaxDamage += raisedDamage;
         Console.WriteLine($"{this.Name}'s attack has been raised!");
     }

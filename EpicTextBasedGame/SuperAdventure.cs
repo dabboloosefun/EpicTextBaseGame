@@ -112,7 +112,7 @@ public class SuperAdventure
                         Mactiondone = true;
                         break;
                     case "Buff":
-                        monster.RaiseMaxDamage((monster.MaxHealth/10) * 2 + 5);
+                        monster.RaiseMaxDamage(((monster.MaxHealth/10) * 2 + 5));
                         Mactiondone = true;
                         break;
                 }
@@ -120,11 +120,13 @@ public class SuperAdventure
             } // While loop voor enemy
             playerturn = !playerturn; // Draait player turn om
         } // While loop voor fight
-        CheckQuestExpResetArea(monster, player);
+        ResolveArea(monster, player);
     }
 
-    public static void CheckQuestExpResetArea(Monster monster, Player player)
+    public static void ResolveArea(Monster monster, Player player)
     {
+        //monster bugg reset
+        monster.MaxDamage -= monster.OriginalDmg;
         //exp is given
         if (monster.CurrentHealth == 0) player.Experience += monster.GiveExp;
         Helper.FightWinScreen(player);
