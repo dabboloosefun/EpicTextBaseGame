@@ -62,7 +62,7 @@
                                 (((""`             (((---~""`         //
                                                                     ((________________
                                                                     `----""""""""~~~~^^^```
-", new List<LootDrop>());
+");
 
 
         Monster snake = new Monster(MONSTER_ID_SNAKE, "snake", 10, 10, 10, 10, new List<LootDrop>(), @"                                                           
@@ -80,7 +80,7 @@
                                        \:   .:. ''' .:| .:, _:./':.|
                                         '--.:::...---'\:'.:`':`':./
                                                        '-::..:::-'
-", new List<LootDrop>());
+");
 
 
         Monster giantSpider = new Monster(MONSTER_ID_GIANT_SPIDER, "giant spider", 6, 16, 16, 16, new List<LootDrop>(), @"
@@ -101,7 +101,7 @@
                       \\>
                         \\(                                                       )//
                           \\                                                     // 
-", new List<LootDrop>());
+");
 
 
         Monster faceless = new Monster(MONSTER_ID_FACELESS, "reaper", 20, 30, 30, 30, new List<LootDrop>(), @"
@@ -141,7 +141,7 @@
                         /`                            |        ||    
                         `-.___,-.      .-.        ___,'        (/    
                                  `---'`   `'----'`
-", new List<LootDrop>());
+");
         Monster alien = new Monster(MONSTER_ID_ALIEN, "alien", 25, 60, 60, 0, new List<LootDrop>(), @"
                                                                                      / /
                                                                                   | | |  /

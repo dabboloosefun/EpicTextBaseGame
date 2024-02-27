@@ -15,8 +15,8 @@
         this.MaxHealth = maxHealth;
         this.CurrentHealth = currentHealth;
         this.GiveExp = GiveExp;
-        this.Image = Image;
         this.LootDrops = lootDrops;
+        this.Image = Image;
         ActiveEffects = new List<Effect>();
     }
 
