@@ -124,37 +124,45 @@ public class Player : Character
         }
     }
 
-    public bool PromptUseItem(Monster? monsterTarget = null){
+    public bool PromptUseItem(Player player, Monster monster, Monster? monsterTarget = null){
         if (Items.Count <= 0)
         {
             Console.WriteLine("You have no items");
             return false;
         }
+        SuperAdventure.FightStats(player, monster);
         ListItems();
         int selectedItemNumber;
         int selectedTargetNumber;
         bool successfulParse;
         do
         {
-            Console.WriteLine($"Enter the number of the item you wish to use. 1-{Items.Count}");
+            Console.WriteLine(Helper.CenterStr($"Enter the number of the item you wish to use. 1-{Items.Count}"));
             successfulParse = int.TryParse(Console.ReadLine(), out selectedItemNumber);
+            Helper.ClearLastLine();
         } while (!successfulParse || !(1 <= selectedItemNumber && selectedItemNumber <= Items.Count));
+        Console.Clear();
         do
         {
+            Helper.ProjectMonser(monster);
+            SuperAdventure.FightStats(player, monster);
             Console.WriteLine($"Who do you want to use the item on?");
             Console.WriteLine($"1. Yourself");
             Console.WriteLine($"2. Enemy");
             Console.WriteLine($"3. Cancel");
             successfulParse = int.TryParse(Console.ReadLine(), out selectedTargetNumber);
+            Console.Clear();
         } while (!successfulParse || !(1 <= selectedTargetNumber && selectedTargetNumber <= 3));
         if(selectedTargetNumber == 1) //player
         {
+            Helper.ProjectMonser(monster);
             Items[selectedItemNumber-1].UseItem(this); //displayed number is now 1 higher so we need displayednumber - 1
             RemoveItem(Items[selectedItemNumber-1]);
             return true;
         }
         else if(selectedTargetNumber == 2) //enemy
         {
+            Helper.ProjectMonser(monster);
             Items[selectedItemNumber-1].UseItem(monsterTarget);
             Console.WriteLine("");
             RemoveItem(Items[selectedItemNumber-1]);
@@ -162,7 +170,7 @@ public class Player : Character
         }
         else if(selectedTargetNumber == 3) //dont use item
         {
-            Console.WriteLine("You put the item back in your backpack");
+            Helper.ProjectMonser(monster);
             return false;
         }
         return false;

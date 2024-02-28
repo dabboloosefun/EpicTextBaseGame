@@ -32,8 +32,9 @@ public class SuperAdventure
 
                     case "2":
                     case "use item":
-                        Helper.ProjectMonser(monster);
-                        bool succesfulitem = player.PromptUseItem(monster);
+                        Console.Clear();
+                        Console.WriteLine("\u001b[2J\u001b[3J");
+                        bool succesfulitem = player.PromptUseItem(player, monster);
                         if(succesfulitem){
                             player.UpdateEffects();
                             Actiondone = true;
