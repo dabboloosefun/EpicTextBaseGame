@@ -2,6 +2,8 @@
 {
 
     public static readonly List<Weapon> Weapons = new List<Weapon>();
+
+    public static readonly List<Item> Items = new List<Item>();
     public static readonly List<Monster> Monsters = new List<Monster>();
     public static readonly List<Quest> Quests = new List<Quest>();
     public static readonly List<Location> Locations = new List<Location>();
@@ -51,6 +53,7 @@
         PopulateMonsters();
         PopulateQuests();
         PopulateLocations();
+        PopulateItems();
     }
 
 
@@ -63,9 +66,26 @@
         Weapons.Add(new Weapon(WEAPON_ID_HAND_OF_GOD, "Hand of God", 1000, 1));
     }
 
+    public static void PopulateItems()
+    {
+        Item healingPotion10 = new Item("Healing Potion10", Effect.BaseEffects["HealInstant10"].Copy(), "heals 10 instantly", 1);
+        Item healingPotion20 = new Item("Healing Potion20", Effect.BaseEffects["HealInstant20"].Copy(), "heals 20 instantly", 1);
+        Item healingPotion30 = new Item("Healing Potion30", Effect.BaseEffects["HealInstant30"].Copy(), "heals 30 instantly", 1);
+        Item healingPotion50 = new Item("Healing Potion50", Effect.BaseEffects["HealInstant50"].Copy(), "heals 50 instantly", 1);
+        Item healingPotion100 = new Item("Healing Potion100", Effect.BaseEffects["HealInstant100"].Copy(), "heals 100 instantly", 1);
+        Item healingPotion123 = new Item("Healing Potion123", new Effect("HealInstant123", 123, EffectTypes.HEALINSTANT, 1), "heals 123 instantly", 1);
+
+        Items.Add(healingPotion10);
+        Items.Add(healingPotion20);
+        Items.Add(healingPotion30);
+        Items.Add(healingPotion50);
+        Items.Add(healingPotion100);
+        Items.Add(healingPotion123);
+    }
+
     public static void PopulateMonsters()
     {
-        Monster rat = new Monster(MONSTER_ID_RAT, "rat", 4, 12, 12, 12, 10, new List<LootDrop>{new LootDrop(30, WeaponByID(2))}, @"
+        Monster rat = new Monster(MONSTER_ID_RAT, "rat", 4, 12, 12, 12, 10, new List<LootDrop>{new LootDrop(30, null, ItemByID(1))}, @"
                                  __             _,-""~^""-.
                                _// )      _,-""~`         `.
                              ."" ( /`""-,-""`                 ;
@@ -475,6 +495,19 @@
     public static Weapon WeaponByID(int id)
     {
         foreach (Weapon item in Weapons)
+        {
+            if (item.ID == id)
+            {
+                return item;
+            }
+        }
+
+        return null;
+    }
+
+    public static Item ItemByID(int id)
+    {
+        foreach (Item item in Items)
         {
             if (item.ID == id)
             {
