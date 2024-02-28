@@ -297,6 +297,7 @@ public class Player : Character
 
             case 2:
                 Console.Clear();
+                Console.WriteLine(Helper.CenterStr($"You are carrying {player.Coins} coins"));
                 ListWeapons();
                 ListItems();
                 break;
