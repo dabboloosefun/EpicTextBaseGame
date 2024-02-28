@@ -11,6 +11,7 @@ public class Player : Character
     public Location CurrentLocation;
     public List<Quest> QuestList;
     public int Coins;
+    public int Minotaur = 0;
 
     public Player()
     {
@@ -26,6 +27,45 @@ public class Player : Character
         Experience = 0;
         Level = 1;
         Coins = 0;
+    }
+
+    public void MinotaurFight(Player player)
+    {
+        if ((CurrentLocation.ID == World.LOCATION_ID_BURROW) && (Minotaur == 0)) Minotaur = 1;
+        if ((CurrentLocation.ID == World.LOCATION_ID_HOME) && (Minotaur == 1))
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n");
+            Console.WriteLine(Helper.CenterStr($"A rampaging minotaur has appeared at your home!"));
+            Console.WriteLine("\n");
+            Console.ForegroundColor = ConsoleColor.White;
+            Thread.Sleep(1500);
+            SuperAdventure.Fight(player, new Monster(33, "minotaur", 13, 50, 50, 100, 40, new List<LootDrop>(), @"
+                                                                                    _
+                                                                                  _( (~\
+                           _ _                        /                          ( \> > \
+                       -/~/ / ~\                     :;                \       _  > /(~\/
+                      || | | /\ ;\                   |l      _____     |;     ( \/ /   /
+                      _\\)\)\)/ ;;;                  `8o __-~     ~\   d|      \   \  //
+                     ///(())(__/~;;\                  ""88p;.  -. _\_;.oP        (_._/ /
+                    (((__   __ \\   \                  `>,% (\  (\./)8""         ;:'  i
+                    )))--`.'-- (( ;,8 \               ,;%%%:  ./V^^^V'          ;.   ;.
+                    ((\   |   /)) .,88  `: ..,,;;;;,-::::::'_::\   ||\         ;[8:   ;
+                     )|  ~-~  |(|(888; ..``'::::8888oooooo.  :\`^^^/,,~--._    |88::| |
+                      \ -===- /|  \8;; ``:.      oo.8888888888:`((( o.ooo8888Oo;:;:'  |
+                     |_~-___-~_|   `-\.   `        `o`88888888b` )) 888b88888P""""'     ;
+                      ;~~~~;~~         ""`--_`.       b`888888888;(.,""888b888""  ..::;-'
+                       ;      ;              ~""-....  b`8888888:::::.`8888. .:;;;''
+                          ;    ;                 `:::. `:::OOO:::::::.`OO' ;;;''
+                     :       ;                     `.      ""``::::::''    .'
+                        ;                           `.   \_              /
+                      ;       ;                       +:   ~~--  `:'  -';
+                                                       `:         : .::/
+                          ;                            ;;+_  :::. :..;;;
+"));
+            Minotaur += 1;
+        }
     }
 
     public bool LevelUp()
@@ -237,6 +277,7 @@ public class Player : Character
         if (newLocation != null)
         {
             CurrentLocation = newLocation;
+            MinotaurFight(player);
             double succesfulEncounter = 1;
             Random encounterChance = new Random();
             double encounterRoll = encounterChance.NextDouble();
