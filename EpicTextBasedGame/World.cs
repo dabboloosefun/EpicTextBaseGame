@@ -11,6 +11,8 @@
     public const int WEAPON_ID_CLUB = 2;
     public const int WEAPON_ID_SCYTHE = 666;
 
+    public const int WEAPON_ID_POISON_DAGGER = 3;
+
     public const int MONSTER_ID_RAT = 1;
     public const int MONSTER_ID_SNAKE = 2;
     public const int MONSTER_ID_GIANT_SPIDER = 3;
@@ -47,11 +49,12 @@
         Weapons.Add(new Weapon(WEAPON_ID_RUSTY_SWORD, "Rusty sword", 5, 0.05));
         Weapons.Add(new Weapon(WEAPON_ID_CLUB, "Club", 10, 0.05));
         Weapons.Add(new Weapon(WEAPON_ID_SCYTHE, "Grave Scythe", 50, 0.3));
+        Weapons.Add(new Weapon(WEAPON_ID_POISON_DAGGER, "Poison dagger", 8, 0.3));
     }
 
     public static void PopulateMonsters()
     {
-        Monster rat = new Monster(MONSTER_ID_RAT, "rat", 3, 8, 8, 8, 10, new List<LootDrop>{new LootDrop(1, WeaponByID(1))}, @"
+        Monster rat = new Monster(MONSTER_ID_RAT, "rat", 3, 8, 8, 8, 10, new List<LootDrop>{new LootDrop(30, WeaponByID(2))}, @"
                                  __             _,-""~^""-.
                                _// )      _,-""~`         `.
                              ."" ( /`""-,-""`                 ;
@@ -66,7 +69,7 @@
                                                                     `----""""""""~~~~^^^```
 ");
 
-        Monster snake = new Monster(MONSTER_ID_SNAKE, "snake", 10, 10, 10, 10, 16, new List<LootDrop>(), @"                                                           
+        Monster snake = new Monster(MONSTER_ID_SNAKE, "snake", 10, 10, 10, 10, 16, new List<LootDrop>{new LootDrop(50, WeaponByID(3))}, @"                                                           
                                                             _.--....
                                                  _....---;:'::' ^__/
                                                .' `'`___....---=-'`
