@@ -242,8 +242,14 @@ What would you like to do? 1-3");
                         else
                         {
                             player.Coins -= Weapons[purchaceChoice-1].Item2;
+                            if (Weapons[purchaceChoice-1].Item1.Name == "Gun")
+                            {
+                                Console.WriteLine(Helper.CenterStr("\n\nSay hello to the 21st century.\n\n"));
+                                Thread.Sleep(1500);
+                            }
                             player.AddWeapon(Weapons[purchaceChoice-1].Item1);
                             Weapons.Remove(Weapons[purchaceChoice-1]);
+                            
                             Console.WriteLine(Helper.CenterStr("Thank you for your patronage"));
                             Console.WriteLine(Helper.CenterStr($"You now have {player.Coins} Coins"));
                             Thread.Sleep(1500);

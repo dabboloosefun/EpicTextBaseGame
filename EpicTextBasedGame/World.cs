@@ -357,7 +357,7 @@
 
         Location guardPost = new Location(LOCATION_ID_GUARD_POST, "Guard post", "There is a large, tough-looking guard here. His armor is battered and bruised.\nYet he still stands tall.", null, null);
 
-        Location bridge = new Location(LOCATION_ID_BRIDGE, "Bridge", "You try to ignore the bodies piled up under the bridge...\nThe village elder and his councilman approach you about pest control, something to do with arachnids.", QuestByID(QUEST_ID_COLLECT_SPIDER_SILK), null);
+        Location bridge = new Location(LOCATION_ID_BRIDGE, "Bridge", "You try to ignore the bodies piled up under the bridge...\nThe village elder and his councilfolk approach you about pest control, something to do with arachnids.", QuestByID(QUEST_ID_COLLECT_SPIDER_SILK), null);
 
         Location spiderField = new Location(LOCATION_ID_SPIDER_FIELD, "Forest", "You see webs covering covering the grass and trees.\nIt seems several people did not...", null, MonsterByID(MONSTER_ID_GIANT_SPIDER));
 

@@ -13,7 +13,10 @@ public class SuperAdventure
         }
         Helper.ProjectMonser(monster);
         Console.WriteLine(Helper.CenterStr($"A(n) {monster.Name} has appeared"));
-        bool playerturn = true;
+        bool playerturn = false;
+        Random random = new Random();
+        int turn = random.Next(0, 3);
+        if (turn == 1) playerturn = true;
         while (player.CurrentHealth > 0 && monster.CurrentHealth > 0)
         {
             if (playerturn){
