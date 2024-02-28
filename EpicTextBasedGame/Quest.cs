@@ -70,6 +70,7 @@ public class Quest
         Console.ForegroundColor = ConsoleColor.White;
         if (player.CurrentLocation.ID == World.LOCATION_ID_FARMHOUSE) player.CurrentLocation.AdjustDescription("The farmer is pleased.");
         if (player.CurrentLocation.ID == World.LOCATION_ID_ALCHEMIST_HUT) player.CurrentLocation.AdjustDescription("The alchemist pays you no heed.");
+        if (player.CurrentLocation.ID == World.LOCATION_ID_TOWN_SQUARE) player.CurrentLocation.AdjustDescription("The townsmen hail you as a hero, they are eternally grateful.");
         Thread.Sleep(1000);
     }
 

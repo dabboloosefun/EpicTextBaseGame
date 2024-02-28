@@ -6,7 +6,7 @@ public class SuperAdventure
 {
     public static void Fight(Player player, Monster monster)
     {
-        if (player.Minotaur = false) return;
+        if ((player.CurrentLocation.MonsterLivingHere.ID == World.MONSTER_ID_MINOTAUR) && (player.Minotaur == false)) return;
         if (monster.CurrentHealth == 0) return;
         Helper.ProjectMonser(monster);
         Console.WriteLine(Helper.CenterStr($"A {monster.Name} has appeared"));
