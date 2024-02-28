@@ -34,7 +34,7 @@ public class Quest
         player.QuestList.Add(this);
         if (player.CurrentLocation.ID == World.LOCATION_ID_FARMHOUSE) player.CurrentLocation.AdjustDescription("The farmer is waiting impatiently.");
         if (player.CurrentLocation.ID == World.LOCATION_ID_ALCHEMIST_HUT) player.CurrentLocation.AdjustDescription("The alchemist is gazing at you intently.");
-        if (player.CurrentLocation.ID == World.LOCATION_ID_BRIDGE) player.CurrentLocation.AdjustDescription("The councilman seems to be at odds with eachother.");
+        if (player.CurrentLocation.ID == World.LOCATION_ID_BRIDGE) player.CurrentLocation.AdjustDescription("The council members seem to be at odds with eachother.");
     }
     public void UpdateQuest(Player player)
     {
@@ -68,9 +68,9 @@ public class Quest
         Console.WriteLine(Helper.CenterStr($"Quest cleared: {Name}!"));
         Console.WriteLine("\n");
         Console.ForegroundColor = ConsoleColor.White;
-        if (player.CurrentLocation.ID == World.LOCATION_ID_FARMHOUSE) player.CurrentLocation.AdjustDescription("The farmer is pleased.");
-        if (player.CurrentLocation.ID == World.LOCATION_ID_ALCHEMIST_HUT) player.CurrentLocation.AdjustDescription("The alchemist pays you no heed.");
-        if (player.CurrentLocation.ID == World.LOCATION_ID_HOME) player.CurrentLocation.AdjustDescription("The townsmen hail you as a hero, they are eternally grateful.");
+        if (player.CurrentLocation.ID == World.LOCATION_ID_FARM_FIELD) player.CurrentLocation.LocationToEast.AdjustDescription("The farmer is pleased.");
+        if (player.CurrentLocation.ID == World.LOCATION_ID_ALCHEMISTS_GARDEN) player.CurrentLocation.LocationToSouth.AdjustDescription("The alchemist pays you no heed.");
+        if (player.CurrentLocation.ID == World.LOCATION_ID_HOME) player.CurrentLocation.LocationToNorth.AdjustDescription("The townsmen hail you as a hero, they are eternally grateful.");
         Thread.Sleep(1000);
     }
 

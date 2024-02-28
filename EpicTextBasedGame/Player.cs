@@ -29,6 +29,61 @@ public class Player : Character
         Coins = 0;
     }
 
+    public void AlchemistFight(Player player)
+    {
+        Console.Clear();
+        string userInput;
+        Console.WriteLine(Helper.CenterStr("The alchemist seems to hate your guts.\n"));
+        do
+        {
+            Console.WriteLine(Helper.CenterStr("Show him how it's done? Y/N"));
+            userInput = Console.ReadLine().ToLower();
+            Helper.ClearLastLine();
+        } while (userInput != "y" && userInput != "n");
+
+        if (userInput == "n")
+        {
+            Console.Clear();
+            return;
+        }
+
+        else if (userInput == "y")
+        {
+            SuperAdventure.Fight(player, new Monster(44, "Alchemist", 19, 25, 25, 400, 150, new List<LootDrop>(), @"
+                                                  /|
+                                                 / |
+                                                /  |
+                                               /   \
+                                              /    |
+                                             /      \
+                                            /______  |
+                                           /|@/@ \_\__\
+                                          ///<__ / \  \\
+                                         //  \\_\|/ \___\\_
+                                        // __/\__/ /       \_
+                                  _____||/      \/          \_
+                               <|/\_\\   \  \     \            \
+                                 \\_\-\   |  \    /     \ \__   |
+                                     \/_____/|    \      \_|    |
+                                              \   /        |    |
+                                              |\  \        |____|
+                                              \ \ /        /   |
+                                              |\  \        \`///
+                                              /   /            \
+                                             /    .             \
+                                            /     .              \
+                                           / /                    \_
+                                          /_/                      _\
+                                          | \      |              /
+                                          |  \_____|             / \
+                                          |    |   \____________/   \
+                                          |__  |               \     \
+                                       ___/____|              __\    _|
+                                       L____ __|              L____/`
+"));
+        }
+    }
+
     public void MinotaurFight(Player player)
     {
         if (CurrentLocation.ID == World.LOCATION_ID_BURROW) {
@@ -336,6 +391,10 @@ public class Player : Character
                 {
                     Merchant.Market(player);
                     if (CurrentLocation.QuestAvailableHere != null) CurrentLocation.StartLocationQuest(player);
+                }
+                else if ((CurrentLocation.ID == World.LOCATION_ID_ALCHEMIST_HUT) && (player.QuestList.Any(x => x.ID == World.QUEST_ID_CLEAR_ALCHEMIST_GARDEN && x.Cleared is true)))
+                {
+                    AlchemistFight(player);
                 }
                 else if (CurrentLocation.QuestAvailableHere != null) CurrentLocation.StartLocationQuest(player);
                 else if (player.CurrentLocation.MonsterLivingHere != null && encounterRoll <= succesfulEncounter)
