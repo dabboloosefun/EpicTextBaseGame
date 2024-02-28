@@ -7,17 +7,19 @@ public class Monster : Character
     public int MaxDamage;
     public int BuffedDmg = 0;
     public int GiveExp;
+    public int GiveCoins;
     public string Image;
     public List<LootDrop> LootDrops;
 
-    public Monster(int id, string name, int maxDamage, int currentHealth , int maxHealth, int GiveExp, List<LootDrop> lootDrops, string Image)
+    public Monster(int id, string name, int maxDamage, int currentHealth , int maxHealth, int giveExp, int giveCoins, List<LootDrop> lootDrops, string Image)
     {
         this.ID = id;
         this.Name = name;
         this.MaxDamage = maxDamage;
         this.MaxHealth = maxHealth;
         this.CurrentHealth = currentHealth;
-        this.GiveExp = GiveExp;
+        this.GiveExp = giveExp;
+        this.GiveCoins = giveCoins;
         this.LootDrops = lootDrops;
         this.Image = Image;
         ActiveEffects = new List<Effect>();

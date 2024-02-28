@@ -25,7 +25,7 @@ public class Merchant{
             Weapons.Add((new Weapon(5, "Gun", 100, 0.0 ), 300));
             Weapons.Add((new Weapon(6, "Stick", 1, 1.0 ), 1));
             Weapons.Add((new Weapon(7, "Pan", 20, 0.5), 100));
-            Weapons.Add((new Weapon(7, "Battle axe", 40, 0.2), 140));
+            Weapons.Add((new Weapon(8, "Battle axe", 40, 0.2), 140));
         }
     }
 

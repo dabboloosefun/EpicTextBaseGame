@@ -50,4 +50,8 @@ public class Weapon
     {
         this.Name = newName;
     }
+
+    public Weapon Copy(){
+        return new Weapon(ID, Name, MaxDamage, CritChance);
+    }
 }
