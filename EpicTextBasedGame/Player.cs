@@ -124,7 +124,7 @@ public class Player : Character
         }
     }
 
-    public void PromptUseItem(ref bool actionDoneRef, Monster? monsterTarget = null){
+    public bool PromptUseItem(Monster? monsterTarget = null){
         // string? userInput = "";
         // do
         // { //move elsewhere for potential out of combat uses. it's a useless prompt in combat
@@ -137,7 +137,7 @@ public class Player : Character
         if (Items.Count <= 0)
         {
             Console.WriteLine("You have no items");
-            return;
+            return false;
         }
         ListItems();
         int selectedItemNumber;
@@ -162,7 +162,7 @@ public class Player : Character
             RemoveItem(Items[selectedItemNumber-1]);
             //Items.RemoveAt(selectedItemNumber);
             //actionDoneRef = true;
-            return;
+            return true;
         }
         else if(selectedTargetNumber == 2)
         {
@@ -171,14 +171,14 @@ public class Player : Character
             RemoveItem(Items[selectedItemNumber-1]);
             //Items.RemoveAt(selectedItemNumber);
             //actionDoneRef = true;
-            return;
+            return true;
         }
         else if(selectedTargetNumber == 3)
         {
             Console.WriteLine("You put the item back in your backpack");
-            return;
+            return false;
         }
-            
+        return false;
         //}
 
     }
