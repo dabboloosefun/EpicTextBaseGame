@@ -73,7 +73,7 @@ public class Location{
         Console.Clear();
         string map = $@"
                                     *********┌─────────────┐***  ≈≈≈≈≈      LEGEND
-                                    ***      │ .....P..... │*  ≈≈≈≈≈        H: Home
+                                    *** +    │ .....P..... │*  ≈≈≈≈≈        H: Home
                                              │     ...     │  ≈≈≈≈≈         T: Town Square
                                              └──┐   ▄   ┌──┘ ≈≈≈≈≈          F: Farmhouse
                                      <=>        │ ▄███▄ │    ≈≈≈≈≈          V: Farmer's Field
@@ -109,6 +109,10 @@ public class Location{
 
             case World.LOCATION_ID_ALCHEMISTS_GARDEN:
                 indexPos = map.IndexOf("   ...  ");
+                break;
+
+            case World.LOCATION_ID_BURROW:
+                indexPos = map.IndexOf("*** +  ");
                 break;
 
             case World.LOCATION_ID_FARMHOUSE:

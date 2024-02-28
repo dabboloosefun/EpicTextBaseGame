@@ -9,15 +9,16 @@
 
     public const int WEAPON_ID_RUSTY_SWORD = 1;
     public const int WEAPON_ID_CLUB = 2;
-    public const int WEAPON_ID_SCYTHE = 666;
-
     public const int WEAPON_ID_POISON_DAGGER = 3;
+    public const int WEAPON_ID_HAND_OF_GOD = 4;
+    public const int WEAPON_ID_SCYTHE = 666;
 
     public const int MONSTER_ID_RAT = 1;
     public const int MONSTER_ID_SNAKE = 2;
     public const int MONSTER_ID_GIANT_SPIDER = 3;
     public const int MONSTER_ID_FACELESS = 4;
     public const int MONSTER_ID_ALIEN = 5;
+    public const int MONSTER_ID_JEFF = 6;
 
     public const int QUEST_ID_CLEAR_ALCHEMIST_GARDEN = 1;
     public const int QUEST_ID_CLEAR_FARMERS_FIELD = 2;
@@ -34,6 +35,7 @@
     public const int LOCATION_ID_SPIDER_FIELD = 9;
     public const int LOCATION_ID_FIELD_SOUTH = 10;
     public const int LOCATION_ID_ARENA = 11;
+    public const int LOCATION_ID_BURROW = 12;
 
     static World()
     {
@@ -50,11 +52,12 @@
         Weapons.Add(new Weapon(WEAPON_ID_CLUB, "Club", 10, 0.05));
         Weapons.Add(new Weapon(WEAPON_ID_SCYTHE, "Grave Scythe", 50, 0.3));
         Weapons.Add(new Weapon(WEAPON_ID_POISON_DAGGER, "Poison dagger", 8, 0.3));
+        Weapons.Add(new Weapon(WEAPON_ID_HAND_OF_GOD, "Hand of God", 1000, 1));
     }
 
     public static void PopulateMonsters()
     {
-        Monster rat = new Monster(MONSTER_ID_RAT, "rat", 3, 8, 8, 8, 10, new List<LootDrop>{new LootDrop(30, WeaponByID(2))}, @"
+        Monster rat = new Monster(MONSTER_ID_RAT, "rat", 4, 12, 12, 12, 10, new List<LootDrop>{new LootDrop(30, WeaponByID(2))}, @"
                                  __             _,-""~^""-.
                                _// )      _,-""~`         `.
                              ."" ( /`""-,-""`                 ;
@@ -68,8 +71,7 @@
                                                                     ((________________
                                                                     `----""""""""~~~~^^^```
 ");
-
-        Monster snake = new Monster(MONSTER_ID_SNAKE, "snake", 10, 10, 10, 10, 16, new List<LootDrop>{new LootDrop(50, WeaponByID(3))}, @"                                                           
+        Monster snake = new Monster(MONSTER_ID_SNAKE, "snake", 10, 12, 12, 12, 16, new List<LootDrop>{new LootDrop(50, WeaponByID(3))}, @"                                                           
                                                             _.--....
                                                  _....---;:'::' ^__/
                                                .' `'`___....---=-'`
@@ -85,9 +87,7 @@
                                         '--.:::...---'\:'.:`':`':./
                                                        '-::..:::-'
 ");
-
-
-        Monster giantSpider = new Monster(MONSTER_ID_GIANT_SPIDER, "giant spider", 6, 16, 16, 16, 35, new List<LootDrop>(), @"
+        Monster giantSpider = new Monster(MONSTER_ID_GIANT_SPIDER, "giant spider", 14, 26, 26, 26, 35, new List<LootDrop>(), @"
                                  />\\//\\/>\                     /<\//\\//<\
                                   \Y  \>
                                 />  //\ />\ \>    .;`'`/`;<\   ;/> /> \>/ \\: \>
@@ -106,8 +106,6 @@
                         \\(                                                       )//
                           \\                                                     // 
 ");
-
-
         Monster faceless = new Monster(MONSTER_ID_FACELESS, "reaper", 20, 30, 30, 30, 50, new List<LootDrop>{new LootDrop(100, WeaponByID(666))}, @"
                                                                  .""--..__
                                              _                     []       ``-.._
@@ -146,7 +144,7 @@
                         `-.___,-.      .-.        ___,'        (/    
                                  `---'`   `'----'`
 ");
-        Monster alien = new Monster(MONSTER_ID_ALIEN, "alien", 25, 60, 60, 0, 0, new List<LootDrop>(), @"
+        Monster alien = new Monster(MONSTER_ID_ALIEN, "alien", 25, 80, 80, 0, 0, new List<LootDrop>(), @"
                                                                                      / /
                                                                                   | | |  /
                                                                                    \|_|_/
@@ -195,6 +193,25 @@
                                        //;;'
                                       `-'
 ");
+        Monster jeff = new Monster(MONSTER_ID_JEFF, "jeff", 5, 80, 80, 20, 60, new List<LootDrop>(), @"
+                               ,
+                         (`.  : \               __..----..__
+                          `.`.| |:          _,-':::''' '  `:`-._
+                            `.:\||       _,':::::'         `::::`-.
+                              \\`|    _,':::::::'     `:.     `':::`.
+                               ;` `-''  `::::::.                  `::\
+                            ,-'      .::'  `:::::.         `::..    `:\
+                          ,' /_) -.            `::.           `:.     |
+                        ,'.:     `    `:.        `:.     .::.          \
+                   __,-'   ___,..-''-.  `:.        `.   /::::.         |
+                  |):'_,--'           `.    `::..       |::::::.      ::\
+                   `-'                 |`--.:_::::|_____\::::::::.__  ::|
+                                       |   _/|::::|      \::::::|::/\  :|
+                                       /:./  |:::/        \__:::):/  \  :\
+                                     ,'::'  /:::|        ,'::::/_/    `. ``-.__
+                                    ''''   (//|/\      ,';':,-'         `-.__  `'--..__
+                                                                             `''---::::'
+");
 
 
         Monsters.Add(rat);
@@ -202,6 +219,7 @@
         Monsters.Add(giantSpider);
         Monsters.Add(faceless);
         Monsters.Add(alien);
+        Monsters.Add(jeff);
     }
 
     public static void PopulateQuests()
@@ -245,25 +263,27 @@
         // Create each location
         Location home = new Location(LOCATION_ID_HOME, "Home", "Your house. It seems all your candles have dimmed...\nYou can feel the wind breezing through the broken walls", null, null);
 
-        Location townSquare = new Location(LOCATION_ID_TOWN_SQUARE, "Town square", "You see a fountain adorned with stone eyes.\nThe statue atop seems to resemble a bull standing on it hind legs...", null, null);
+        Location townSquare = new Location(LOCATION_ID_TOWN_SQUARE, "Town square", "You see a fountain adorned with stone eyes.\nThe statue atop seems to resemble a bull standing on its hind legs\nThere are merchants selling their wares available to interact with.", null, null);
 
-        Location alchemistHut = new Location(LOCATION_ID_ALCHEMIST_HUT, "Alchemist's hut", "There are many strange plants on the shelves.\nYou peer into a cualdron... you regret that decision.", QuestByID(QUEST_ID_CLEAR_ALCHEMIST_GARDEN), null);
+        Location alchemistHut = new Location(LOCATION_ID_ALCHEMIST_HUT, "Alchemist's hut", "There are many strange plants on the shelves.\nYou peer into a cualdron... you regret that decision.\nThe alchemist would like to speak to you about a pervasive problem he's having.", QuestByID(QUEST_ID_CLEAR_ALCHEMIST_GARDEN), null);
 
         Location alchemistsGarden = new Location(LOCATION_ID_ALCHEMISTS_GARDEN, "Alchemist's garden", "The garden smells of rot and mold.\nIt seems that the various plants have not been cared for. Or so you think, you're no alchemist.", null, MonsterByID(MONSTER_ID_RAT));
 
-        Location farmhouse = new Location(LOCATION_ID_FARMHOUSE, "Farmhouse", "The farmhouse rests nicely atop the hill.\nThe dead cows in rotting in the cell do not elude you however. The farmer too, seems to be extremely distraught...", QuestByID(QUEST_ID_CLEAR_FARMERS_FIELD), null);
+        Location farmhouse = new Location(LOCATION_ID_FARMHOUSE, "Farmhouse", "The farmhouse rests nicely atop the hill.\nThe dead cows rotting in the cell do not elude you however. The farmer too, seems to be extremely distraught...", QuestByID(QUEST_ID_CLEAR_FARMERS_FIELD), null);
 
-        Location farmersField = new Location(LOCATION_ID_FARM_FIELD, "Farmer's field", "You see rows of vegetables growing here.\nEven more rows however have been gnawd on, some are even burnt down.", null, MonsterByID(MONSTER_ID_SNAKE));
+        Location farmersField = new Location(LOCATION_ID_FARM_FIELD, "Farmer's field", "You see rows of vegetables growing here.\nEven more rows however have been gnawed on, some are even burnt down.", null, MonsterByID(MONSTER_ID_SNAKE));
 
         Location fieldsouth = new Location(LOCATION_ID_FIELD_SOUTH, "Cornfield", "The corn rustles in the wind.\nWho knows what's hiding in there...", null, MonsterByID(MONSTER_ID_FACELESS));
 
         Location guardPost = new Location(LOCATION_ID_GUARD_POST, "Guard post", "There is a large, tough-looking guard here. His armor is battered and bruised.\nYet he still stands tall.", null, null);
 
-        Location bridge = new Location(LOCATION_ID_BRIDGE, "Bridge", "You try to ignore the bodies piled up under the bridge...", QuestByID(QUEST_ID_COLLECT_SPIDER_SILK), null);
+        Location bridge = new Location(LOCATION_ID_BRIDGE, "Bridge", "You try to ignore the bodies piled up under the bridge...\nThe village elder and his councilman approach you about pest control, something to do with arachnids.", QuestByID(QUEST_ID_COLLECT_SPIDER_SILK), null);
 
         Location spiderField = new Location(LOCATION_ID_SPIDER_FIELD, "Forest", "You see webs covering covering the grass and trees.\nIt seems several people did not...", null, MonsterByID(MONSTER_ID_GIANT_SPIDER));
 
         Location arena = new Location(LOCATION_ID_ARENA, "EndArena", "The final boss", null, MonsterByID(MONSTER_ID_ALIEN));
+
+        Location burrow = new Location(LOCATION_ID_BURROW, "Burrow", "The area is strewn with feces.\nTheir owners lurking nearby.", null, MonsterByID(MONSTER_ID_JEFF));
 
         // Link the locations together
         home.LocationToNorth = townSquare;
@@ -285,6 +305,9 @@
         alchemistHut.LocationToNorth = alchemistsGarden;
 
         alchemistsGarden.LocationToSouth = alchemistHut;
+        alchemistsGarden.LocationToWest = burrow;
+
+        burrow.LocationToEast = alchemistsGarden;
 
         guardPost.LocationToEast = bridge;
         guardPost.LocationToWest = townSquare;
@@ -306,6 +329,7 @@
         Locations.Add(spiderField);
         Locations.Add(fieldsouth);
         Locations.Add(arena);
+        Locations.Add(burrow);
     }
 
     public static Location LocationByID(int id)

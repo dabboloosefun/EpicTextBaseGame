@@ -20,7 +20,7 @@ public class Player : Character
         MaxHealth = 100; // Max health is 100, we can change this later but 100 seems like good number for now
         CurrentHealth = MaxHealth; // Start with full health
         CurrentLocation = World.Locations[0]; // Home
-        CurrentWeapon = World.Weapons[0]; // starter weapon
+        CurrentWeapon = World.Weapons[4]; // starter weapon
         QuestList = new List<Quest>{};
         ActiveEffects = new List<Effect>();
         Experience = 0;
@@ -56,7 +56,7 @@ public class Player : Character
         Console.WriteLine("\t\t\t\t\t║ HEALTH:      {0, -8}             ║", $"{CurrentHealth}/{MaxHealth}");
         Console.WriteLine("\t\t\t\t\t║ WEAPON:      {0, -21}║", $"{CurrentWeapon.Name}");
         Console.WriteLine("\t\t\t\t\t║ DAMAGE:      {0, -10}           ║", $"{(int)(CurrentWeapon.MaxDamage * 0.8)}-{CurrentWeapon.MaxDamage}");
-        Console.WriteLine("\t\t\t\t\t║ CRITCHANCE:  {0}                 ║", $"{(double)CurrentWeapon.CritChance}");
+        Console.WriteLine("\t\t\t\t\t║ CRITCHANCE:  {0, -10}           ║", $"{(double)CurrentWeapon.CritChance}");
         Console.WriteLine("\t\t\t\t\t║ EXP:         {0, -21}║", $"{Experience}");
         Console.WriteLine("\t\t\t\t\t║ LVL:         {0, -21}║", $"{Level}");
         Console.WriteLine("\t\t\t\t\t╚═══════════════════════════════════╝");

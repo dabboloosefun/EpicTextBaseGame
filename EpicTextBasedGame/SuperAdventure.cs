@@ -153,7 +153,7 @@ public class SuperAdventure
         Console.WriteLine("║ HEALTH:      {0, -8}             ║\t\t\t\t\t\t  ║ HEALTH:        {1, -8}           ║", $"{player.CurrentHealth}/{player.MaxHealth}", $"{monster.CurrentHealth}/{monster.MaxHealth}");
         Console.WriteLine("║ WEAPON:      {0, -21}║\t\t\t\t\t\t  ║ DAMAGE:        {1, -10}         ║", $"{player.CurrentWeapon.Name}", $"{monster.MaxDamage}");
         Console.WriteLine("║ DAMAGE:      {0, -10}           ║\t\t\t\t\t\t  ╚═══════════════════════════════════╝", $"{(int)(player.CurrentWeapon.MaxDamage * 0.8)}-{player.CurrentWeapon.MaxDamage}");
-        Console.WriteLine("║ CRITCHANCE:  {0}                 ║", $"{(double)(player.CurrentWeapon.CritChance)}");
+        Console.WriteLine("║ CRITCHANCE:  {0, -10}           ║", $"{(double)(player.CurrentWeapon.CritChance)}");
         Console.WriteLine("║ EXP:         {0, -21}║", $"{player.Experience}");
         Console.WriteLine("║ LVL:         {0, -21}║", $"{player.Level}");
         Console.WriteLine("╚═══════════════════════════════════╝");
