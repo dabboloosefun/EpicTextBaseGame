@@ -66,8 +66,10 @@ public class SuperAdventure
 
                         }
 */
+                    default:
+                        Helper.ProjectMonser(monster);
+                        break;
                     }
-                    Helper.ProjectMonser(monster);
                 }
             } // While loop voor player turn
             else if (!playerturn)
@@ -108,8 +110,12 @@ public class SuperAdventure
                         Mactiondone = true;
                         break;
                     case "Heal":
-                            int regenamount = (monster.MaxHealth - monster.CurrentHealth) / 5;
-                            monster.RegenarateHealth(regenamount);
+                        if (monster.CurrentHealth == monster.MaxHealth) {
+                            monster.CurrentHealth = monster.MaxHealth;
+                            break;
+                        }
+                        int regenamount = ((monster.MaxHealth - monster.CurrentHealth) / 5) + 2;
+                        monster.RegenarateHealth(regenamount);
                         Mactiondone = true;
                         break;
                     case "Buff":
