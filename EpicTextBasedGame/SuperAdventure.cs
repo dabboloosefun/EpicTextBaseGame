@@ -66,6 +66,9 @@ public class SuperAdventure
 
                         }
 */
+                    default:
+                        Helper.ProjectMonser(monster);
+                        break;
                     }
                 }
             } // While loop voor player turn
@@ -107,12 +110,16 @@ public class SuperAdventure
                         Mactiondone = true;
                         break;
                     case "Heal":
-                            int regenamount = (monster.MaxHealth - monster.CurrentHealth) / 5;
-                            monster.RegenarateHealth(regenamount);
+                        if (monster.CurrentHealth == monster.MaxHealth) {
+                            monster.CurrentHealth = monster.MaxHealth;
+                            break;
+                        }
+                        int regenamount = ((monster.MaxHealth - monster.CurrentHealth) / 5) + 2;
+                        monster.RegenarateHealth(regenamount);
                         Mactiondone = true;
                         break;
                     case "Buff":
-                        monster.RaiseMaxDamage((monster.MaxHealth/10) * 2 + 5);
+                        monster.RaiseMaxDamage(((monster.MaxHealth/10) * 2 + 5));
                         Mactiondone = true;
                         break;
                 }
@@ -120,11 +127,14 @@ public class SuperAdventure
             } // While loop voor enemy
             playerturn = !playerturn; // Draait player turn om
         } // While loop voor fight
-        CheckQuestExpResetArea(monster, player);
+        ResolveArea(monster, player);
     }
 
-    public static void CheckQuestExpResetArea(Monster monster, Player player)
+    public static void ResolveArea(Monster monster, Player player)
     {
+        //monster bugg reset
+        monster.MaxDamage -= monster.BuffedDmg;
+        monster.BuffedDmg = 0;
         //exp is given
         if (monster.CurrentHealth == 0) player.Experience += monster.GiveExp;
         Helper.FightWinScreen(player);

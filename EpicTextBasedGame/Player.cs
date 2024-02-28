@@ -186,7 +186,7 @@ public class Player : Character
     {
         Console.WriteLine(Helper.CenterStr($"Equipped weapon: {CurrentWeapon.Name}: Max damage: {CurrentWeapon.MaxDamage}, Crit chance: {CurrentWeapon.CritChance}\n"));
         Console.WriteLine(Helper.CenterStr("You are carrying these weapons in your inventory:"));
-        for (int i = 0; i < Weapons.Count - 1; i++)
+        for (int i = 0; i <= Weapons.Count - 1; i++)
         {
             Weapon currentWeapon = Weapons[i];
             Console.WriteLine(Helper.CenterStr($"{i+1}. {currentWeapon.Name}: Max damage: {currentWeapon.MaxDamage}, Crit chance: {currentWeapon.CritChance}\n"));
@@ -297,6 +297,7 @@ public class Player : Character
 
             case 2:
                 Console.Clear();
+                Console.WriteLine(Helper.CenterStr($"You are carrying {player.Coins} coins"));
                 ListWeapons();
                 ListItems();
                 break;
@@ -325,35 +326,41 @@ public class Player : Character
                 } 
                 else if(player.CurrentLocation.ID == 2) //town square
                 {
-                    Console.WriteLine("You decide to visit the market, where you notice a potion merchant and a weaponsmith.");
-                    Console.WriteLine("1. Visit potion merchant");
-                    Console.WriteLine("2. Visit weaponsmoth");
-                    Console.WriteLine("3. Never mind");
-                    Console.WriteLine("What would you like to do? 1-3");
+                    Helper.WriteInCenter(@"You decide to visit the market, where you notice a potion merchant and a weaponsmith.
+1. Visit potion merchant
+2. Visit weaponsmith
+3. Nevermind
+What would you like to do? 1-3");
                     int userInput;
                     bool parseSuccesful;
                     do{
                         parseSuccesful = int.TryParse(Console.ReadLine(), out userInput);
+                        Helper.ClearLineDo();
                     } while(!parseSuccesful || !(1<=userInput && userInput<=3));
                     bool shopping = true;
                     while(shopping)
                     {
                         if (userInput==1){
+                            Console.Clear();
                             Merchant merchant = new("Potion merchant");
+                            merchant.Visit(player);
+                            CurrentLocation.Map(); // overrides any feedback about purchase now.
+                            break;
+                        }
+                        if (userInput==2){
+                            Console.Clear();
+                            Merchant merchant = new("Weaponsmith");
                             merchant.Visit(player);
                             CurrentLocation.Map();
                             break;
-                           
-    
+                        }
+                        if (userInput==3){
+                            Console.Clear();
+                            break;
                         }
 
                     }
-                    if (userInput==2){
-                        break;
-                    }
-                    if (userInput==3){
-                        break;
-                    }
+                    
 
                 }
                 else Console.WriteLine(Helper.CenterStr("Nothing to interact with here"));

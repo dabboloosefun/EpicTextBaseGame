@@ -1,8 +1,11 @@
-﻿public class Monster : Character
+﻿using System.Runtime.CompilerServices;
+
+public class Monster : Character
 {
 
     public int ID;
     public int MaxDamage;
+    public int BuffedDmg = 0;
     public int GiveExp;
     public string Image;
     public List<LootDrop> LootDrops;
@@ -46,6 +49,7 @@
     // Ter gebruik voor Monster attack buffs
     public void RaiseMaxDamage(int raisedDamage)
     {
+        BuffedDmg += raisedDamage;
         this.MaxDamage += raisedDamage;
         Console.WriteLine($"{this.Name}'s attack has been raised!");
     }
@@ -62,10 +66,8 @@
         Console.WriteLine($"{this.Name}'s attack has been lowered!");
     }
 
-    public List<Item> DropLoot()
+    public void DropLoot(Player player)
     {
-        List<Item> droppedItems = new List<Item>();
-
         foreach (var lootDrop in LootDrops)
         {
             if (lootDrop.ShouldDrop())
@@ -81,10 +83,8 @@
                     Item droppedItem = lootDrop.LootItem;
                     Console.WriteLine($"{this.Name} dropped an item: {droppedItem.Name}");
                     player.AddItem(droppedItem);
-                    droppedItems.Add(droppedItem);
                 }
             }
         }
-        return droppedItems;
     }
 }
