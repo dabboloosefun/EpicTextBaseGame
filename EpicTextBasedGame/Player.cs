@@ -220,12 +220,14 @@ public class Player : Character
             {
                 Console.WriteLine(Helper.CenterStr($"Enter the number of the weapon you wish to equip."));
                 successfulParse = int.TryParse(Console.ReadLine(), out selectedNumber);
-            } while (!successfulParse ||  (selectedNumber <= 0 && selectedNumber > Weapons.Count));
+                Helper.ClearLastLine();
+            } while (!successfulParse ||  (selectedNumber <= 0 || selectedNumber > Weapons.Count));
 
             Weapons.Add(CurrentWeapon);
             CurrentWeapon = Weapons[selectedNumber-1];
             Weapons.Remove(Weapons[selectedNumber-1]);
-            Console.WriteLine($"You've equipped: {CurrentWeapon.Name}, Max damage: {CurrentWeapon.MaxDamage}, Crit chance: {CurrentWeapon.CritChance}");
+            Console.Clear();
+            Console.WriteLine(Helper.CenterStr($"You've equipped: {CurrentWeapon.Name}, Max damage: {CurrentWeapon.MaxDamage}, Crit chance: {CurrentWeapon.CritChance}"));
         }
     }
 
