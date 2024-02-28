@@ -12,6 +12,7 @@ public class Player : Character
     public List<Quest> QuestList;
     public int Coins;
     public bool Minotaur = false;
+    public bool Alchemist = true;
 
     public Player()
     {
@@ -31,6 +32,7 @@ public class Player : Character
 
     public void AlchemistFight(Player player)
     {
+        if (Alchemist is false) return;
         Console.Clear();
         string userInput;
         Console.WriteLine(Helper.CenterStr("The alchemist seems to hate your guts.\n"));
@@ -82,6 +84,7 @@ public class Player : Character
                                        L____ __|              L____/`
 "));
         }
+        Alchemist = false;
     }
 
     public void MinotaurFight(Player player)
