@@ -115,6 +115,7 @@ public class SuperAdventure
         monster.BuffedDmg = 0;
         //exp is given
         if (monster.CurrentHealth == 0) player.Experience += monster.GiveExp;
+        monster.DropLoot(player);
         Helper.FightWinScreen(player);
 
         if (player.QuestList.Any(x => x.Target == monster))

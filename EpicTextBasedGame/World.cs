@@ -49,7 +49,7 @@
 
     public static void PopulateMonsters()
     {
-        Monster rat = new Monster(MONSTER_ID_RAT, "rat", 3, 8, 8, 8, new List<LootDrop>(), @"
+        Monster rat = new Monster(MONSTER_ID_RAT, "rat", 3, 8, 8, 8, new List<LootDrop>{new LootDrop(1, WeaponByID(1))}, @"
                                  __             _,-""~^""-.
                                _// )      _,-""~`         `.
                              ."" ( /`""-,-""`                 ;
@@ -63,7 +63,6 @@
                                                                     ((________________
                                                                     `----""""""""~~~~^^^```
 ");
-
 
         Monster snake = new Monster(MONSTER_ID_SNAKE, "snake", 10, 10, 10, 10, new List<LootDrop>(), @"                                                           
                                                             _.--....
