@@ -41,7 +41,7 @@ public class Player : Character
             Console.WriteLine("\n");
             Console.ForegroundColor = ConsoleColor.White;
             Thread.Sleep(1500);
-            SuperAdventure.Fight(player, new Monster(33, "minotaur", 13, 50, 50, 100, 40, new List<LootDrop>(), @"
+            SuperAdventure.Fight(player, new Monster(33, "minotaur", 13, 70, 70, 100, 40, new List<LootDrop>(), @"
                                                                                     _
                                                                                   _( (~\
                            _ _                        /                          ( \> > \

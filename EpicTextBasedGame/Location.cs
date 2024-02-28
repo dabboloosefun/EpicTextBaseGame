@@ -80,7 +80,7 @@ public class Location{
                 } while (userInput != "y" && userInput != "n");
                 if (userInput == "y")
                 {
-                    SuperAdventure.Fight(player, new Monster(22, "guard", 20, 50, 50, 100, 100, new List<LootDrop>(), @"
+                    SuperAdventure.Fight(player, new Monster(22, "guard", 23, 60, 60, 100, 100, new List<LootDrop>(), @"
                                                        _.--.    .--._
                                                      .""  .""      "".  "".
                                                     ;  .""    /\    "".  ;
