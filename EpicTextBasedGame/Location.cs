@@ -175,7 +175,7 @@ ________________ __ _ \../ _   __  ____ -=(_)____________________)=-
         switch (ID)
         {
             case World.LOCATION_ID_HOME:
-                indexPos = map.IndexOf("    |     ");
+                indexPos = map.IndexOf("    |  ** ≈");
                 break;
 
             case World.LOCATION_ID_TOWN_SQUARE:
