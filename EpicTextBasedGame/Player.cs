@@ -124,7 +124,7 @@ public class Player : Character
         }
     }
 
-    public void PromptUseItem(ref bool actionDoneRef, Monster? monsterTarget = null){
+    public bool PromptUseItem(Monster? monsterTarget = null){
         // string? userInput = "";
         // do
         // { //move elsewhere for potential out of combat uses. it's a useless prompt in combat
@@ -137,7 +137,7 @@ public class Player : Character
         if (Items.Count <= 0)
         {
             Console.WriteLine("You have no items");
-            return;
+            return false;
         }
         ListItems();
         int selectedItemNumber;
@@ -162,7 +162,7 @@ public class Player : Character
             RemoveItem(Items[selectedItemNumber-1]);
             //Items.RemoveAt(selectedItemNumber);
             //actionDoneRef = true;
-            return;
+            return true;
         }
         else if(selectedTargetNumber == 2)
         {
@@ -171,14 +171,14 @@ public class Player : Character
             RemoveItem(Items[selectedItemNumber-1]);
             //Items.RemoveAt(selectedItemNumber);
             //actionDoneRef = true;
-            return;
+            return true;
         }
         else if(selectedTargetNumber == 3)
         {
             Console.WriteLine("You put the item back in your backpack");
-            return;
+            return false;
         }
-            
+        return false;
         //}
 
     }
@@ -186,10 +186,11 @@ public class Player : Character
     {
         Console.WriteLine(Helper.CenterStr($"Equipped weapon: {CurrentWeapon.Name}: Max damage: {CurrentWeapon.MaxDamage}, Crit chance: {CurrentWeapon.CritChance}\n"));
         Console.WriteLine(Helper.CenterStr("You are carrying these weapons in your inventory:"));
-        for (int i = 0; i <= Weapons.Count - 1; i++)
+        int weaponNumber = 1;
+        foreach (Weapon weapon in Weapons)
         {
-            Weapon currentWeapon = Weapons[i];
-            Console.WriteLine(Helper.CenterStr($"{i+1}. {currentWeapon.Name}: Max damage: {currentWeapon.MaxDamage}, Crit chance: {currentWeapon.CritChance}\n"));
+            Console.WriteLine(Helper.CenterStr($"[{weaponNumber}] {weapon.Name}: Max damage: {weapon.MaxDamage}, Crit chance: {weapon.CritChance}\n"));
+            weaponNumber++;
         }
     }
 
@@ -200,7 +201,7 @@ public class Player : Character
         do
         {
             Console.WriteLine(Helper.CenterStr("Would you like to swap your weapon? Y/N"));
-            userInput = (Console.ReadLine()).ToLower();
+            userInput = Console.ReadLine().ToLower();
             Helper.ClearLastLine();
         } while (userInput != "y" && userInput != "n");
 
@@ -209,6 +210,7 @@ public class Player : Character
             Console.Clear();
             return;
         } 
+
         else if (userInput == "y")
         {
             if (Weapons.Count <= 0)
@@ -218,17 +220,17 @@ public class Player : Character
             }
             int selectedNumber;
             bool successfulParse;
+            ListWeapons();
             do
             {
-
-                Console.WriteLine($"Enter the number of the weapon you wish to equip. 1-{Weapons.Count}");
+                Console.WriteLine(Helper.CenterStr($"Enter the number of the weapon you wish to equip."));
                 successfulParse = int.TryParse(Console.ReadLine(), out selectedNumber);
-            } while (!successfulParse || !(0 <= selectedNumber && selectedNumber < Weapons.Count));
+            } while (!successfulParse ||  (selectedNumber <= 0 && selectedNumber > Weapons.Count));
 
             Weapons.Add(CurrentWeapon);
             CurrentWeapon = Weapons[selectedNumber-1];
             Weapons.Remove(Weapons[selectedNumber-1]);
-            Console.WriteLine($"You've now equipped this new weapon! {CurrentWeapon.Name}: Max damage: {CurrentWeapon.MaxDamage}, Crit chance: {CurrentWeapon.CritChance}");
+            Console.WriteLine($"You've equipped: {CurrentWeapon.Name}, Max damage: {CurrentWeapon.MaxDamage}, Crit chance: {CurrentWeapon.CritChance}");
         }
     }
 

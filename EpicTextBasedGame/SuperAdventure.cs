@@ -20,8 +20,6 @@ public class SuperAdventure
                 FightStats(player, monster);
                 Console.WriteLine("1. Attack");
                 Console.WriteLine("2. Use item");
-                //Console.WriteLine("2. Heal");
-                //Console.WriteLine("3. Spell");
                 Console.WriteLine("What do you want to do?");
                     string attack_input = Console.ReadLine().ToLower();
                     switch (attack_input){
@@ -36,36 +34,12 @@ public class SuperAdventure
                     case "2":
                     case "use item":
                         Helper.ProjectMonser(monster);
-                        player.PromptUseItem(ref Actiondone, monster);
-                        break;
-/*
-                    case "2":
-                    case "heal":
-                    if (player.Items.Contains("Potion")){ 
-                        player.RegenarateHealth(50)
-                        Actiondone = true;
-                        break;
-                    }
-                    else{
-                        Console.WriteLine("You do not have a way to heal yourself. Good luck with your low health!")
-                        break;
-                    }
-            }
-*/
-/*
-                    case "3":
-                    case "spell":
-                        Console.WriteLine("What spell do you wish to cast?");
-                        Console.WriteLine("1. Buff (Increases your attacking power).");
-                        Console.WriteLine("2. Debuff the attack of the enemy");
-                        string spell_input = Console.ReadLine();
-                        if (spell_input == "1" || spell_input == "buff"){
-
+                        bool succesfulitem = player.PromptUseItem(monster);
+                        if(succesfulitem){
+                            Actiondone = true;
                         }
-                        else if (spell_input == "2" || spell_input == "debuff"){
+                        break;
 
-                        }
-*/
                     default:
                         Helper.ProjectMonser(monster);
                         break;
@@ -78,29 +52,37 @@ public class SuperAdventure
                 while (!Mactiondone){
                 int Monster_choice;
                 string Monster_action = "";
-                
-                if (monster.CurrentHealth < monster.MaxHealth / 2)
+
+        
+                Random rand = new Random();
+                Monster_choice = rand.Next(1, 101);
+
+                if (monster.CurrentHealth < monster.MaxHealth / 2) // If monster is under half health, it will not buff and more likely attack the player
                 {
-                    Random rand = new Random();
-                    Monster_choice = rand.Next(1, 81);
-                }
-                else
-                {
-                    Random rand = new Random();
-                    Monster_choice = rand.Next(1, 101);
+                    if (Monster_choice <= 70)
+                    {
+                        Monster_action = "Attack";
+                    }
+                    else if (Monster_choice > 70)
+                    {
+                        Monster_action = "Heal";
+                    }
                 }
 
-                if (Monster_choice <= 60)
+                else
                 {
-                    Monster_action = "Attack";
-                }
-                else if (Monster_choice <= 80 && Monster_choice > 60)
-                {
-                    Monster_action = "Heal";
-                }
-                else if (Monster_choice > 80)
-                {
-                    Monster_action = "Buff";
+                    if (Monster_choice <= 60)
+                    {
+                        Monster_action = "Attack";
+                    }
+                    else if (Monster_choice <= 75 && Monster_choice > 60)
+                    {
+                        Monster_action = "Heal";
+                    }
+                    else if (Monster_choice > 75)
+                    {
+                        Monster_action = "Buff";
+                    }
                 }
 
                 switch (Monster_action)
@@ -110,16 +92,12 @@ public class SuperAdventure
                         Mactiondone = true;
                         break;
                     case "Heal":
-                        if (monster.CurrentHealth == monster.MaxHealth) {
-                            monster.CurrentHealth = monster.MaxHealth;
-                            break;
-                        }
-                        int regenamount = ((monster.MaxHealth - monster.CurrentHealth) / 5) + 2;
+                        int regenamount = ((monster.MaxHealth - monster.CurrentHealth) / 5) + 2; // +2 to ensure it will always heal the enemy
                         monster.RegenarateHealth(regenamount);
                         Mactiondone = true;
                         break;
                     case "Buff":
-                        monster.RaiseMaxDamage(((monster.MaxHealth/10) * 2 + 5));
+                        monster.RaiseMaxDamage((monster.MaxHealth/10) * 2 + 5);
                         Mactiondone = true;
                         break;
                 }
