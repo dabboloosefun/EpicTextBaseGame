@@ -24,6 +24,7 @@ public class Quest
 
     public void StartQuest(Player player)
     {
+        if (player.CurrentLocation.ID == World.LOCATION_ID_TOWN_SQUARE) Console.Clear();
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine(Helper.CenterStr($"Quest started: {Name}"));
         Console.WriteLine("\n");

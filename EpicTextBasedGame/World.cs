@@ -20,10 +20,12 @@
     public const int MONSTER_ID_ALIEN = 5;
     public const int MONSTER_ID_JEFF = 6; 
     public const int MONSTER_ID_SKELL = 7;
+    public const int MONSTER_ID_MINOTAUR = 8;
 
     public const int QUEST_ID_CLEAR_ALCHEMIST_GARDEN = 1;
     public const int QUEST_ID_CLEAR_FARMERS_FIELD = 2;
     public const int QUEST_ID_COLLECT_SPIDER_SILK = 3;
+    public const int QUEST_ID_SLAY_MINOTAUR = 4;
 
     public const int LOCATION_ID_HOME = 1;
     public const int LOCATION_ID_TOWN_SQUARE = 2;
@@ -38,6 +40,7 @@
     public const int LOCATION_ID_ARENA = 11;
     public const int LOCATION_ID_BURROW = 12;
     public const int LOCATION_ID_TOMB = 13;
+
 
     static World()
     {
@@ -254,6 +257,29 @@
                                                              |lllj
                                                              ||||| 
 ");
+        Monster minotaur = new Monster(MONSTER_ID_MINOTAUR, "minotaur", 13, 70, 70, 100, 40, new List<LootDrop>(), @"
+                                                                                    _
+                                                                                  _( (~\
+                           _ _                        /                          ( \> > \
+                       -/~/ / ~\                     :;                \       _  > /(~\/
+                      || | | /\ ;\                   |l      _____     |;     ( \/ /   /
+                      _\\)\)\)/ ;;;                  `8o __-~     ~\   d|      \   \  //
+                     ///(())(__/~;;\                  ""88p;.  -. _\_;.oP        (_._/ /
+                    (((__   __ \\   \                  `>,% (\  (\./)8""         ;:'  i
+                    )))--`.'-- (( ;,8 \               ,;%%%:  ./V^^^V'          ;.   ;.
+                    ((\   |   /)) .,88  `: ..,,;;;;,-::::::'_::\   ||\         ;[8:   ;
+                     )|  ~-~  |(|(888; ..``'::::8888oooooo.  :\`^^^/,,~--._    |88::| |
+                      \ -===- /|  \8;; ``:.      oo.8888888888:`((( o.ooo8888Oo;:;:'  |
+                     |_~-___-~_|   `-\.   `        `o`88888888b` )) 888b88888P""""'     ;
+                      ;~~~~;~~         ""`--_`.       b`888888888;(.,""888b888""  ..::;-'
+                       ;      ;              ~""-....  b`8888888:::::.`8888. .:;;;''
+                          ;    ;                 `:::. `:::OOO:::::::.`OO' ;;;''
+                     :       ;                     `.      ""``::::::''    .'
+                        ;                           `.   \_              /
+                      ;       ;                       +:   ~~--  `:'  -';
+                                                       `:         : .::/
+                          ;                            ;;+_  :::. :..;;;
+");
 
 
         Monsters.Add(rat);
@@ -263,6 +289,7 @@
         Monsters.Add(alien);
         Monsters.Add(jeff);
         Monsters.Add(skeleton);
+        Monsters.Add(minotaur);
     }
 
     public static void PopulateQuests()
@@ -296,17 +323,27 @@
                 3);
 
 
+        Quest slayminotaur =
+            new Quest(
+                QUEST_ID_SLAY_MINOTAUR,
+                "Slay the rampaging minotaur",
+                "Kill the minotaur harassing the local population, find out where this creature is burrowed",
+                MonsterByID(8),
+                1);
+
+
         Quests.Add(clearAlchemistGarden);
         Quests.Add(clearFarmersField);
         Quests.Add(clearSpidersForest);
+        Quests.Add(slayminotaur);
     }
 
     public static void PopulateLocations()
     {
         // Create each location
-        Location home = new Location(LOCATION_ID_HOME, "Home", "Your house. It seems all your candles have dimmed...\nYou can feel the wind breezing through the broken walls", null, null);
+        Location home = new Location(LOCATION_ID_HOME, "Home", "Your house. It seems all your candles have dimmed...\nYou can feel the wind breezing through the broken walls", null, MonsterByID(MONSTER_ID_MINOTAUR));
 
-        Location townSquare = new Location(LOCATION_ID_TOWN_SQUARE, "Town square", "You see a fountain adorned with stone eyes.\nThe statue atop seems to resemble a bull standing on its hind legs.\nThere are merchants selling their wares available to interact with.", null, null);
+        Location townSquare = new Location(LOCATION_ID_TOWN_SQUARE, "Town square", "You see a fountain adorned with stone eyes.\nThe statue atop seems to resemble a bull standing on its hind legs.\nThere are merchants selling their wares available to interact with.", QuestByID(QUEST_ID_SLAY_MINOTAUR), null);
 
         Location alchemistHut = new Location(LOCATION_ID_ALCHEMIST_HUT, "Alchemist's hut", "There are many strange plants on the shelves.\nYou peer into a cualdron... you regret that decision.\nThe alchemist would like to speak to you about a pervasive problem he's having.", QuestByID(QUEST_ID_CLEAR_ALCHEMIST_GARDEN), null);
 

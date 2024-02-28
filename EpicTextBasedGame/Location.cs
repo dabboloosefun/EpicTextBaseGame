@@ -34,7 +34,10 @@ public class Location{
         //if player.Inventory contains certain item > I'd rather have you be prompted to start a quest regardless (MMO style: speak to NPC: y/n)
         if (player.QuestList.Contains(QuestAvailableHere)) return;
         string? userInput = "";
-
+        if (player.CurrentLocation.ID == World.LOCATION_ID_TOWN_SQUARE)
+        {
+            Helper.WriteInCenter("The people on the streets murmer of impending doom.\nA monster makes villagers dissappear left right and center.\nare you prepared to resolve this matter?\n");
+        }
         do
         {
             Console.WriteLine(Helper.CenterStr("Would you like to accept quest? Y/N"));

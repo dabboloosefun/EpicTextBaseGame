@@ -47,6 +47,47 @@ public class Merchant{
         return mysteryPotion;
     }
 
+    public static void Market(Player player)
+    {
+        Helper.WriteInCenter(@"You decide to visit the market, where you notice a potion merchant and a weaponsmith.
+1. Visit potion merchant
+2. Visit weaponsmith
+3. Nevermind
+What would you like to do? 1-3");
+        int userInput;
+        bool parseSuccesful;
+        do
+        {
+            parseSuccesful = int.TryParse(Console.ReadLine(), out userInput);
+            Helper.ClearLineDo();
+        } while (!parseSuccesful || !(1 <= userInput && userInput <= 3));
+        bool shopping = true;
+        while (shopping)
+        {
+            if (userInput == 1)
+            {
+                Console.Clear();
+                Merchant merchant = new("Potion merchant");
+                merchant.Visit(player);
+                player.CurrentLocation.Map(); // overrides any feedback about purchase now.
+                break;
+            }
+            if (userInput == 2)
+            {
+                Console.Clear();
+                Merchant merchant = new("Weaponsmith");
+                merchant.Visit(player);
+                player.CurrentLocation.Map();
+                break;
+            }
+            if (userInput == 3)
+            {
+                Console.Clear();
+                break;
+            }
+        }
+    }
+
     public void Visit(Player player){
         switch (Name){
             case "Potion merchant":
