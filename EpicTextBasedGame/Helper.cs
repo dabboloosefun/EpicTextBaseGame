@@ -373,5 +373,6 @@ public class Helper
     {
         Console.Write(new string(' ', Console.BufferWidth));
         Console.SetCursorPosition(0, Console.CursorTop - 1);
+        
     }
 }

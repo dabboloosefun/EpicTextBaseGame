@@ -46,41 +46,44 @@ public class Merchant{
         switch (Name){
             case "Potion merchant":
                 while(true){
-                    Console.WriteLine("You decide to visit the potion merchant");
-                    Console.WriteLine("He smiles at you as you approach. 'Good day! Is there anything particular you need?");
-                    Console.WriteLine("I also sell mystery potions if you're willing to take a risk.");
-                    Console.WriteLine("1. Look at regular wares");
-                    Console.WriteLine("2. Ask more about mystery potion");
-                    Console.WriteLine("3. Leave");
+                    Console.WriteLine(Helper.CenterStr("You decide to visit the potion merchant"));
+                    Console.WriteLine(Helper.CenterStr("He smiles at you as you approach. 'Good day! Is there anything particular you need?"));
+                    Console.WriteLine(Helper.CenterStr("I also sell mystery potions if you're willing to take a risk."));
+                    Console.WriteLine(Helper.CenterStr("1. Look at regular wares"));
+                    Console.WriteLine(Helper.CenterStr("2. Ask more about mystery potion"));
+                    Console.WriteLine(Helper.CenterStr("3. Leave"));
                     int potionInput;
                     bool parseSuccesful;
                     //Console.WriteLine("/n");
                     do{
                         //Helper.ClearLastLine();
+                        //Helper.ClearLineDo();
                         parseSuccesful = int.TryParse(Console.ReadLine(), out potionInput);
+                        Helper.ClearLineDo();
                     } while(!parseSuccesful || !(1<=potionInput && potionInput<=3));
                     if(potionInput == 1){
-                        Console.WriteLine($"You have {player.Coins} Coins");
-                        Console.WriteLine("The merchant has these items for sale:");
+                        Console.WriteLine(Helper.CenterStr($"You have {player.Coins} Coins"));
+                        Console.WriteLine(Helper.CenterStr("The merchant has these items for sale:"));
                         for(int i = 0; i<=Potions.Count-1; i++)
                         {
-                            Console.WriteLine($"{i+1}. {Potions[i].Item1.Info()} for {Potions[i].Item2} gold coins each");
+                            Console.WriteLine(Helper.CenterStr($"{i+1}. {Potions[i].Item1.Info()} for {Potions[i].Item2} gold coins each"));
                         }
                         string userInput;
                         int purchaceChoice;
                         //Console.WriteLine("/n");
                         do{
                             //Helper.ClearLastLine();
-                            Console.WriteLine("Enter the number of an item you wish to purchace, or 'back' to leave");
+                            Console.WriteLine(Helper.CenterStr("Enter the number of an item you wish to purchace, or 'back' to leave"));
                             userInput = Console.ReadLine().ToLower();
-                        parseSuccesful = int.TryParse(userInput, out purchaceChoice);
+                            parseSuccesful = int.TryParse(userInput, out purchaceChoice);
+                            Helper.ClearLineDo();
                         } while(!(userInput=="back" || (parseSuccesful && 1 <= purchaceChoice && purchaceChoice <= Potions.Count))); //there offset of +1 so not Count-1
                         if(userInput=="back"){
                             continue;
                         }
                         else if(player.Coins < Potions[purchaceChoice-1].Item2) 
                         {
-                            Console.WriteLine("You don't have enough coins.");
+                            Console.WriteLine(Helper.CenterStr("You don't have enough coins."));
                             continue;
                         }
                         else
@@ -88,19 +91,20 @@ public class Merchant{
                             player.Coins -= Potions[purchaceChoice-1].Item2;
                             player.AddItem(Potions[purchaceChoice-1].Item1);
                             Potions.Remove(Potions[purchaceChoice-1]);
-                            Console.WriteLine("Thank you for your patronage");
-                            Console.WriteLine($"You now have {player.Coins} Coins");
+                            Console.WriteLine(Helper.CenterStr("Thank you for your patronage"));
+                            Console.WriteLine(Helper.CenterStr($"You now have {player.Coins} Coins"));
                             return;
                         }
                     }
                     if(potionInput == 2){
-                        Console.WriteLine("'I'm not sure if they work as they should, which is why they're so cheap!'");
-                        Console.WriteLine("'If you're willing to pay more I'm willing to make it more potent'");
-                        Console.WriteLine("1. buy mystery potion");
-                        Console.WriteLine("2. Never mind");
+                        Console.WriteLine(Helper.CenterStr("'I'm not sure if they work as they should, which is why they're so cheap!'"));
+                        Console.WriteLine(Helper.CenterStr("'If you're willing to pay more I'm willing to make it more potent'"));
+                        Console.WriteLine(Helper.CenterStr("1. buy mystery potion"));
+                        Console.WriteLine(Helper.CenterStr("2. Never mind"));
                         int mysteryPotionInput;
                         do{
                         parseSuccesful = int.TryParse(Console.ReadLine(), out mysteryPotionInput);
+                        Helper.ClearLineDo();
                         } while(!parseSuccesful || !(1<=mysteryPotionInput && mysteryPotionInput<=2));
                         if(mysteryPotionInput==1){
                             int amountToPay;
@@ -109,14 +113,14 @@ public class Merchant{
                                 //Helper.ClearLastLine();
                                 parseSuccesful = int.TryParse(Console.ReadLine(), out amountToPay);
                                 if (player.Coins == 0){
-                                    Console.WriteLine("You have no coins!");
+                                    Console.WriteLine(Helper.CenterStr("You have no coins!"));
                                     break;
                                 }
                                 else{
-                                    Console.WriteLine($"You have {player.Coins} Coins");
-                                    Console.WriteLine("How much are you willing to pay?");
+                                    Console.WriteLine(Helper.CenterStr($"You have {player.Coins} Coins"));
+                                    Console.WriteLine(Helper.CenterStr("How much are you willing to pay?"));
                                 }
-                                
+                                Helper.ClearLineDo();
                                 
                             } while(!parseSuccesful || !(1<=amountToPay && amountToPay<=player.Coins));
                             if(player.Coins > 0)
@@ -125,9 +129,9 @@ public class Merchant{
                                 RandomPotionsMade ++;
                                 player.AddItem(mysteryPotion);
                                 player.Coins -= amountToPay;
-                                Console.WriteLine("Here you go!");
-                                Console.WriteLine($"You now have {player.Coins} Coins");
-                                Console.WriteLine($"{mysteryPotion.Name} has been added to Player's inventory");
+                                Console.WriteLine(Helper.CenterStr("Here you go!"));
+                                Console.WriteLine(Helper.CenterStr($"You now have {player.Coins} Coins"));
+                                Console.WriteLine(Helper.CenterStr($"{mysteryPotion.Name} has been added to Player's inventory"));
                                 return;
                             }
                             else continue;
@@ -136,25 +140,26 @@ public class Merchant{
                     }
                     
                     if(potionInput == 3){
-                        Console.WriteLine("You leave the potion merchant");
+                        Console.WriteLine(Helper.CenterStr("You leave the potion merchant"));
                         return;
                     }
                 }
             case "Weaponsmith":
             while(true){
-                    Console.WriteLine("You decide to visit the weaponsith");
-                    Console.WriteLine("What do you need?");
-                    Console.WriteLine("1. Look at weapons");
-                    Console.WriteLine("2. Upgrade current weapon");
-                    Console.WriteLine("3. Leave");
+                    Console.WriteLine(Helper.CenterStr("You decide to visit the weaponsith"));
+                    Console.WriteLine(Helper.CenterStr("What do you need?"));
+                    Console.WriteLine(Helper.CenterStr("1. Look at weapons"));
+                    Console.WriteLine(Helper.CenterStr("2. Upgrade current weapon"));
+                    Console.WriteLine(Helper.CenterStr("3. Leave"));
                     int weaponInput;
                     bool parseSuccesful;
                     do{
                         parseSuccesful = int.TryParse(Console.ReadLine(), out weaponInput);
+                        Helper.ClearLineDo();
                     } while(!parseSuccesful || !(1<=weaponInput && weaponInput<=3));
                     if(weaponInput == 1){
-                        Console.WriteLine($"You have {player.Coins} Coins");
-                        Console.WriteLine("The merchant has these items for sale:");
+                        Console.WriteLine(Helper.CenterStr($"You have {player.Coins} Coins"));
+                        Console.WriteLine(Helper.CenterStr("The merchant has these items for sale:"));
                         for(int i = 0; i<=Weapons.Count-1; i++)
                         {
                             Weapon currentWeapon = Weapons[i].Item1;
@@ -166,16 +171,17 @@ public class Merchant{
                         //Console.WriteLine("/n");
                         do{
                             //Helper.ClearLastLine();
-                            Console.WriteLine("Enter the number of an item you wish to purchace, or 'back' to leave");
+                            Console.WriteLine(Helper.CenterStr("Enter the number of an item you wish to purchace, or 'back' to leave"));
                             userInput = Console.ReadLine().ToLower();
-                        parseSuccesful = int.TryParse(userInput, out purchaceChoice);
+                            parseSuccesful = int.TryParse(userInput, out purchaceChoice);
+                            Helper.ClearLineDo();
                         } while(!(userInput=="back" || (parseSuccesful && 1 <= purchaceChoice && purchaceChoice <= Weapons.Count))); //there offset of +1 so not Count-1
                         if(userInput=="back"){
                             continue;
                         }
                         else if(player.Coins < Weapons[purchaceChoice-1].Item2) 
                         {
-                            Console.WriteLine("You don't have enough coins.");
+                            Console.WriteLine(Helper.CenterStr("You don't have enough coins."));
                             continue;
                         }
                         else
@@ -183,38 +189,39 @@ public class Merchant{
                             player.Coins -= Weapons[purchaceChoice-1].Item2;
                             player.AddWeapon(Weapons[purchaceChoice-1].Item1);
                             Weapons.Remove(Weapons[purchaceChoice-1]);
-                            Console.WriteLine("Thank you for your patronage");
-                            Console.WriteLine($"You now have {player.Coins} Coins");
+                            Console.WriteLine(Helper.CenterStr("Thank you for your patronage"));
+                            Console.WriteLine(Helper.CenterStr($"You now have {player.Coins} Coins"));
                             return;
                         }
                     }
                     if(weaponInput == 2){
-                        Console.WriteLine("I'll upgrade your weapon for 10 coins");
-                        Console.WriteLine("1. Upgrade current weapon");
-                        Console.WriteLine("2. Nevermind");
+                        Console.WriteLine(Helper.CenterStr("I'll upgrade your weapon for 10 coins"));
+                        Console.WriteLine(Helper.CenterStr("1. Upgrade current weapon"));
+                        Console.WriteLine(Helper.CenterStr("2. Nevermind"));
                         int WeaponUpgradeInput;
                         do{
                         parseSuccesful = int.TryParse(Console.ReadLine(), out WeaponUpgradeInput);
+                        Helper.ClearLineDo();
                         } while(!parseSuccesful || !(1<=WeaponUpgradeInput && WeaponUpgradeInput<=2));
                         if(WeaponUpgradeInput==1){
                             
                             if(player.Coins <=0)
                             {
-                                Console.WriteLine("You have no coins!");
+                                Console.WriteLine(Helper.CenterStr("You have no coins!"));
                                 continue;
                             }
                             if(player.Coins > 0)
                             {
                                 player.CurrentWeapon.RaiseMaxDamage(2);
-                                Console.WriteLine("Here you go!");
-                                Console.WriteLine($"You now have {player.Coins} Coins");
+                                Console.WriteLine(Helper.CenterStr("Here you go!"));
+                                Console.WriteLine(Helper.CenterStr($"You now have {player.Coins} Coins"));
                                 return;
                             }
                         }
                         if(WeaponUpgradeInput==2) continue;
                     }
                     if(weaponInput == 3){
-                        Console.WriteLine("You leave the weaponsmith");
+                        Console.WriteLine(Helper.CenterStr("You leave the weaponsmith"));
                         return;
                     }
                 }
