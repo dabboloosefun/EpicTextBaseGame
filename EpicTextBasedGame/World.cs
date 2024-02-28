@@ -218,7 +218,8 @@
                 "Clear the farmer's field",
                 "Kill snakes in the farmer's field",
                 MonsterByID(2),
-                3);
+                3,
+                WeaponByID(2));
 
 
         Quest clearSpidersForest =

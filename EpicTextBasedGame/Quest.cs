@@ -1,4 +1,5 @@
 using System.IO.Compression;
+using Microsoft.VisualBasic;
 
 public class Quest
 {
@@ -9,7 +10,8 @@ public class Quest
     public Monster Target;
     public int TargetKills;
     public int CurrentKills;
-    public Quest(int id, string name, string description, Monster target, int targetKills)
+    public object? QuestReward;
+    public Quest(int id, string name, string description, Monster target, int targetKills, object? questReward = null)
     {
         ID = id;
         Name = name;
@@ -17,6 +19,7 @@ public class Quest
         Target = target;
         TargetKills = targetKills;
         CurrentKills = 0;
+        QuestReward = questReward;
     }
 
     public void StartQuest(Player player)
@@ -39,6 +42,21 @@ public class Quest
     {
         player.Experience += 50;
         Cleared = true;
+        if (QuestReward != null)
+        {
+            if (QuestReward is Weapon)
+            {
+                Weapon reward = (Weapon)QuestReward;
+                player.Weapons.Add(reward);
+                Console.WriteLine(Helper.CenterStr($"You got a(n) {reward.Name}!"));
+            } 
+            if (QuestReward is Item) 
+            {
+                Item reward = (Item)QuestReward;
+                player.Items.Add(reward);
+                Console.WriteLine(Helper.CenterStr($"You got a(n) {reward}!"));
+            }
+        }
         if (Name == "Collect spider silk") EndBoss(player);
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine(Helper.CenterStr($"Quest cleared: {Name}!"));
