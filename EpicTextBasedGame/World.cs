@@ -18,7 +18,8 @@
     public const int MONSTER_ID_GIANT_SPIDER = 3;
     public const int MONSTER_ID_FACELESS = 4;
     public const int MONSTER_ID_ALIEN = 5;
-    public const int MONSTER_ID_JEFF = 6;
+    public const int MONSTER_ID_JEFF = 6; 
+    public const int MONSTER_ID_SKELL = 7;
 
     public const int QUEST_ID_CLEAR_ALCHEMIST_GARDEN = 1;
     public const int QUEST_ID_CLEAR_FARMERS_FIELD = 2;
@@ -36,6 +37,7 @@
     public const int LOCATION_ID_FIELD_SOUTH = 10;
     public const int LOCATION_ID_ARENA = 11;
     public const int LOCATION_ID_BURROW = 12;
+    public const int LOCATION_ID_TOMB = 13;
 
     static World()
     {
@@ -212,6 +214,46 @@
                                     ''''   (//|/\      ,';':,-'         `-.__  `'--..__
                                                                              `''---::::'
 ");
+        Monster skeleton = new Monster(MONSTER_ID_SKELL, "skeleton", 15, 30, 30, 20, 20, new List<LootDrop>(), @"
+                                              _.--""""-._
+                  .                         .""         "".
+                 / \    ,^.         /(     Y             |      )\
+                /   `---. |--'\    (  \__..'--   -   -- -'""""-.-'  )
+                |        :|    `>   '.     l_..-------.._l      .'
+                |      __l;__ .'      ""-.__.||_.-'v'-._||`""----""
+                 \  .-' | |  `              l._       _.'
+                  \/    | |                   l`^^'^^'j
+                        | |                _   \_____/     _
+                        j |               l `--__)-'(__.--' |
+                        | |               | /`---``-----'""1 |  ,-----.
+                        | |               )/  `--' '---'   \'-'  ___  `-.
+                        | |              //  `-'  '`----'  /  ,-'   I`.  \
+                      _ L |_            //  `-.-.'`-----' /  /  |   |  `. \
+                     '._' / \         _/(   `/   )- ---' ;  /__.J   L.__.\ :
+                      `._;/7(-.......'  /        ) (     |  |            | |
+                      `._;l _'--------_/        )-'/     :  |___.    _._./ ;
+                        | |                 .__ )-'\  __  \  \  I   1   / /
+                        `-'                /   `-\-(-'   \ \  `.|   | ,' /
+                                           \__  `-'    __/  `-. `---'',-'
+                                              )-._.-- (        `-----'
+                                             )(  l\ o ('..-.
+                                       _..--' _'-' '--'.-. |
+                                __,,-'' _,,-''            \ \
+                               f'. _,,-'                   \ \
+                              ()--  |                       \ \
+                                \.  |                       /  \
+                                  \ \                      |._  |
+                                   \ \                     |  ()|
+                                    \ \                     \  /
+                                     ) `-.                   | |
+                                    // .__)                  | |
+                                 _.//7'                      | |
+                               '---'                         j_|
+                                                            (| |
+                                                             |  \
+                                                             |lllj
+                                                             ||||| 
+");
 
 
         Monsters.Add(rat);
@@ -220,6 +262,7 @@
         Monsters.Add(faceless);
         Monsters.Add(alien);
         Monsters.Add(jeff);
+        Monsters.Add(skeleton);
     }
 
     public static void PopulateQuests()
@@ -263,7 +306,7 @@
         // Create each location
         Location home = new Location(LOCATION_ID_HOME, "Home", "Your house. It seems all your candles have dimmed...\nYou can feel the wind breezing through the broken walls", null, null);
 
-        Location townSquare = new Location(LOCATION_ID_TOWN_SQUARE, "Town square", "You see a fountain adorned with stone eyes.\nThe statue atop seems to resemble a bull standing on its hind legs\nThere are merchants selling their wares available to interact with.", null, null);
+        Location townSquare = new Location(LOCATION_ID_TOWN_SQUARE, "Town square", "You see a fountain adorned with stone eyes.\nThe statue atop seems to resemble a bull standing on its hind legs.\nThere are merchants selling their wares available to interact with.", null, null);
 
         Location alchemistHut = new Location(LOCATION_ID_ALCHEMIST_HUT, "Alchemist's hut", "There are many strange plants on the shelves.\nYou peer into a cualdron... you regret that decision.\nThe alchemist would like to speak to you about a pervasive problem he's having.", QuestByID(QUEST_ID_CLEAR_ALCHEMIST_GARDEN), null);
 
@@ -285,6 +328,7 @@
 
         Location burrow = new Location(LOCATION_ID_BURROW, "Burrow", "The area is strewn with feces.\nTheir owners lurking nearby.", null, MonsterByID(MONSTER_ID_JEFF));
 
+        Location tomb = new Location(LOCATION_ID_TOMB, "Tomb", "The scent of death seems to sap your life-force from the inside.", null, MonsterByID(MONSTER_ID_SKELL));
         // Link the locations together
         home.LocationToNorth = townSquare;
 
@@ -310,7 +354,10 @@
         burrow.LocationToEast = alchemistsGarden;
 
         guardPost.LocationToEast = bridge;
+        guardPost.LocationToSouth = tomb;
         guardPost.LocationToWest = townSquare;
+
+        tomb.LocationToNorth = guardPost;
 
         bridge.LocationToWest = guardPost;
         bridge.LocationToEast = spiderField;
@@ -330,6 +377,7 @@
         Locations.Add(fieldsouth);
         Locations.Add(arena);
         Locations.Add(burrow);
+        Locations.Add(tomb);
     }
 
     public static Location LocationByID(int id)

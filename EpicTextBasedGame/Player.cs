@@ -267,6 +267,7 @@ public class Player : Character
                     if (playerAction == "m")
                     {
                         CurrentLocation.Map();
+                        Helper.WriteInCenter(player.CurrentLocation.Description);
                         Helper.GameOptions();
                     } 
                     else if (TryMoveTo(playerAction, player))
@@ -277,8 +278,7 @@ public class Player : Character
                 }
             }
             Int32.TryParse(playerAction, out intplayerAction);
-            Console.Write(new string(' ', Console.BufferWidth));
-            Console.SetCursorPosition(0, Console.CursorTop - 1);
+            Helper.ClearLineDo();
         } while ((intplayerAction < 1) || (intplayerAction > 6));
 
 

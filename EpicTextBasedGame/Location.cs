@@ -3,6 +3,7 @@
 public class Location{
     public int ID;
     public string Name;
+    public bool Proceed = false;
     public string Description;
     public Quest? QuestAvailableHere;
     public Monster? MonsterLivingHere;
@@ -37,7 +38,7 @@ public class Location{
         do
         {
             Console.WriteLine(Helper.CenterStr("Would you like to accept quest? Y/N"));
-            userInput = (Console.ReadLine()).ToLower();
+            userInput = Console.ReadLine().ToLower();
             Helper.ClearLastLine();
         } while (userInput != "y" && userInput != "n");
         if (userInput == "y") QuestAvailableHere.StartQuest(player);
@@ -46,6 +47,11 @@ public class Location{
 
     public void StartEndGame(Player player)
     {
+        Console.Clear();
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine(Helper.CenterStr("The sole guard manning the gate is in your way"));
+        Console.WriteLine("\n");
+        Console.ForegroundColor = ConsoleColor.White;
         int completed = 0;
         foreach (Quest quest in player.QuestList)
         {
@@ -54,17 +60,51 @@ public class Location{
                 completed += 1;
             }
         }
-        if (completed == 2)
-        {
-            Console.WriteLine(Helper.CenterStr("You're up to the challenge, proceed.\n"));
-            Thread.Sleep(2000);
-        }
-        else
-        {
-            Console.WriteLine(Helper.CenterStr("You're not allowed beyond this point!"));
-            Console.WriteLine(Helper.CenterStr("I'll have you escorted back to the town.\n"));
-            Thread.Sleep(2000);
-            player.CurrentLocation = player.CurrentLocation.LocationToWest;
+        if (Proceed is false) {
+            if (completed == 2)
+            {
+                Console.WriteLine(Helper.CenterStr("You're up to the challenge, proceed.\n"));
+                Thread.Sleep(2000);
+                Proceed = true;
+            }
+            else
+            {
+                Console.WriteLine(Helper.CenterStr("You're not allowed beyond this point!"));
+                Console.WriteLine(Helper.CenterStr("I'll have you escorted back to the town.\n"));
+                string userInput;
+                do
+                {
+                    Console.WriteLine(Helper.CenterStr("Attack guard? Y/N"));
+                    userInput = Console.ReadLine().ToLower();
+                    Helper.ClearLastLine();
+                } while (userInput != "y" && userInput != "n");
+                if (userInput == "y")
+                {
+                    SuperAdventure.Fight(player, new Monster(22, "guard", 20, 50, 50, 100, 100, new List<LootDrop>(), @"
+                                                       _.--.    .--._
+                                                     .""  .""      "".  "".
+                                                    ;  .""    /\    "".  ;
+                                                    ;  '._,-/  \-,_.`  ;
+                                                    \  ,`  / /\ \  `,  /
+                                                     \/    \/  \/    \/
+                                                     ,=_    \/\/    _=,
+                                                     |  ""_   \/   _""  |
+                                                     |_   '""-..-""'   _|
+                                                     | ""-.        .-"" |
+                                                     |    ""\    /""    |
+                                                     |      |  |      |
+                                             ___     |      |  |      |     ___
+                                         _,-"",  "",   '_     |  |     _'   ,""  ,""-,_
+                                       _(  \  \   \""=--""-.  |  |  .-""--=""/   /  /  )_
+                                     ,""  \  \  \   \      ""-'--'-""      /   /  /  /  "".
+                                    !     \  \  \   \                  /   /  /  /     !
+                                    :      \  \  \   \                /   /  /  /      :    
+"));
+                    player.CurrentLocation.AdjustDescription("You leave the blood gurlging guard to die by the gate.");
+                    Proceed = true;
+                }
+                else player.CurrentLocation = player.CurrentLocation.LocationToWest;
+            }
         }
     }
 
@@ -87,7 +127,7 @@ public class Location{
                                     __V__     ▀▀│ T │---G╠═B═╣--*****
                                     =====       │   │█  ▀▀≈≈≈  ******
                                     =====     ▀█└───┘     ≈≈≈  **S***       X: Player
-                                    =====       |▐█▀     ≈≈≈  *******       Current Location: {Name}
+                                    =====       |▐█▀   <=>≈≈≈  *******       Current Location: {Name}
                                            *     \     ≈≈≈≈ *********
                                        ▄▌ ***    |     ≈≈≈≈ *********
                                     **********   ▀ H ≈≈≈≈≈ **********
@@ -129,6 +169,10 @@ public class Location{
 
             case World.LOCATION_ID_GUARD_POST:
                 indexPos = map.IndexOf(" │---G╠");
+                break;
+
+            case World.LOCATION_ID_TOMB:
+                indexPos = map.IndexOf("   <=>≈");
                 break;
 
             case World.LOCATION_ID_BRIDGE:
