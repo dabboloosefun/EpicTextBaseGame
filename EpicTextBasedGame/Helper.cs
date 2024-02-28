@@ -236,7 +236,7 @@ public class Helper
         }
     }
 
-    public static void FightWinScreen(Player player)
+    public static void FightWinScreen(Player player, Monster monster)
     {
         Console.WriteLine("\u001b[2J\u001b[3J");
         Console.Clear();
@@ -253,6 +253,7 @@ public class Helper
         Console.WriteLine(CenterStr(@"|___|_|\_|___|_|  |_| |_|   |___/____|/_/ \_\|___||_|\_|"));
         Console.ForegroundColor = ConsoleColor.White;
         Console.WriteLine("\n\n");
+        monster.DropLoot(player);
         if (player.LevelUp() is true) Thread.Sleep(1000);
         else Thread.Sleep(500);
     }

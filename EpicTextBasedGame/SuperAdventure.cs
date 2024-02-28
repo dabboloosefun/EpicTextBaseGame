@@ -137,8 +137,7 @@ public class SuperAdventure
         {
             player.Experience += monster.GiveExp;
             player.Coins += monster.GiveCoins;
-            monster.DropLoot(player);
-            Helper.FightWinScreen(player);
+            Helper.FightWinScreen(player, monster);
         }
 
         if (player.QuestList.Any(x => x.Target == monster))

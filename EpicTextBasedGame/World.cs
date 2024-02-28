@@ -10,7 +10,7 @@
     public const int WEAPON_ID_RUSTY_SWORD = 1;
     public const int WEAPON_ID_CLUB = 2;
     public const int WEAPON_ID_POISON_DAGGER = 3;
-    public const int WEAPON_ID_HAND_OF_GOD = 4;
+    public const int WEAPON_ID_HAND_OF_GOD = 999;
     public const int WEAPON_ID_SCYTHE = 666;
 
     public const int MONSTER_ID_RAT = 1;

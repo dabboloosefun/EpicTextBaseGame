@@ -77,14 +77,16 @@ public class Monster : Character
                 if (lootDrop.LootWeapon != null)
                 {
                     Weapon droppedWeapon = lootDrop.LootWeapon;
-                    Console.WriteLine($"{this.Name} dropped a weapon: {droppedWeapon.Name}");
+                    Console.WriteLine(Helper.CenterStr($"{this.Name} dropped a weapon: {droppedWeapon.Name}\n"));
                     player.AddWeapon(droppedWeapon);
+                    Thread.Sleep(1000);
                 }
                 else if (lootDrop.LootItem != null)
                 {
                     Item droppedItem = lootDrop.LootItem;
-                    Console.WriteLine($"{this.Name} dropped an item: {droppedItem.Name}");
+                    Console.WriteLine(Helper.CenterStr($"{this.Name} dropped an item: {droppedItem.Name}\n"));
                     player.AddItem(droppedItem);
+                    Thread.Sleep(1000);
                 }
             }
         }
