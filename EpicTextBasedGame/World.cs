@@ -9,6 +9,7 @@
 
     public const int WEAPON_ID_RUSTY_SWORD = 1;
     public const int WEAPON_ID_CLUB = 2;
+    public const int WEAPON_ID_SCYTHE = 666;
 
     public const int MONSTER_ID_RAT = 1;
     public const int MONSTER_ID_SNAKE = 2;
@@ -45,6 +46,7 @@
     {
         Weapons.Add(new Weapon(WEAPON_ID_RUSTY_SWORD, "Rusty sword", 5, 0.05));
         Weapons.Add(new Weapon(WEAPON_ID_CLUB, "Club", 10, 0.05));
+        Weapons.Add(new Weapon(WEAPON_ID_SCYTHE, "Grave Scythe", 50, 0.3));
     }
 
     public static void PopulateMonsters()
@@ -103,7 +105,7 @@
 ");
 
 
-        Monster faceless = new Monster(MONSTER_ID_FACELESS, "reaper", 20, 30, 30, 30, 50, new List<LootDrop>(), @"
+        Monster faceless = new Monster(MONSTER_ID_FACELESS, "reaper", 20, 30, 30, 30, 50, new List<LootDrop>{new LootDrop(100, WeaponByID(666))}, @"
                                                                  .""--..__
                                              _                     []       ``-.._
                                           .'` `'.                  ||__           `-._
