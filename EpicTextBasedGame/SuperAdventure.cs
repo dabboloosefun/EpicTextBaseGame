@@ -117,9 +117,13 @@ public class SuperAdventure
         monster.MaxDamage -= monster.BuffedDmg;
         monster.BuffedDmg = 0;
         //exp is given
-        if (monster.CurrentHealth == 0) player.Experience += monster.GiveExp;
-        monster.DropLoot(player);
-        Helper.FightWinScreen(player);
+        if (monster.CurrentHealth <= 0) 
+        {
+            player.Experience += monster.GiveExp;
+            player.Coins += monster.GiveCoins;
+            monster.DropLoot(player);
+            Helper.FightWinScreen(player);
+        }
 
         if (player.QuestList.Any(x => x.Target == monster))
         {
