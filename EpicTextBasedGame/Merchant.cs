@@ -12,15 +12,20 @@ public class Merchant{
         if (name=="Potion merchant")
         {
             Potions.Add((new Item("Damaging Potion10", new Effect("DamageInstant10", 10, EffectTypes.DAMAGEINSTANT, 1), "Deals 10 instant damage"), 8));
+            Potions.Add((new Item("Damaging Potion20", new Effect("DamageInstant20", 20, EffectTypes.DAMAGEINSTANT, 1), "Deals 20 instant damage"), 18));
             Potions.Add((new Item("Damaging Potion100", new Effect("DamageInstant100", 100, EffectTypes.DAMAGEINSTANT, 1), "Deals 100 instant damage"), 100));
             Potions.Add((new Item("Lingering Healing Potion20_3T", new Effect("HealOverTime20_3T", 20, EffectTypes.HEALOVERTIME, 3), "Heals 20 damage every turn for 3 turns"), 20));
             Potions.Add((new Item("HealingPotion20", new Effect("HealInstant20", 20, EffectTypes.HEALOVERTIME, 1), "Heals 20 instantly"), 20));
+            Potions.Add((new Item("Lingering Damage Potion30_3T", new Effect("DamageOverTime20_3T", 30, EffectTypes.DAMAGEOVERTIME, 3), "Deals 30 damage every turn for 3 turns"), 100));
         }
         else if(name=="Weaponsmith")
         {
-            Weapons.Add((new Weapon(1, "Dagger", 5, 0.4 ), 10));
-            Weapons.Add((new Weapon(2, "Sword", 15, 0.1 ), 30));
-            Weapons.Add((new Weapon(3, "Gun", 100, 0.0 ), 300));
+            Weapons.Add((new Weapon(3, "Dagger", 5, 0.4 ), 10));
+            Weapons.Add((new Weapon(4, "Sword", 15, 0.1 ), 30));
+            Weapons.Add((new Weapon(5, "Gun", 100, 0.0 ), 300));
+            Weapons.Add((new Weapon(6, "Stick", 1, 1.0 ), 1));
+            Weapons.Add((new Weapon(7, "Pan", 20, 0.5), 100));
+            Weapons.Add((new Weapon(7, "Battle axe", 40, 0.2), 140));
         }
     }
 
