@@ -326,7 +326,7 @@
 
         Location arena = new Location(LOCATION_ID_ARENA, "EndArena", "The final boss", null, MonsterByID(MONSTER_ID_ALIEN));
 
-        Location burrow = new Location(LOCATION_ID_BURROW, "Burrow", "The area is strewn with feces.\nTheir owners lurking nearby.", null, MonsterByID(MONSTER_ID_JEFF));
+        Location burrow = new Location(LOCATION_ID_BURROW, "Burrow", "The area is strewn with feces.\nThe previous owners lurking nearby.", null, MonsterByID(MONSTER_ID_JEFF));
 
         Location tomb = new Location(LOCATION_ID_TOMB, "Tomb", "The scent of death seems to sap your life-force from the inside.", null, MonsterByID(MONSTER_ID_SKELL));
         // Link the locations together

@@ -28,10 +28,13 @@ public class Quest
         Console.WriteLine(Helper.CenterStr($"Quest started: {Name}"));
         Console.WriteLine("\n");
         Console.ForegroundColor = ConsoleColor.White;
+        Console.WriteLine(Helper.CenterStr(Description));
+        Console.WriteLine("\n");
         player.QuestList.Add(this);
-        if (player.CurrentLocation.Name == "Farmhouse") player.CurrentLocation.AdjustDescription("The farmer is waiting impatiently");
+        if (player.CurrentLocation.ID == World.LOCATION_ID_FARMHOUSE) player.CurrentLocation.AdjustDescription("The farmer is waiting impatiently.");
+        if (player.CurrentLocation.ID == World.LOCATION_ID_ALCHEMIST_HUT) player.CurrentLocation.AdjustDescription("The alchemist is gazing at you intently.");
+        if (player.CurrentLocation.ID == World.LOCATION_ID_BRIDGE) player.CurrentLocation.AdjustDescription("The councilman seems to be at odds with eachother.");
     }
-
     public void UpdateQuest(Player player)
     {
         CurrentKills++;
@@ -49,12 +52,14 @@ public class Quest
                 Weapon reward = (Weapon)QuestReward;
                 player.Weapons.Add(reward);
                 Console.WriteLine(Helper.CenterStr($"You got a(n) {reward.Name}!"));
+                Console.WriteLine("\n");
             } 
             if (QuestReward is Item) 
             {
                 Item reward = (Item)QuestReward;
                 player.Items.Add(reward);
                 Console.WriteLine(Helper.CenterStr($"You got a(n) {reward}!"));
+                Console.WriteLine("\n");
             }
         }
         if (Name == "Collect spider silk") EndBoss(player);
@@ -62,7 +67,8 @@ public class Quest
         Console.WriteLine(Helper.CenterStr($"Quest cleared: {Name}!"));
         Console.WriteLine("\n");
         Console.ForegroundColor = ConsoleColor.White;
-        if (player.CurrentLocation.Name == "Farmer's field") player.CurrentLocation.LocationToEast.AdjustDescription("The farmer is pleased");
+        if (player.CurrentLocation.ID == World.LOCATION_ID_FARMHOUSE) player.CurrentLocation.AdjustDescription("The farmer is pleased.");
+        if (player.CurrentLocation.ID == World.LOCATION_ID_ALCHEMIST_HUT) player.CurrentLocation.AdjustDescription("The alchemist pays you no heed.");
         Thread.Sleep(1000);
     }
 
