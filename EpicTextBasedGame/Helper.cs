@@ -245,6 +245,7 @@ public class Helper
     public static void Deathscreen()
     {
         Console.CursorVisible = false;
+        Console.WriteLine("\u001b[2J\u001b[3J");
         Console.Clear();
         Thread.Sleep(1000);
         Console.WriteLine("\n\n\n\n\n\n\n\n");
@@ -265,6 +266,7 @@ public class Helper
     public static void WinScreen()
     {
         Console.CursorVisible = false;
+        Console.WriteLine("\u001b[2J\u001b[3J");
         Console.Clear();
         Thread.Sleep(1000);
         Console.WriteLine("\n\n\n\n\n\n\n\n");
