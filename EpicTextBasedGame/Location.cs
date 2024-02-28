@@ -22,6 +22,42 @@ public class Location{
         MonsterLivingHere = monster;
     }
 
+    public void AbandonedShack()
+    {
+        string shack = @"
+                  _    _                ______________________
+________________ __ _ \../ _   __  ____ -=(_)____________________)=- 
+|             // \_=>OO<=_  / \\        / Only in the place _/      |
+| ______      /X\ \ \oo/\  / /\\       /~where darkness is  |       |
+||      |     \\\\ \ `'\^\/ /\ \\     (~forever his demise  |       |
+||       ==='  \\\\ \  /^/ /\ \ \\     \ ------------------~\       |
+||      |       \XX\_\/^.\/\/\/\/\\     \ awaits, a burrow's \      |
+||      |        _-~^^^^/)\v\__          \_     ========      \     |
+||      |       /^^^^^^_// \__ \          \  secret, when found\    |
+| ~~~~~~        \^^___/ \    ///           \_     ========     ~\   |
+|               |^^/\/\ (//                 )He roams, his faith )  |
+|               |^|  ^ \ (                 /~  unfurls.        _/   |
+|                \^\_   ^ __/            _/____________________/    |
+|________________ \^^-----_/ ________ -=(_)____________________)=- _|
+                    ~----~~
+";
+        Console.ForegroundColor = ConsoleColor.Gray;
+        Helper.WriteInCenter(shack);
+        string? userInput = "";
+        do
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(Helper.CenterStr("Continue? Y/N"));
+            Console.ForegroundColor = ConsoleColor.White;
+            userInput = Console.ReadLine().ToLower();
+            Helper.ClearLastLine();
+        } while (userInput != "y");
+        Console.WriteLine(Helper.CenterStr("You head back outside"));
+        Thread.Sleep(1500);
+        Console.Clear();
+        return;
+    }
+
     public void AdjustDescription(string newDescription) //Flexibiliteit is altijd fijn.
     {
         Description = newDescription;
@@ -116,7 +152,7 @@ public class Location{
         Console.Clear();
         string map = $@"
                                     *********┌─────────────┐***  ≈≈≈≈≈      LEGEND
-                                    *** +    │ .....P..... │*  ≈≈≈≈≈        H: Home
+                                    *** +      .....P..... │*  ≈≈≈≈≈        H: Home
                                              │     ...     │  ≈≈≈≈≈         T: Town Square
                                              └──┐   ▄   ┌──┘ ≈≈≈≈≈          F: Farmhouse
                                      <=>        │ ▄███▄ │    ≈≈≈≈≈          V: Farmer's Field
@@ -130,9 +166,9 @@ public class Location{
                                     __V__     ▀▀│ T │---G╠═B═╣--*****
                                     =====       │   │█  ▀▀≈≈≈  ******
                                     =====     ▀█└───┘     ≈≈≈  **S***       X: Player
-                                    =====       |▐█▀   <=>≈≈≈  *******       Current Location: {Name}
-                                           *     \     ≈≈≈≈ *********
-                                       ▄▌ ***    |     ≈≈≈≈ *********
+                                    =====       |▐█▀   <=>≈≈≈ *******       Current Location: {Name}
+                                           *     \ *** ≈≈≈≈ *********
+                                       ▄▌ ***    |  ** ≈≈≈≈ *********
                                     **********   ▀ H ≈≈≈≈≈ **********
         ";
         int indexPos = 0;
@@ -164,6 +200,14 @@ public class Location{
 
             case World.LOCATION_ID_FARM_FIELD:
                 indexPos = map.IndexOf("  =====       │");
+                break;
+
+            case World.LOCATION_ID_SHACK:
+                indexPos = map.IndexOf("     ▐      └");
+                break;
+
+            case World.LOCATION_ID_TOMB2:
+                indexPos = map.IndexOf("   <=>        │");
                 break;
 
             case World.LOCATION_ID_FIELD_SOUTH:

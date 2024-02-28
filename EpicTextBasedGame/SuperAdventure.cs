@@ -25,6 +25,7 @@ public class SuperAdventure
                 FightStats(player, monster);
                 Console.WriteLine("1. Attack");
                 Console.WriteLine("2. Use item");
+                Console.WriteLine("3. Flee");
                 Console.WriteLine("What do you want to do?");
                     string attack_input = Console.ReadLine().ToLower();
                     switch (attack_input){
@@ -46,6 +47,13 @@ public class SuperAdventure
                             player.UpdateEffects();
                             Actiondone = true;
                         }
+                        break;
+
+                    case "3":
+                    case "flee":
+                        Console.Clear();
+                        Console.WriteLine("\u001b[2J\u001b[3J");
+                        return;
                         break;
 
                     default:

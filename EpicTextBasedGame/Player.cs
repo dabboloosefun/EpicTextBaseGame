@@ -395,6 +395,7 @@ public class Player : Character
                     Merchant.Market(player);
                     if (CurrentLocation.QuestAvailableHere != null) CurrentLocation.StartLocationQuest(player);
                 }
+                else if (player.CurrentLocation.ID == World.LOCATION_ID_SHACK) player.CurrentLocation.AbandonedShack();
                 else if ((CurrentLocation.ID == World.LOCATION_ID_ALCHEMIST_HUT) && (player.QuestList.Any(x => x.ID == World.QUEST_ID_CLEAR_ALCHEMIST_GARDEN && x.Cleared is true)))
                 {
                     AlchemistFight(player);
@@ -404,8 +405,8 @@ public class Player : Character
                 {
                     SuperAdventure.Fight(player, player.CurrentLocation.MonsterLivingHere);
                     CurrentLocation.Map();
-                } 
-                
+                }
+
                 else Console.WriteLine(Helper.CenterStr("Nothing to interact with here"));
                 break;
 

@@ -21,6 +21,7 @@
     public const int MONSTER_ID_JEFF = 6; 
     public const int MONSTER_ID_SKELL = 7;
     public const int MONSTER_ID_MINOTAUR = 8;
+    public const int MONSTER_ID_BEE = 9;
 
     public const int QUEST_ID_CLEAR_ALCHEMIST_GARDEN = 1;
     public const int QUEST_ID_CLEAR_FARMERS_FIELD = 2;
@@ -40,6 +41,8 @@
     public const int LOCATION_ID_ARENA = 11;
     public const int LOCATION_ID_BURROW = 12;
     public const int LOCATION_ID_TOMB = 13;
+    public const int LOCATION_ID_SHACK = 14;
+    public const int LOCATION_ID_TOMB2 = 15;
 
 
     static World()
@@ -280,6 +283,30 @@
                                                        `:         : .::/
                           ;                            ;;+_  :::. :..;;;
 ");
+        Monster bee = new Monster(MONSTER_ID_BEE, "bee", 6, 15, 15, 25, 5, new List<LootDrop>(), @"
+                                                        _.-~7
+                              .                      ,-""   /
+                              \\                   .^     / _.-~7
+                               \\                 /      /-""   /
+                                \\               /\.  _.^     /
+                         ________\\          .--"" _>-""/      /
+                        `--------\""\  ___   / .-~""_~""/l  _.-^-.
+                                  \.\"" _/7-{ / /'~ ~/_.-""--._ /
+                                  /_.-~ \|~~Y Y   _// ""~-.   ~
+                                 <""_ __'_I__I |  (_/     \\
+                                  \_/_.~ j I~-'           )Y
+                                    "">-'Y\//\     _.     ( j__
+                                    /7--l //""\j|_/// ._  _7   ~""-.
+                                   //    ""/,^. | 7/--||-~__)      \
+                                 .//     // //""'//   l`""~_ Y     .-Y
+                                 3/    .//_//  //     ~7` ||--._/  |
+                                       3/ L/ _//      /` /||       !
+                                             L/      /` / !j      /
+                                             i      /` / //      /
+                                             l\    /` '_//     .^   
+                                              \""--""`   L/  _.-~
+                                               ""-.____.--""~
+");
 
 
         Monsters.Add(rat);
@@ -290,6 +317,7 @@
         Monsters.Add(jeff);
         Monsters.Add(skeleton);
         Monsters.Add(minotaur);
+        Monsters.Add(bee);
     }
 
     public static void PopulateQuests()
@@ -366,6 +394,10 @@
         Location burrow = new Location(LOCATION_ID_BURROW, "Burrow", "The area is strewn with feces.\nThe previous owners lurking nearby.", null, MonsterByID(MONSTER_ID_JEFF));
 
         Location tomb = new Location(LOCATION_ID_TOMB, "Tomb", "The scent of death seems to sap your life-force from the inside.", null, MonsterByID(MONSTER_ID_SKELL));
+
+        Location shack = new Location(LOCATION_ID_SHACK, "Abandoned shack", "Obscured by overgrown foliage stands an abandoned shack in the grip of decay.\nIts weary wooden walls, weathered to a faded gray, bear the scars of countless seasons.\nWould you like to enter this shack?", null, null);
+
+        Location tomb2 = new Location(LOCATION_ID_TOMB2, "Tomb north", "The air surrounding the tomb hums with an eerie melody.\nSwirling in perpetual motion, a myriad of bees blankets the ancient structure,\ntransforming it into a place of both life and decay.", null, MonsterByID(MONSTER_ID_BEE));
         // Link the locations together
         home.LocationToNorth = townSquare;
 
@@ -379,6 +411,13 @@
 
         fieldsouth.LocationToNorth = farmersField;
 
+        tomb2.LocationToSouth = shack;
+        tomb2.LocationToNorth = burrow;
+
+        shack.LocationToNorth = tomb2;
+        shack.LocationToSouth = farmersField;
+
+        farmersField.LocationToNorth = shack;
         farmersField.LocationToEast = farmhouse;
         farmersField.LocationToSouth = fieldsouth;
 
@@ -389,6 +428,7 @@
         alchemistsGarden.LocationToWest = burrow;
 
         burrow.LocationToEast = alchemistsGarden;
+        burrow.LocationToSouth = tomb2;
 
         guardPost.LocationToEast = bridge;
         guardPost.LocationToSouth = tomb;
@@ -415,6 +455,8 @@
         Locations.Add(arena);
         Locations.Add(burrow);
         Locations.Add(tomb);
+        Locations.Add(shack);
+        Locations.Add(tomb2);
     }
 
     public static Location LocationByID(int id)
