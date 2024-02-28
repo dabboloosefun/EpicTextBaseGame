@@ -15,8 +15,6 @@ public class SuperAdventure
             if (playerturn){
             bool Actiondone = false;
             while(!Actiondone){
-                player.UpdateEffects();
-                monster.UpdateEffects();
                 FightStats(player, monster);
                 Console.WriteLine("1. Attack");
                 Console.WriteLine("2. Use item");
@@ -28,6 +26,7 @@ public class SuperAdventure
                     case "attack":
                         Helper.ProjectMonser(monster);
                         monster.TakeDamage(player.CurrentWeapon.RollDamage());
+                        player.UpdateEffects();
                         Actiondone = true;
                         break;
 
@@ -36,6 +35,7 @@ public class SuperAdventure
                         Helper.ProjectMonser(monster);
                         bool succesfulitem = player.PromptUseItem(monster);
                         if(succesfulitem){
+                            player.UpdateEffects();
                             Actiondone = true;
                         }
                         break;
@@ -89,15 +89,18 @@ public class SuperAdventure
                 {
                     case "Attack":
                         player.TakeDamage(monster.RollDamageMonster());
+                        monster.UpdateEffects();
                         Mactiondone = true;
                         break;
                     case "Heal":
                         int regenamount = ((monster.MaxHealth - monster.CurrentHealth) / 5) + 2; // +2 to ensure it will always heal the enemy
                         monster.RegenarateHealth(regenamount);
+                        monster.UpdateEffects();
                         Mactiondone = true;
                         break;
                     case "Buff":
                         monster.RaiseMaxDamage((monster.MaxHealth/10) * 2 + 5);
+                        monster.UpdateEffects();
                         Mactiondone = true;
                         break;
                 }
@@ -115,6 +118,7 @@ public class SuperAdventure
         monster.BuffedDmg = 0;
         //exp is given
         if (monster.CurrentHealth == 0) player.Experience += monster.GiveExp;
+        monster.DropLoot(player);
         Helper.FightWinScreen(player);
 
         if (player.QuestList.Any(x => x.Target == monster))
