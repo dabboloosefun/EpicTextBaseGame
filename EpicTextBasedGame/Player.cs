@@ -125,15 +125,6 @@ public class Player : Character
     }
 
     public bool PromptUseItem(Monster? monsterTarget = null){
-        // string? userInput = "";
-        // do
-        // { //move elsewhere for potential out of combat uses. it's a useless prompt in combat
-        //     Console.WriteLine("Would you like to use an item? yes/no"); 
-        //     userInput = Console.ReadLine();
-        // } while (userInput != "yes" && userInput != "no");
-        // if (userInput == "no") return;
-        // else if (userInput == "yes")
-        // {
         if (Items.Count <= 0)
         {
             Console.WriteLine("You have no items");
@@ -156,24 +147,20 @@ public class Player : Character
             Console.WriteLine($"3. Cancel");
             successfulParse = int.TryParse(Console.ReadLine(), out selectedTargetNumber);
         } while (!successfulParse || !(1 <= selectedTargetNumber && selectedTargetNumber <= 3));
-        if(selectedTargetNumber == 1)
+        if(selectedTargetNumber == 1) //player
         {
             Items[selectedItemNumber-1].UseItem(this); //displayed number is now 1 higher so we need displayednumber - 1
             RemoveItem(Items[selectedItemNumber-1]);
-            //Items.RemoveAt(selectedItemNumber);
-            //actionDoneRef = true;
             return true;
         }
-        else if(selectedTargetNumber == 2)
+        else if(selectedTargetNumber == 2) //enemy
         {
             Items[selectedItemNumber-1].UseItem(monsterTarget);
             Console.WriteLine("");
             RemoveItem(Items[selectedItemNumber-1]);
-            //Items.RemoveAt(selectedItemNumber);
-            //actionDoneRef = true;
             return true;
         }
-        else if(selectedTargetNumber == 3)
+        else if(selectedTargetNumber == 3) //dont use item
         {
             Console.WriteLine("You put the item back in your backpack");
             return false;
