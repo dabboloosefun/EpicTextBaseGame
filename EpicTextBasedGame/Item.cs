@@ -15,7 +15,7 @@ public class Item{
         {"Healing Potion123", new Item(6, "Healing Potion123", new Effect("HealInstant123", 123, EffectTypes.HEALINSTANT, 1), "heals 123 instantly", 1)}
     };
 
-    public Item(int id, string name, Effect? itemEffect = null, string description="", int count=1)
+    private Item(int id, string name, Effect? itemEffect = null, string description="", int count=1)
     {
         ID = id;
         Name = name;
