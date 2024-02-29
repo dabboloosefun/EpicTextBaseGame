@@ -53,12 +53,12 @@ public class Player : Character
         {
             SuperAdventure.Fight(player, new Monster(44, "Alchemist", 19, 25, 25, 400, 150, new List<LootDrop>(), @"
                                                   /|
-                                                 / |
-                                                /  |
+                                                 /*|
+                                                /* |
                                                /   \
-                                              /    |
-                                             /      \
-                                            /______  |
+                                              / * *|
+                                             / *  * \
+                                            /______ *|
                                            /|@/@ \_\__\
                                           ///<__ / \  \\
                                          //  \\_\|/ \___\\_
