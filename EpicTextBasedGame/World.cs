@@ -68,7 +68,7 @@
         Weapons.Add(new Weapon(WEAPON_ID_CLUB, "Club", 10, 0.05));
         Weapons.Add(new Weapon(WEAPON_ID_SCYTHE, "Grave Scythe", 50, 0.3));
         Weapons.Add(new Weapon(WEAPON_ID_POISON_DAGGER, "Poison dagger", 8, 0.3));
-        Weapons.Add(new Weapon(WEAPON_ID_HAND_OF_GOD, "Hand of God", 1000, 1));
+        Weapons.Add(new Weapon(WEAPON_ID_HAND_OF_GOD, "Hand of God", 1000, 0.99));
         Weapons.Add(new Weapon(WEAPON_ID_MINOTAUR_HORN, "Minotaur Horn", 20, 0.1));
     }
 
