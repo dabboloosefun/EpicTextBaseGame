@@ -53,11 +53,12 @@
 
     static World()
     {
+        PopulateItems();
         PopulateWeapons();
         PopulateMonsters();
         PopulateQuests();
         PopulateLocations();
-        PopulateItems();
+        
     }
 
 
@@ -73,14 +74,14 @@
 
     public static void PopulateItems()
     {
-        Items.Add(new Item(ITEM_ID_POTION10, "Healing Potion10", Effect.BaseEffects["HealInstant10"].Copy(), "heals 10 instantly", 1));
-        Items.Add(new Item(ITEM_ID_POTION20, "Healing Potion20", Effect.BaseEffects["HealInstant20"].Copy(), "heals 20 instantly", 1));
-        Items.Add(new Item(ITEM_ID_POTION30, "Healing Potion30", Effect.BaseEffects["HealInstant30"].Copy(), "heals 30 instantly", 1));
+        Items.Add(new Item("Healing Potion10", Effect.BaseEffects["HealInstant10"].Copy(), "heals 10 instantly", 1));
+        Items.Add(new Item("Healing Potion20", Effect.BaseEffects["HealInstant20"].Copy(), "heals 20 instantly", 1));
+        Items.Add(new Item("Healing Potion30", Effect.BaseEffects["HealInstant30"].Copy(), "heals 30 instantly", 1));
     }
 
     public static void PopulateMonsters()
     {
-        Monster rat = new Monster(MONSTER_ID_RAT, "rat", 4, 12, 12, 12, 10, new List<LootDrop>{new LootDrop(100, null, ItemByID(1))}, @"
+        Monster rat = new Monster(MONSTER_ID_RAT, "rat", 4, 12, 12, 12, 10, new List<LootDrop>{new LootDrop(100, null, Items[2])}, @"
                                  __             _,-""~^""-.
                                _// )      _,-""~`         `.
                              ."" ( /`""-,-""`                 ;

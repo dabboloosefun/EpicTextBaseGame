@@ -137,8 +137,8 @@ What would you like to do? 1-3");
                         else
                         {
                             player.Coins -= Potions[purchaceChoice-1].Item2;
-                            player.AddItem(Potions[purchaceChoice-1].Item1);
-                            Potions.Remove(Potions[purchaceChoice-1]);
+                            player.AddItem(Potions[purchaceChoice-1].Item1.Copy());
+                            Potions.Remove(Potions[purchaceChoice-1]); // doesn't do anything atm as they get reloaded, but that's fine
                             Console.WriteLine(Helper.CenterStr("Thank you for your patronage"));
                             Console.WriteLine(Helper.CenterStr($"You now have {player.Coins} Coins"));
                             Thread.Sleep(1500);
@@ -247,8 +247,8 @@ What would you like to do? 1-3");
                                 Console.WriteLine(Helper.CenterStr("\n\nSay hello to the 21st century.\n\n"));
                                 Thread.Sleep(1500);
                             }
-                            player.AddWeapon(Weapons[purchaceChoice-1].Item1);
-                            Weapons.Remove(Weapons[purchaceChoice-1]);
+                            player.AddWeapon(Weapons[purchaceChoice-1].Item1.Copy());
+                            Weapons.Remove(Weapons[purchaceChoice-1]); //doesn't doa nything now as it gets reloaded, but that's fine
                             
                             Console.WriteLine(Helper.CenterStr("Thank you for your patronage"));
                             Console.WriteLine(Helper.CenterStr($"You now have {player.Coins} Coins"));
