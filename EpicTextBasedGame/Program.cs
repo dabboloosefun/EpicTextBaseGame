@@ -15,7 +15,7 @@
         player.AddItem(Item.BaseItems["Healing Potion25"].Copy()); 
         player.AddItem(new Item("Lingering Heaing Potion25", new Effect("HealOverTime25", 25, EffectTypes.HEALOVERTIME, 3), "heals 25 health every turn for 3 turns", 2));
         player.Coins = 60;
-
+        player.Weapons.Add(World.WeaponByID(World.WEAPON_ID_HAND_OF_GOD));
 
         //player.AddItem(new Item("Healing Potion", BaseEffects.HealInstant10, "heals 10 instantly", 1));
         Helper.TitleScreen();
