@@ -2,18 +2,22 @@
 {
 
     public static readonly List<Weapon> Weapons = new List<Weapon>();
-
     public static readonly List<Item> Items = new List<Item>();
     public static readonly List<Monster> Monsters = new List<Monster>();
     public static readonly List<Quest> Quests = new List<Quest>();
     public static readonly List<Location> Locations = new List<Location>();
     public static readonly Random RandomGenerator = new Random();
 
+    public const int ITEM_ID_POTION10 = 1;
+    public const int ITEM_ID_POTION20 = 2;
+    public const int ITEM_ID_POTION30 = 3;
+
     public const int WEAPON_ID_RUSTY_SWORD = 1;
     public const int WEAPON_ID_CLUB = 2;
     public const int WEAPON_ID_POISON_DAGGER = 3;
     public const int WEAPON_ID_HAND_OF_GOD = 999;
     public const int WEAPON_ID_SCYTHE = 666;
+    public const int WEAPON_ID_MINOTAUR_HORN = 4;
 
     public const int MONSTER_ID_RAT = 1;
     public const int MONSTER_ID_SNAKE = 2;
@@ -64,28 +68,19 @@
         Weapons.Add(new Weapon(WEAPON_ID_SCYTHE, "Grave Scythe", 50, 0.3));
         Weapons.Add(new Weapon(WEAPON_ID_POISON_DAGGER, "Poison dagger", 8, 0.3));
         Weapons.Add(new Weapon(WEAPON_ID_HAND_OF_GOD, "Hand of God", 1000, 1));
+        Weapons.Add(new Weapon(WEAPON_ID_MINOTAUR_HORN, "Minotaur Horn", 20, 0.1));
     }
 
     public static void PopulateItems()
     {
-        Item healingPotion10 = new Item("Healing Potion10", Effect.BaseEffects["HealInstant10"].Copy(), "heals 10 instantly", 1);
-        Item healingPotion20 = new Item("Healing Potion20", Effect.BaseEffects["HealInstant20"].Copy(), "heals 20 instantly", 1);
-        Item healingPotion30 = new Item("Healing Potion30", Effect.BaseEffects["HealInstant30"].Copy(), "heals 30 instantly", 1);
-        Item healingPotion50 = new Item("Healing Potion50", Effect.BaseEffects["HealInstant50"].Copy(), "heals 50 instantly", 1);
-        Item healingPotion100 = new Item("Healing Potion100", Effect.BaseEffects["HealInstant100"].Copy(), "heals 100 instantly", 1);
-        Item healingPotion123 = new Item("Healing Potion123", new Effect("HealInstant123", 123, EffectTypes.HEALINSTANT, 1), "heals 123 instantly", 1);
-
-        Items.Add(healingPotion10);
-        Items.Add(healingPotion20);
-        Items.Add(healingPotion30);
-        Items.Add(healingPotion50);
-        Items.Add(healingPotion100);
-        Items.Add(healingPotion123);
+        Items.Add(new Item(ITEM_ID_POTION10, "Healing Potion10", Effect.BaseEffects["HealInstant10"].Copy(), "heals 10 instantly", 1));
+        Items.Add(new Item(ITEM_ID_POTION20, "Healing Potion20", Effect.BaseEffects["HealInstant20"].Copy(), "heals 20 instantly", 1));
+        Items.Add(new Item(ITEM_ID_POTION30, "Healing Potion30", Effect.BaseEffects["HealInstant30"].Copy(), "heals 30 instantly", 1));
     }
 
     public static void PopulateMonsters()
     {
-        Monster rat = new Monster(MONSTER_ID_RAT, "rat", 4, 12, 12, 12, 10, new List<LootDrop>{new LootDrop(30, null, ItemByID(1))}, @"
+        Monster rat = new Monster(MONSTER_ID_RAT, "rat", 4, 12, 12, 12, 10, new List<LootDrop>{new LootDrop(100, null, ItemByID(1))}, @"
                                  __             _,-""~^""-.
                                _// )      _,-""~`         `.
                              ."" ( /`""-,-""`                 ;
@@ -280,7 +275,7 @@
                                                              |lllj
                                                              ||||| 
 ");
-        Monster minotaur = new Monster(MONSTER_ID_MINOTAUR, "minotaur", 13, 70, 70, 100, 40, new List<LootDrop>(), @"
+        Monster minotaur = new Monster(MONSTER_ID_MINOTAUR, "minotaur", 13, 70, 70, 100, 40, new List<LootDrop>{new LootDrop(100, WeaponByID(4))}, @"
                                                                                     _
                                                                                   _( (~\
                            _ _                        /                          ( \> > \
