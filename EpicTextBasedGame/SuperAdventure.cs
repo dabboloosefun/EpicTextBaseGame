@@ -57,6 +57,7 @@ public class SuperAdventure
                             Thread.Sleep(1000);
                             Console.Clear();
                             Console.WriteLine("\u001b[2J\u001b[3J");
+                            Helper.ProjectMonser(monster);
                             break;
                         }
                         Console.Clear();
