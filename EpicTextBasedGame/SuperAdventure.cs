@@ -51,6 +51,14 @@ public class SuperAdventure
 
                     case "3":
                     case "flee":
+                        if (player.CurrentLocation.ID == World.LOCATION_ID_ARENA)
+                        {
+                            Helper.WriteInCenter("You can't flee from the final boss");
+                            Thread.Sleep(1000);
+                            Console.Clear();
+                            Console.WriteLine("\u001b[2J\u001b[3J");
+                            break;
+                        }
                         Console.Clear();
                         Console.WriteLine("\u001b[2J\u001b[3J");
                         return;
