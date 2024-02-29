@@ -22,7 +22,7 @@ public class Player : Character
         MaxHealth = 100; // Max health is 100, we can change this later but 100 seems like good number for now
         CurrentHealth = MaxHealth; // Start with full health
         CurrentLocation = World.Locations[0]; // Home
-        CurrentWeapon = World.Weapons[4]; // starter weapon
+        CurrentWeapon = World.Weapons[0]; // starter weapon
         QuestList = new List<Quest>{};
         ActiveEffects = new List<Effect>();
         Experience = 0;
