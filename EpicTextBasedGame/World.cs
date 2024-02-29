@@ -130,7 +130,7 @@
                         \\(                                                       )//
                           \\                                                     // 
 ");
-        Monster faceless = new Monster(MONSTER_ID_FACELESS, "reaper", 20, 30, 30, 30, 50, new List<LootDrop>{new LootDrop(100, WeaponByID(666))}, @"
+        Monster faceless = new Monster(MONSTER_ID_FACELESS, "reaper", 20, 300, 300, 300, 50, new List<LootDrop>{new LootDrop(100, WeaponByID(666))}, @"
                                                                  .""--..__
                                              _                     []       ``-.._
                                           .'` `'.                  ||__           `-._
