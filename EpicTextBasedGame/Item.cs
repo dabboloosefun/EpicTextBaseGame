@@ -55,7 +55,7 @@ public class Item{
     }
     public string Info()
     {
-        return $"{Count}x{Name}: {Description}";
+        return $"{Count} X {Name}: {Description}";
     }
 
     public void UseItem(Character? character = null)

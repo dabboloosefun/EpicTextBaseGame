@@ -192,7 +192,7 @@ public class Player : Character
         Console.WriteLine(Helper.CenterStr("You are carrying these items in your inventory:"));
         for (int i = 0; i <= Items.Count - 1; i++)
         {
-            Console.WriteLine(Helper.CenterStr($"{i+1}: {Items[i].Info()}")); //only add 1 to displayed item number
+            Console.WriteLine(Helper.CenterStr($"[{i+1}] {Items[i].Info()}")); //only add 1 to displayed item number
         }
     }
 
