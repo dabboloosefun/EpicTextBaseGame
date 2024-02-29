@@ -54,7 +54,6 @@ public class SuperAdventure
                         Console.Clear();
                         Console.WriteLine("\u001b[2J\u001b[3J");
                         return;
-                        break;
 
                     default:
                         Helper.ProjectMonser(monster);
